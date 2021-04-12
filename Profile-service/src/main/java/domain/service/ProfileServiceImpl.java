@@ -48,16 +48,7 @@ public class ProfileServiceImpl implements ProfileService {
 		return em.createQuery(criteria).getSingleResult();
 	}
 	
-	@Override
-	public String getUnitByName(String name) {
-		//log.info("Get unit by Profile name");
-		CriteriaBuilder builder = em.getCriteriaBuilder();
-		CriteriaQuery<Profile> criteria = builder.createQuery(Profile.class);
-		Root<Profile> i = criteria.from(Profile.class);
-		criteria.select(i).where(builder.equal(i.get("name"),name));
-		Profile Profile = em.createQuery(criteria).getSingleResult();
-		return Profile.getUnit();
-	}
+	
 	
 	@Override
 	public int create(Profile Profile) {
@@ -67,7 +58,7 @@ public class ProfileServiceImpl implements ProfileService {
 		}
 		em.persist(Profile);
 		em.flush();
-		return Profile.getId();
+		return 1;
 	}
 	
 	@Override

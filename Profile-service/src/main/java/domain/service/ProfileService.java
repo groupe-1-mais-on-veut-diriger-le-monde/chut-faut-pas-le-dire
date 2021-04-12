@@ -12,7 +12,7 @@ public interface ProfileService {
 	
 	public Profile getByName(String name);
 	
-	public String getUnitByName(String name);
+	
 	
 	public int create(Profile Profile);
 	

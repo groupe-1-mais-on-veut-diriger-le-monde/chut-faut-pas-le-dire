@@ -2,6 +2,8 @@ package domain.model;
 
 // import java.util.ArrayList;
 import java.io.Serializable;
+import java.util.ArrayList;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -94,12 +96,19 @@ public class Profile implements Serializable {
 	@NotNull
 	private int superhero;	
 	
+	@Column(name = "Group")
+	private ArrayList<String> Group = new ArrayList<String>();
+	
+	@Column(name = "A voir")
+	@NotNull
+	private String A_voir;
+	
 	
 	
 	public Profile() {}
 	
 	
-	public Profile(String name, String surname, int comedy, int sci,int Horror,int romance,int action,int thriller,int drama,int mystery,int crime,int animation,int adventure,int fantasy,int comdedy_Romance,int action_comedy,int superhero) {
+	public Profile(String name, String surname, int comedy, int sci,int Horror,int romance,int action,int thriller,int drama,int mystery,int crime,int animation,int adventure,int fantasy,int comdedy_Romance,int action_comedy,int superhero,String Group,String A_voir) {
 		this.name = name;
 		this.surname = surname;
 		this.comedy = comedy;
@@ -116,6 +125,9 @@ public class Profile implements Serializable {
 		this.comdedy_Romance = comdedy_Romance;
 		this.action_comedy = action_comedy;
 		this.superhero = superhero;
+		this.Group.add(Group);
+		this.A_voir = A_voir;
+		
 		
 		
 	}

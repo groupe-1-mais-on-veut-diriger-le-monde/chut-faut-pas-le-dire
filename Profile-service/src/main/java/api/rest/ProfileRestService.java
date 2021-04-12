@@ -46,12 +46,7 @@ public class ProfileRestService {
 		return ProfileService.getByName(name);
 	}
 	
-	@GET
-	@Path("/unit/{name}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public String getUnitByName(@PathParam("name") String name) {
-		return ProfileService.getUnitByName(name);
-	}
+	
 		
 	@DELETE
 	@Path("/delete/{id}")
