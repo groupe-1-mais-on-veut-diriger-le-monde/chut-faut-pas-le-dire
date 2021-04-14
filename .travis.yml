@@ -1,0 +1,10 @@
+
+language: java
+language: python
+jdk:
+  - openjdk11
+
+
+
+notification:
+  email: edin.sljmn@gmail.com
