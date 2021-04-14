@@ -5,6 +5,23 @@ jdk:
   - openjdk11
 
 
+addons:
+  sonarcloud:
+    organization: "edin0"
+    token:
+      secure: "TjsaWZ2lugdu2eqgUtrqd9Mj7guBgJH6uMvNcSUZjoYIX6hiu8YY0hCK8rDGLkQNKcpmHMC6qa6y4Q+iFg44O8itiinFOdomqycZ6l02Tp6I9FmRcSVQFi5fAyxuawv2lT7p3jSKuY0qhpSXIPGYH23Z2INxDWwGifZQquRPtoaMobmgUNs2eNTjD4G7PJhRLzp3pKTmM/+N6gAA9DffjUQWB5CCY4hWZAvanuDkRgMB90B7KBQA+TtSfK5iKH526HO8sh0ctqmLE+BAqMVTO2cktrEcOZz86mqpotlfc8ChMEveeLmeJ1uI1Pj3AS3ObVbq9t3uYFj/UBAqZSlYCdDfo53G0tbxTOjq6t3jIHLFquXLo90WFYt9cIzdpGwPr7xHDtdwjL1maqu94LcjqWpK3GQBhz+JWW0vn6PfkkAfjWgfZ7M9284dgd/bGoDLddJOK8IaidI/GDVjSergwTnwnT0e5R6jIWwN9KxrGqyurVDf5WiR5cMP7vair/qpQgcmP5xQ8Ay+2JQjqFSpucVD1aZg7eKGkFH25tvK6/z6qPrdT+bzdmjldQ3DDburSTsy0RKprvvOkOe3JSguPhWinBJwlz+aJI6hbXMGaPonYjGM+J5lqpQQqkUlK9IJcpuUIl+SnP+/uTHcCHAaQEJunkdNPxnTGM9h518Ds1E="
+
+script:
+  - sonar-scanner
+  - ./mvnw clean install
+
+
+
+
+jobs:
+  include:
+    - stage: Test
+      script: ./mvnw clean test
 
 notification:
   email: edin.sljmn@gmail.com
