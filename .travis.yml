@@ -16,7 +16,7 @@ addons:
   sonarcloud:
     organization: "groupe-1-mais-on-veut-diriger-le-monde"
     token:
-      secure: "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"
+      secure: "cpvAucJ3wDeSRvh5b12wK5tnmJwUje4MWuxl42KgR0+lWwc7ZkE1wQc1VpLy5m5vOTnk1v5gCjnP36Wz+ow50o6NAaIOO9RTuqR4/nqjBSWZFWdr9OpPC4d0H769QhFyReWDhDuQoAksnUXgurgeP+UEUcroQY2gLuwLOVQ1oJsBy8sdQj8x9RNoc8Hef8Bcl/9TTzezY+bwdLl3eQ+d4gKPTMg/4NUGFVBCVuJ+SQG3KQfOX9XC1Cy5y6/gaVpf8bXA7cDXveKopQiaZo3DGGa733IGtpGCclOdahql5slZU+huy9fDOZ47yfGkVuKuQiLtxgMsU0UA1JZZjrYUnAeKPNCR8v/GoynqXL6+oIJUFGPN23suDucw/1nfWYEytFcbs3nJPENPjM+cgAfz5TXSRO3NrwQ6lskjHTwhEegjfywhzPflTt1wtV2uIvLK7SLmBfuXyfo7PdEJg2XEv73SIIVakCyg7laMm/wFcS3k/ceKrFuwgUyNAWHobHJ3tZ9/warQQ1EyiTq6urbRRDlZ18NdxZ3IXyxUAymNk4SoidwXAzhT6Xdc+Be6Xu3/gY+jIwJ67yXW3CGIjhvIC3nTyEikdFn+ri++HLwx92EPhLGxmvfj16+0H1EbVtYytN27XixdBcfCqMX+pxyk3kuQbn81/uGLlWfVme1vVR8="
 
 script:
   - sonar-scanner
