@@ -1,6 +1,13 @@
 
 language: java
 language: python
+
+env:
+  - NODE_VERSION="12.13.1"
+
+#services:
+#  - docker
+
 jdk:
   - openjdk11
 
@@ -20,8 +27,30 @@ script:
 
 jobs:
   include:
+    - stage: Prepare
+      script:
+      - nvm install $NODE_VERSION
+      - mvn install -N -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+    - stage : Build
+      script:
+      - mvn install -Ppackage-docker-image  
+    - stage : Build
+      script:
+      - cd web-ui
+      - pwd
+      - npm -v
+      - npm install
+      - npm update
+      - npm run-script build --prod
+      #- docker build -t unige/web-ui .
+      #- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin      
+      #- docker tag unige/web-ui edin0/web-ui:latest      
+      #- docker push edin0/web-ui:latest
+
     - stage: Test
       script: ./mvnw clean test
 
+
 notification:
   email: edin.sljmn@gmail.com
+
