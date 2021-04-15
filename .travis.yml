@@ -16,7 +16,7 @@ addons:
   sonarcloud:
     organization: "groupe-1-mais-on-veut-diriger-le-monde"
     token:
-      secure: "8109a8d9e77f615669a530a79e525e73c5db4220"
+      secure: "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"
 
 script:
   - sonar-scanner
