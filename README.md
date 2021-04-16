@@ -6,6 +6,12 @@
 * **Dirkx Jan** - *Developer (Backend)*
 * **Sulejmani Edin** - *System Administrator*
 
+## Problems/experience:
+* **Technique**
+* **Compatibilité**
+* **Expérience**
+
+
 
 Build Status and Link - [![Build Status](https://travis-ci.org/TechPrimers/travis-ci-example.svg?branch=master)](https://github.com/groupe-1-mais-on-veut-diriger-le-monde/chut-faut-pas-le-dire)
 
