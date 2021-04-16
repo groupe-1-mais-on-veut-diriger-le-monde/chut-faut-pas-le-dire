@@ -1,9 +1,9 @@
 ## Team members:
 
 * **Bachmann Antoine** - *Project Manager*
-* **Costa da Quinta João** - *Developer*
-* **Heiniger Léa** - *Developer*
-* **Dirkx Jan** - *Developer*
+* **Costa da Quinta João** - *Developer (Frontend)*
+* **Heiniger Léa** - *Developer (Frontend)*
+* **Dirkx Jan** - *Developer (Backend)*
 * **Sulejmani Edin** - *System Administrator*
 
 
