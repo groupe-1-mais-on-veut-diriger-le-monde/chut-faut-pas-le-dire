@@ -11,6 +11,11 @@
 * **Compatibilité**
 * **Expérience**
 
+##
+##
+##
+
+## Status:
 
 
 Build Status and Link - [![Build Status](https://travis-ci.org/TechPrimers/travis-ci-example.svg?branch=master)](https://github.com/groupe-1-mais-on-veut-diriger-le-monde/chut-faut-pas-le-dire)
