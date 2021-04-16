@@ -19,5 +19,7 @@ public interface ProfileService {
 	public void delete(Profile Profile);
 	
 	public boolean existByName(String name);
+
+	void update(Profile profile);
 	
 }

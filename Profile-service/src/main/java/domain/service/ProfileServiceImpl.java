@@ -48,6 +48,15 @@ public class ProfileServiceImpl implements ProfileService {
 		return em.createQuery(criteria).getSingleResult();
 	}
 	
+	@Override
+	public void update(Profile profile) {
+		Profile i = em.find(Profile.class, profile.getid());
+		if (i == null) {
+			throw new IllegalArgumentException("AUser does not exist : " + profile.getid());
+		}
+		em.merge(profile);
+	}
+	
 	
 	
 	@Override
@@ -58,7 +67,7 @@ public class ProfileServiceImpl implements ProfileService {
 		}
 		em.persist(Profile);
 		em.flush();
-		return 1;
+		return Profile.getid();
 	}
 	
 	@Override

@@ -97,7 +97,7 @@ public class Profile implements Serializable {
 	private int superhero;	
 	
 	@Column(name = "Group")
-	private ArrayList<String> Group = new ArrayList<String>();
+	private ArrayList<String> Group ;
 	
 	@Column(name = "A voir")
 	@NotNull
@@ -108,7 +108,7 @@ public class Profile implements Serializable {
 	public Profile() {}
 	
 	
-	public Profile(String name, String surname, int comedy, int sci,int Horror,int romance,int action,int thriller,int drama,int mystery,int crime,int animation,int adventure,int fantasy,int comdedy_Romance,int action_comedy,int superhero,String Group,String A_voir) {
+	public Profile(String name, String surname, int comedy, int sci,int Horror,int romance,int action,int thriller,int drama,int mystery,int crime,int animation,int adventure,int fantasy,int comdedy_Romance,int action_comedy,int superhero,String A_voir) {
 		this.name = name;
 		this.surname = surname;
 		this.comedy = comedy;
@@ -125,11 +125,123 @@ public class Profile implements Serializable {
 		this.comdedy_Romance = comdedy_Romance;
 		this.action_comedy = action_comedy;
 		this.superhero = superhero;
-		this.Group.add(Group);
+		this.Group = new ArrayList<String>();
 		this.A_voir = A_voir;
 		
 		
 		
 	}
 	
+	public int getid() {
+		return this.id;
+	}
+	
+	public String getname() {
+		return this.name;
+	}
+	
+	public String getsurname() {
+		return this.surname;
+	}
+	
+	public int getcomedy() {
+		return this.comedy;
+	}
+	
+	public int getromance() {
+		return this.romance;
+	}
+	public int getaction() {
+		return this.action;
+	}
+	public int getmystery() {
+		return this.mystery;
+	}
+	public int getdrama() {
+		return this.drama;
+	}
+	public int getcrime() {
+		return this.crime;
+	}
+	public int getanimation() {
+		return this.animation;
+	}
+	public int getadventure() {
+		return this.adventure;
+	}
+	public int getfantasy() {
+		return this.fantasy;
+	}
+	public int getcomdedy_Romance() {
+		return this.comdedy_Romance;
+	}
+	public int getaction_comedy() {
+		return this.action_comedy;
+	}
+	public int getsuperhero() {
+		return this.superhero;
+	}
+	public String getA_voir() {
+		return this.A_voir;
+	}
+	public ArrayList<String> getGroup() {
+		return this.Group;
+	}
+	public void addGroup(String group){
+		 this.Group.add(group);
+	}
+	public void removeGroup(String group){
+		 this.Group.remove(group);
+	}
+	
+	
+	
+	public void setname(String name) {
+		 this.name = name;
+	}
+	
+	public void setsurname(String surname) {
+		 this.surname = surname;
+	}
+	
+	public void setcomedy(int comedy) {
+		 this.comedy = comedy;
+	}
+	
+	public void setromance(int romance) {
+		 this.romance =romance;
+	}
+	public void setaction(int action) {
+		 this.action = action;
+	}
+	public void setmystery(int mystery) {
+		 this.mystery= mystery;
+	}
+	public void setdrama(int drama) {
+		 this.drama =drama;
+	}
+	public void setcrime(int crime) {
+		 this.crime = crime;
+	}
+	public void setanimation(int animation) {
+		 this.animation = animation;
+	}
+	public void setadventure(int adventure) {
+		 this.adventure = adventure;
+	}
+	public void setfantasy(int fantasy) {
+		 this.fantasy = fantasy;
+	}
+	public void setcomdedy_Romance(int comdedy_Romance) {
+		 this.comdedy_Romance = comdedy_Romance;
+	}
+	public void setaction_comedy(int action_comedy) {
+		 this.action_comedy= action_comedy;
+	}
+	public void setsuperhero(int superhero) {
+		 this.superhero = superhero;
+	}
+	public void setA_voir(String a_voir) {
+		 this.A_voir = a_voir;
+    }
 }
