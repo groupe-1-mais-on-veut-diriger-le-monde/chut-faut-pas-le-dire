@@ -9,8 +9,8 @@
 		<version>0.4.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>ingredients-service</artifactId>
-	<name>Ingredients Service</name>
+	<artifactId>Profiles-service</artifactId>
+	<name>Profiles Service</name>
 	<packaging>war</packaging>
 
 	<properties>

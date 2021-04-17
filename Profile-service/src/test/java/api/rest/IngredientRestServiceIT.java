@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.containsString;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import domain.model.Ingredient;
+import domain.model.Profile;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
@@ -15,7 +15,7 @@ public class IngredientRestServiceIT {
 
 	@BeforeAll
 	public static void setup() {
-		RestAssured.baseURI = "http://localhost:28080/ingredients";
+		RestAssured.baseURI = "http://localhost:28080/Profiles";
 		RestAssured.port = 8080;
 	}
 	@Test
