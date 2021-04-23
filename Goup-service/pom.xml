@@ -249,7 +249,7 @@
 				</dependencies>
 				<configuration>
 					<driver>org.h2.Driver</driver>
-					<url>jdbc:h2:${java.io.tmpdir}/target/IngredientsDB;AUTO_SERVER=TRUE</url>
+					<url>jdbc:h2:${java.io.tmpdir}/target/GroupsDB;AUTO_SERVER=TRUE</url>
 					<username>sa</username>
 					<password>sa</password>
 					<autocommit>true</autocommit>

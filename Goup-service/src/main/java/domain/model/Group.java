@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -33,10 +34,10 @@ public class Group implements Serializable {
 	
 	@Column(name = "Host")
 	@NotNull
-	private String Host;
+	private String Host;	
 	
+	@ElementCollection
 	@Column(name = "Member")
-	
 	private ArrayList<String> Member ;
 	
 	
@@ -47,7 +48,8 @@ public class Group implements Serializable {
 	public Group(String name, String Host) {
 		this.name = name;
 		this.Host = Host;
-		this.Member = new ArrayList<String>();
+		this.Member =  new ArrayList<String>();
+		
 		
 	}
 	
