@@ -8,6 +8,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -56,6 +57,34 @@ public class GroupRestService {
 		} catch(Exception e) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
 		}
+		return Response.ok().build();
+	}
+	
+	@POST
+	@Consumes("application/json")
+	public Response create(Group Group) {
+		try {
+			GroupService.create(Group);
+		} catch(IllegalArgumentException i) {
+			return Response.status(Status.BAD_REQUEST).build();
+		} catch(Exception e) {
+			return Response.status(Status.BAD_GATEWAY).build();
+		}
+		
+		
+		return Response.ok().build();
+	}
+	
+	@PUT
+	@Consumes("application/json")
+	public Response update(Group Group) {
+		try {
+			GroupService.update(Group);
+		
+		} catch(Exception e) {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+		}
+		
 		return Response.ok().build();
 	}
 

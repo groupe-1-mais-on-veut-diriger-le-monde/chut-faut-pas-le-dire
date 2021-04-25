@@ -35,9 +35,7 @@ public class Profile implements Serializable {
 	@NotNull
 	private String name;
 	
-	@Column(name = "surname")
-	@NotNull
-	private String surname;
+	
 	
 	@Column(name = "comedy")
 	@NotNull
@@ -109,9 +107,8 @@ public class Profile implements Serializable {
 	public Profile() {}
 	
 	
-	public Profile(String name, String surname, int comedy, int sci,int Horror,int romance,int action,int thriller,int drama,int mystery,int crime,int animation,int adventure,int fantasy,int comdedy_Romance,int action_comedy,int superhero,String A_voir) {
+	public Profile(String name, int comedy, int sci,int Horror,int romance,int action,int thriller,int drama,int mystery,int crime,int animation,int adventure,int fantasy,int comdedy_Romance,int action_comedy,int superhero,String A_voir) {
 		this.name = name;
-		this.surname = surname;
 		this.comedy = comedy;
 		this.Horror = Horror;
 		this.romance = romance;
@@ -141,9 +138,7 @@ public class Profile implements Serializable {
 		return this.name;
 	}
 	
-	public String getsurname() {
-		return this.surname;
-	}
+
 	
 	public int getcomedy() {
 		return this.comedy;
@@ -201,9 +196,7 @@ public class Profile implements Serializable {
 		 this.name = name;
 	}
 	
-	public void setsurname(String surname) {
-		 this.surname = surname;
-	}
+	
 	
 	public void setcomedy(int comedy) {
 		 this.comedy = comedy;
