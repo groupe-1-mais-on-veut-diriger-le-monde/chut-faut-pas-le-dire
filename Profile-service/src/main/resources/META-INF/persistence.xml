@@ -40,7 +40,7 @@
 			<property name="hibernate.connection.useUnicode" value="true"/>
 		<!--<property name="hibernate.id.new_generator_mappings" value="true" />
 			<property name="hibernate.hbm2ddl.charset_name" value="UTF-8"/>	-->		
-		<!--	<property name="javax.persistence.sql-load-script-source" value="META-INF/ingredients.sql"/>-->
+		<!--	<property name="javax.persistence.sql-load-script-source" value="META-INF/Profiles.sql"/>-->
 		</properties>
 	</persistence-unit>
 </persistence>

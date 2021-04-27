@@ -1,5 +1,6 @@
 package domain.model;
 
+import java.awt.List;
 // import java.util.ArrayList;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -36,9 +37,9 @@ public class Group implements Serializable {
 	@NotNull
 	private String Host;	
 	
-	@ElementCollection
-	@Column(name = "Member")
-	private ArrayList<String> Member ;
+	//@ElementCollection
+	//@Column(name = "Member")
+	//private ArrayList<String> Member ;
 	
 	
 	
@@ -48,7 +49,7 @@ public class Group implements Serializable {
 	public Group(String name, String Host) {
 		this.name = name;
 		this.Host = Host;
-		this.Member =  new ArrayList<String>();
+		//this.Member =  new ArrayList<String>();
 		
 		
 	}
@@ -65,12 +66,12 @@ public class Group implements Serializable {
 		return this.Host;
 	}
 	
-	public void addGroup(String group){
-		 this.Member.add(group);
-	}
-	public void removeGroup(String group){
-		 this.Member.remove(group);
-	}
+	//public void addGroup(String group){
+		// this.Member.add(group);
+	//}
+	//public void removeGroup(String group){
+		// this.Member.remove(group);
+	//}
 	
 	public void setname(String name) {
 		 this.name = name;

@@ -120,7 +120,7 @@ public class ProfileServiceImplTest {
 	
 
 	private Profile getRandomProfile() {
-		Profile Profile = new Profile(UUID.randomUUID().toString(), UUID.randomUUID().toString(), 
+		Profile Profile = new Profile(UUID.randomUUID().toString(), 
 				ThreadLocalRandom.current().nextInt(0, 2), ThreadLocalRandom.current().nextInt(0, 2), ThreadLocalRandom.current().nextInt(0, 2)
 				, ThreadLocalRandom.current().nextInt(0, 2), ThreadLocalRandom.current().nextInt(0, 2)
 				, ThreadLocalRandom.current().nextInt(0, 2), ThreadLocalRandom.current().nextInt(0, 2)

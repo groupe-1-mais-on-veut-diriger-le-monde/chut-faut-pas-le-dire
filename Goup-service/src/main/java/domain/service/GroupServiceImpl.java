@@ -39,6 +39,13 @@ public class GroupServiceImpl implements GroupService {
 		return em.find(Group.class, id);
 	}
 	
+	//verssion simplifier a voir ce qui est mieux
+		//@Override
+		//public Group getByName(String name)   {
+			//log.info("Get an Group by name");
+		//	return em.find(Group.class, name);
+		//}
+	
 	@Override
 	public Group getByName(String name) {
 		//log.info("Get unit by Group name");

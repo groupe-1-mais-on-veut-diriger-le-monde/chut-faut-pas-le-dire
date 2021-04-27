@@ -1,12 +1,11 @@
 package domain.model;
 
 import java.awt.List;
-// import java.util.ArrayList;
 import java.io.Serializable;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
+//import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -94,9 +93,9 @@ public class Profile implements Serializable {
 	@NotNull
 	private int superhero;	
 	
-	@ElementCollection
-	@Column(name = "Group")
-	private ArrayList<String> Group ;
+	//@ElementCollection
+	//@Column(name = "Group")
+	//private ArrayList<String> Group ;
 	
 	@Column(name = "A voir")
 	@NotNull
@@ -123,7 +122,7 @@ public class Profile implements Serializable {
 		this.comdedy_Romance = comdedy_Romance;
 		this.action_comedy = action_comedy;
 		this.superhero = superhero;
-		this.Group = new ArrayList<String>();
+		//this.Group = new ArrayList<String>();
 		this.A_voir = A_voir;
 		
 		
@@ -180,15 +179,15 @@ public class Profile implements Serializable {
 	public String getA_voir() {
 		return this.A_voir;
 	}
-	public ArrayList<String> getGroup() {
-		return this.Group;
-	}
-	public void addGroup(String group){
-		 this.Group.add(group);
-	}
-	public void removeGroup(String group){
-		 this.Group.remove(group);
-	}
+	//public ArrayList<String> getGroup() {
+		//return this.Group;
+	//}
+	//public void addGroup(String group){
+		// this.Group.add(group);
+	//}
+	//public void removeGroup(String group){
+		// this.Group.remove(group);
+	//}
 	
 	
 	

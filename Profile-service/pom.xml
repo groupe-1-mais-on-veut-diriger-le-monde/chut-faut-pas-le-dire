@@ -269,7 +269,7 @@
 						</goals>
 						<configuration>
 							<srcFiles>
-								<srcFile>${project.basedir}/src/main/resources/META-INF/ingredients.sql</srcFile>
+								<srcFile>${project.basedir}/src/main/resources/META-INF/Profils.sql</srcFile>
 							</srcFiles>
 						</configuration>
 					</execution>
