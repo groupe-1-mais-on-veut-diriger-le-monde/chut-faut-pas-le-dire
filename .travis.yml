@@ -61,7 +61,9 @@ jobs:
     #- stage: Test
      # script: ./mvnw clean test
   build:
+    runs-on: ubuntu-latest
     steps:
+    - name : login
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}   
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  
