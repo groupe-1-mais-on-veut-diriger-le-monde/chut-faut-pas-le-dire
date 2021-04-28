@@ -51,7 +51,7 @@ jobs:
       with:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      run: sudo docker login docker.io -u="$DOCKER_USER" -p="$DOCKER_PASSWORD" --email=edin.sulejmani@etu.unige.ch
+      run: sudo docker login -u $DOCKER_USER -p $DOCKER_PASSWORD --email=edin.sulejmani@etu.unige.ch
       script: 
       - echo "ok"
       - cd docker_building_scripts
