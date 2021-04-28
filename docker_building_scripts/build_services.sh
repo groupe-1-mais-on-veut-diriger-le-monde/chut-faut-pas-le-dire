@@ -20,6 +20,8 @@ sudo docker tag service_film_build edin0/service_film_build:latest
 
 #sudo docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
+sudo docker login -u=$DOCKER_USER -p=$DOCKER_PASSWORD
+
 # push images tagged
 sudo docker push edin0/service_film_build:latest
 
