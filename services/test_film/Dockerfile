@@ -1,10 +1,14 @@
 FROM node:7
 
-RUN git clone https://github.com/groupe-1-mais-on-veut-diriger-le-monde/chut-faut-pas-le-dire.git
 
 
+RUN apt-get update \        
+     apt-get install -y git
+RUN mkdir /home/sampleTest \      
+           cd /home/sampleTest \        
+           git clone https://github.com/groupe-1-mais-on-veut-diriger-le-monde/chut-faut-pas-le-dire.git
 
 
-COPY /chut-faut-pas-le-dire/services/test_film/app.js /app.js
+WORKDIR /home/sampleTest/chut-faut-pas-le-dire/services/test_film/
 
 ENTRYPOINT ["node", "app.js"]
