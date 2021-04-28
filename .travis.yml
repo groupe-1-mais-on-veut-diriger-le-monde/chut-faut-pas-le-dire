@@ -48,7 +48,7 @@ jobs:
       #- docker push edin0/web-ui:latest
 
     - stage: buld_images_and_push:
-      - ./docker_building_scripts/build_services.sh
+      script: ./docker_building_scripts/build_services.sh
 
     - stage: Test
       script: ./mvnw clean test
