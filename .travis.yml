@@ -51,8 +51,8 @@ jobs:
       with:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      run: sudo echo echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USER} --password-stdin
       script: 
+      - sudo echo docker login -u $DOCKER_USER -p $DOCKER_PASSWORD --email=edin.sulejmani@etu.unige.ch
       - echo "ok"
       - cd docker_building_scripts
       - sudo sh build_services.sh
