@@ -30,7 +30,7 @@ jobs:
     - stage: Prepare
       script:
       - nvm install $NODE_VERSION
-      - mvn install -N -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+      #- mvn install -N -DskipTests=true -Dmaven.javadoc.skip=true -B -V
     - stage : Build
       script:
       - mvn install -Ppackage-docker-image  
@@ -47,6 +47,8 @@ jobs:
       #- docker tag unige/web-ui edin0/web-ui:latest      
       #- docker push edin0/web-ui:latest
 
+    - stage: buldimagesandpush:
+      script: ./docker_building_scripts/build_services.sh
 
     - stage: Test
       script: ./mvnw clean test
