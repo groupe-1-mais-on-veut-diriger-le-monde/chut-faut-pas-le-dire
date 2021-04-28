@@ -54,7 +54,9 @@ jobs:
       script: 
       - echo "ok"
       - cd docker_building_scripts
-      - sudo docker login -u=$DOCKER_USER -p=$DOCKER_PASSWORD
+      run:
+        sudo docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      script:
       - sudo sh build_services.sh
 
     - stage: Test
