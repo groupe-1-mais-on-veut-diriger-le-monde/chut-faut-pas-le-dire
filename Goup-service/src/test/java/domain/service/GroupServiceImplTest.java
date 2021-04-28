@@ -74,17 +74,7 @@ public class GroupServiceImplTest {
 		assertEquals(name, GroupServiceImpl.getByName(name).getname());
 	}
 	
-	@Test
-	public void testGetUnitByName() {
-		List<Group> Groups = GroupServiceImpl.getAll();
-		if(Groups.isEmpty()) {
-			Groups.add(getRandomGroup());
-		}
-		GroupServiceImpl.create(Groups.get(0));
-		String name = Groups.get(0).getname();
-		
-		assertEquals(name, GroupServiceImpl.getByName(name));
-	}
+	
 	
 	@Test
 	public void testCreate() {
