@@ -47,7 +47,7 @@ jobs:
       #- docker tag unige/web-ui edin0/web-ui:latest      
       #- docker push edin0/web-ui:latest
 
-    - stage: buldimagesandpush:
+    - stage: Buldimagesandpush
       script: ./docker_building_scripts/build_services.sh
 
     - stage: Test
