@@ -16,7 +16,7 @@ sudo echo ${DockerPassword} | docker login --username ${DockerUsername} --passwo
 
 sudo docker login --username edin0 --password-stdin
 
-sudo docker login --username=edin0 --email=edin.sljmn@gmail.com --password-stdin
+sudo docker login --username=edin0 --email=edin.sljmn@gmail.com 
 
 # push images tagged
 sudo docker push edin0/service_film_build:latest
