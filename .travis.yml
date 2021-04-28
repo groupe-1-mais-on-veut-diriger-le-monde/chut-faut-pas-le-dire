@@ -26,10 +26,10 @@ script:
 
 
 jobs:
-  include:
-    - stage: Prepare
-      script:
-      - nvm install $NODE_VERSION
+  #include:
+   # - stage: Prepare
+    #  script:
+     # - nvm install $NODE_VERSION
       #- mvn install -N -DskipTests=true -Dmaven.javadoc.skip=true -B -V
     #- stage : Build
       #script:
@@ -67,6 +67,9 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: include
+      run: |
+        nvm install $NODE_VERSION
     - name: docker change dir
       run: |
         cd docker_building_scripts
