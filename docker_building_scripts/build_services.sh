@@ -11,12 +11,14 @@ sudo docker tag service_film_build edin0/service_film_build:latest
 
 
 # connection au docker hub
-sudo echo ${DockerPassword} | docker login --username ${DockerUsername} --password-stdin
+#sudo echo ${DockerPassword} | docker login --username ${DockerUsername} --password-stdin
 
 
-sudo docker login --username edin0 --password-stdin
+#sudo docker login --username edin0 --password-stdin
 
-sudo docker login --username=edin0 --email=edin.sljmn@gmail.com 
+#sudo docker login --username=edin0 --email=edin.sljmn@gmail.com 
+
+sudo docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
 # push images tagged
 sudo docker push edin0/service_film_build:latest
