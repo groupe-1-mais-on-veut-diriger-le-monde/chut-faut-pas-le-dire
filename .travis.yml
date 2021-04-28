@@ -53,7 +53,7 @@ jobs:
       with:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       script: 
-      - sudo docker https://hub.docker.com login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - sudo docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - echo "ok"
       - cd docker_building_scripts
       - sudo sh build_services.sh
