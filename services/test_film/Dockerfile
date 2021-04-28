@@ -8,5 +8,5 @@ WORKDIR chut-faut-pas-le-dire/services/test_film
 
 
 
-ADD /chut-faut-pas-le-dire/services/test_film/app.js /var/lib/docker/tmp/./
+ADD /chut-faut-pas-le-dire/services/test_film/app.js /app.js
 ENTRYPOINT ["node", "app.js"]
