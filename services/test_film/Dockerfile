@@ -2,8 +2,6 @@ FROM node:7
 
 
 
-RUN apt-get update \        
-     apt-get install -y git
 RUN mkdir /home/sampleTest \      
            cd /home/sampleTest \        
            git clone https://github.com/groupe-1-mais-on-veut-diriger-le-monde/chut-faut-pas-le-dire.git
