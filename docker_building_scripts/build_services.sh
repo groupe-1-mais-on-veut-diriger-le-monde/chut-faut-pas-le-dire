@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# build les images a orator du dockerfile
+# build les images a partir du dockerfile
 sudo docker image build -t service_film_build -f ../services/test_film/Dockerfile .
 
 # connection au docker hub
