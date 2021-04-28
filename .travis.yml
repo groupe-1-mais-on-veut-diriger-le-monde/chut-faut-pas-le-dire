@@ -50,7 +50,7 @@ jobs:
     - stage : Build
       script: 
       - echo "ok"
-      - (cd /docker_building_scripts/ ; sudo sh script.sh)
+      - (cd /docker_building_scripts/ ; sudo sh build_services.sh)
 
     - stage: Test
       script: ./mvnw clean test
