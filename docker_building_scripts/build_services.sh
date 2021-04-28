@@ -5,9 +5,9 @@
 sudo docker image build -t service_film_build -f ../services/test_film/Dockerfile .
 
 # connection au docker hub
-sudo echo ${DockerPassword} | docker login --username ${DockerUsername} --password-stdin
+#sudo echo ${DockerPassword} | docker login --username ${DockerUsername} --password-stdin
 
-sudo docker login -u edin0 --password-stdin
+cat ~/my_password.txt | sudo docker login --username edin0 --password-stdin
 
 # change les noms des images et les envoies au docker hub
 sudo docker tag service_film_build edin0/service_film_build:latest
