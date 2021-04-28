@@ -5,8 +5,8 @@ language: python
 env:
   - NODE_VERSION="12.13.1"
 
-#services:
-#  - docker
+services:
+  - docker
 
 jdk:
   - openjdk11
