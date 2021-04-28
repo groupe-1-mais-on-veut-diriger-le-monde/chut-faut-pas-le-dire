@@ -31,24 +31,26 @@ jobs:
       script:
       - nvm install $NODE_VERSION
       #- mvn install -N -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-    - stage : Build
-      script:
-      - mvn install -Ppackage-docker-image  
-    - stage : Build
-      script:
-      - cd web-ui
-      - pwd
-      - npm -v
-      - npm install
-      - npm update
-      - npm run-script build --prod
+    #- stage : Build
+      #script:
+      #- mvn install -Ppackage-docker-image  
+    #- stage : Build
+     # script:
+      #- cd web-ui
+      #- pwd
+      #- npm -v
+      #- npm install
+      #- npm update
+      #- npm run-script build --prod
       #- docker build -t unige/web-ui .
       #- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin      
       #- docker tag unige/web-ui edin0/web-ui:latest      
       #- docker push edin0/web-ui:latest
 
-    - stage: Buldimagesandpush
-      script: ./docker_building_scripts/build_services.sh
+    - stage : Build
+      script: 
+      - echo "ok"
+      - ./docker_building_scripts/build_services.sh
 
     - stage: Test
       script: ./mvnw clean test
