@@ -48,7 +48,7 @@ jobs:
       #- docker push edin0/web-ui:latest
 
     - stage : Build
-      env:
+      with:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: sudo docker login docker.io -u $DOCKER_USER -p $DOCKER_PASSWORD --email=edin.sulejmani@etu.unige.ch
