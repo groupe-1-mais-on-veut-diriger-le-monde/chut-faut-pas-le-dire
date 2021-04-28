@@ -47,20 +47,38 @@ jobs:
       #- docker tag unige/web-ui edin0/web-ui:latest      
       #- docker push edin0/web-ui:latest
 
-    - stage : Build
-      with:
-        DOCKER_USER: ${{ secrets.DOCKER_USER }}
-      with:
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      script: 
-      - sudo docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-      - echo "ok"
-      - cd docker_building_scripts
-      - sudo sh build_services.sh
+    #- stage : Build
+     # with:
+     #   DOCKER_USER: ${{ secrets.DOCKER_USER }}
+     # with:
+     #   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+     # script: 
+     # - sudo docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+     # - echo "ok"
+     # - cd docker_building_scripts
+     # - sudo sh build_services.sh
 
-    - stage: Test
-      script: ./mvnw clean test
-
+    #- stage: Test
+     # script: ./mvnw clean test
+  build:
+    steps:
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}   
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: docker change dir
+      run: |
+        cd docker_building_scripts
+    - name: docker build
+      run: |
+        sudo docker image build -t service_film_build -f ../services/test_film/Dockerfile .
+    - name: docker tag
+      run: |
+        sudo docker tag service_film_build edin0/service_film_build:latest
+    - name: docker push
+      run: |
+        sudo docker push edin0/service_film_build:latest
 
 notification:
   email: edin.sljmn@gmail.com
