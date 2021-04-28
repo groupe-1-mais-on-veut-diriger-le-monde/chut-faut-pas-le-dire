@@ -6,11 +6,6 @@
 * **Dirkx Jan** - *Developer (Backend)*
 * **Sulejmani Edin** - *System Administrator*
 
-## Problems/experience:
-* **Technique**
-* **Compatibilité**
-* **Expérience**
-
 ##
 ##
 ##
