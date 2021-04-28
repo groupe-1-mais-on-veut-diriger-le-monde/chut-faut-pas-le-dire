@@ -5,6 +5,6 @@ RUN git clone https://github.com/groupe-1-mais-on-veut-diriger-le-monde/chut-fau
 
 
 
-ADD /chut-faut-pas-le-dire/services/test_film/app.js /app.js
+COPY /chut-faut-pas-le-dire/services/test_film/app.js /app.js
 
 ENTRYPOINT ["node", "app.js"]
