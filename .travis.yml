@@ -49,9 +49,9 @@ jobs:
 
     - stage : Build
       with:
-        DOCKER_USER=${{ secrets.DOCKER_USER }}
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
       with:
-        DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       script: 
       - sudo docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - echo "ok"
