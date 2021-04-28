@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # build les images a orator du dockerfile
-sudo docker image build -t service_film_build -f services/test_film/Dockerfile .
+sudo docker image build -t service_film_build -f ../services/test_film/Dockerfile .
 
 # connection au docker hub
 sudo echo ${DockerPassword} | docker login --username ${DockerUsername} --password-stdin
