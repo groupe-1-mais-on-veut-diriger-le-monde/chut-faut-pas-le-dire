@@ -1,5 +1,6 @@
 #!/bin/bash
-
+DOCKER_USER=${{ secrets.DOCKER_USER }}
+DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}
 
 # build les images a partir du dockerfile
 sudo docker image build -t service_film_build -f ../services/test_film/Dockerfile .
@@ -21,6 +22,8 @@ sudo docker tag service_film_build edin0/service_film_build:latest
 #sudo docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
 #sudo docker login -u=$DOCKER_USER -p=$DOCKER_PASSWORD
+
+sudo docker login docker.io -u $DOCKER_USER -p $DOCKER_PASSWORD --email=edin.sulejmani@etu.unige.ch
 
 # push images tagged
 sudo docker push edin0/service_film_build:latest
