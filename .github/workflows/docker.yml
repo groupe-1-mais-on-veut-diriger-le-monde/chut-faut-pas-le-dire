@@ -23,26 +23,26 @@ jobs:
       #  run: cd docker_building_scripts
       #- name: run building docker services
       #  run: sudo sh build_services.sh
-      - name: git clone
-        run: |
-          git clone https://github.com/groupe-1-mais-on-veut-diriger-le-monde/chut-faut-pas-le-dire.git
-      - name: change directory
-        run: |
-          cd chut-faut-pas-le-dire
-          cd services
-          cd test_film
+     # - name: git clone
+     #   run: |
+     #     git clone https://github.com/groupe-1-mais-on-veut-diriger-le-monde/chut-faut-pas-le-dire.git
+     # - name: change directory
+     #   run: |
+     #     cd chut-faut-pas-le-dire
+     #     cd services
+     #     cd test_film
       - name: docker build images
         run: |
           # build les images a partir du dockerfile
-          sudo docker image build -t service_film_build -f Dockerfile .
+          sudo docker image build -t service_film_build -f ./services/test_film/Dockerfile .
       - name: docker tag images
         run: |
          # change les noms des images et les envoies au docker hub
-         sudo docker tag service_film_build edin0/service_film_build:latest
+         sudo docker tag service_film_build edin0/service_film_build
       - name: docker push tagged images
         run: |
          # push images tagged
-         sudo docker push edin0/service_film_build:latest
+         sudo docker push edin0/service_film_build
       - name: docker test the build
         run: |
          # test the build
