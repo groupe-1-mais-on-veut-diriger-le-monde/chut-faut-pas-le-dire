@@ -31,7 +31,7 @@ jobs:
          sudo docker tag service_film_build edin0/service_film_build
       - name: docker push tagged images
         run: |
-         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
          # push images tagged
          sudo docker push edin0/service_film_build
       - name: docker test the build
