@@ -23,6 +23,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+        
      #- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - name: echo ok
         run: echo "ok"
@@ -36,7 +37,7 @@ jobs:
          sudo docker tag service_film_build edin0/service_film_build
       - name: docker push tagged images
         run: |
-         #echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
+         echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
          # push images tagged
          sudo docker push edin0/service_film_build
       - name: docker test the build
