@@ -7,6 +7,31 @@ name: Docker Series Builds
 on: [push]
 
 
+jobs:
+  build:     
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup env Node
+        env:
+          NODE_VERSION="12.13.1"
+      - name: install node
+        run: nvm install $NODE_VERSION
+      - name: download node
+        run: nvm install $NODE_VERSION
+      - uses: actions/checkout@v1
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin 
+
+     #- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: echo ok
+        run: echo "ok"
+      - name: change directory
+        run: cd docker_building_scripts
+      - name: run building docker services
+        run: sudo sh build_services.sh
+      - name: Test
+        run: cd .. && ./mvnw clean test
+
 #services:
 #  - docker
 
@@ -27,7 +52,6 @@ on: [push]
 
 
 
-jobs:
   #include:
   #  - stage: Prepare
   #    script:
@@ -58,29 +82,7 @@ jobs:
       #with:
        # DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
      # script: 
-  build:     
-    runs-on: ubuntu-latest
-    steps:
-      #- name: setup env Node
-      #  env:
-      #    NODE_VERSION="12.13.1"
-      #- name: install node
-      #  run: nvm install $NODE_VERSION
-      #- name: download node
-      #  run: nvm install $NODE_VERSION
-      - uses: actions/checkout@v1
-      - name: Login to DockerHub Registry
-        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin 
 
-     #- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-      - name: echo ok
-        run: echo "ok"
-      - name: change directory
-        run: cd docker_building_scripts
-      - name: run building docker services
-        run: sudo sh build_services.sh
-      - name: Test
-        run: cd .. && ./mvnw clean test
 
 
 
