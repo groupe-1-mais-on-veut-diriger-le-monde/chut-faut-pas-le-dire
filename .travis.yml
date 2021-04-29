@@ -1,6 +1,7 @@
 
-#language: java
+language: java
 #language: python
+language: generic
 name: Docker Series Builds
 
 on: [push]
