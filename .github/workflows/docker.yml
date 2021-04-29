@@ -44,7 +44,7 @@ jobs:
       - name: docker tag images
         run: |
          # change les noms des images et les envoies au docker hub
-         sudo docker tag service_film_build docker.io/edin0/service_film_build:0.0.1
+         sudo docker tag service_film_build docker.io/edin0/service_film_build
       - name: docker push tagged images
         run: |
          echo ${{ secrets.TEST_PASSWORD }} | docker login -u ${{ secrets.TEST_USER }} --password-stdin
@@ -52,11 +52,11 @@ jobs:
          #docker login docker.pkg.github.com
          #docker login docker.io
          # push images tagged
-         sudo docker push docker.io/edin0/service_film_build:0.0.1
+         sudo docker push docker.io/edin0/service_film_build
       - name: docker test the build
         run: |
          # test the build
-         sudo docker run -p 8080:8080 -d edin0/service_film_build:0.0.1
+         sudo docker run -p 8080:8080 -d edin0/service_film_build
       - name: docker test
         run: |
          #check website
