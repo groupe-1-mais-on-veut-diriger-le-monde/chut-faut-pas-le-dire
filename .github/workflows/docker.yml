@@ -13,11 +13,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
-      - name: setup env Node
-        env:
-          NODE_VERSION="12.13.1"
-      - name: install node
-        run: nvm install $NODE_VERSION
+
       - name: download node
         run: nvm install $NODE_VERSION
       - uses: actions/checkout@v2
