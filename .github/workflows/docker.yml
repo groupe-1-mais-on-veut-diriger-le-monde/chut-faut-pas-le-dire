@@ -1,5 +1,5 @@
 # This is a basic workflow to help you get started with Actions
-
+# helped with login : https://stackoverflow.com/questions/58226756/how-to-login-to-docker-registries-using-github-actions
 
 name: Docker Series Builds
 
