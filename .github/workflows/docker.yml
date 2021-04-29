@@ -58,10 +58,10 @@ jobs:
         run: |
          # test the build
          docker run -p 8080:8080 -d edin0/servicefilmbuild
-      - name: docker test
-        run: |
-         #check website
-         curl localhost:8080
+      #- name: docker test
+      #  run: |
+      #   #check website
+      #   curl localhost:8080
       - name: Test
         run: cd .. && ./mvnw clean test
 
