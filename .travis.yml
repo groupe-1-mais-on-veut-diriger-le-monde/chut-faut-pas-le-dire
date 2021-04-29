@@ -48,12 +48,15 @@ jobs:
       #- docker push edin0/web-ui:latest
 
     - stage : Build
-      with:
-        DOCKER_USER: ${{ secrets.DOCKER_USER }}
-      with:
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}   
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      #with:
+      #  DOCKER_USER: ${{ secrets.DOCKER_USER }}
+      #with:
+       # DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       script: 
-      - sudo docker login -u=$DOCKER_USER -p=$DOCKER_PASSWORD
+      - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - echo "ok"
       - cd docker_building_scripts
       - sudo sh build_services.sh
