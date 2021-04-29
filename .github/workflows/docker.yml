@@ -23,14 +23,14 @@ jobs:
       #  run: cd docker_building_scripts
       #- name: run building docker services
       #  run: sudo sh build_services.sh
-      - name: git clone
-        run: |
-          git clone https://github.com/groupe-1-mais-on-veut-diriger-le-monde/chut-faut-pas-le-dire.git
-      - name: change directory
-        run: |
-          cd chut-faut-pas-le-dire
-          cd services
-          cd test_film
+     # - name: git clone
+     #   run: |
+     #     git clone https://github.com/groupe-1-mais-on-veut-diriger-le-monde/chut-faut-pas-le-dire.git
+     # - name: change directory
+     #   run: |
+     #     cd chut-faut-pas-le-dire
+     #     cd services
+     #     cd test_film
       - name: docker build images
         run: |
           # build les images a partir du dockerfile
