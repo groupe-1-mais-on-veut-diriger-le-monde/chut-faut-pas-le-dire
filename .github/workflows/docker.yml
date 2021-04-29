@@ -38,11 +38,11 @@ jobs:
       - name: docker tag images
         run: |
          # change les noms des images et les envoies au docker hub
-         sudo docker tag service_film_build edin0/service_film_build:latest
+         sudo docker tag service_film_build edin0/service_film_build
       - name: docker push tagged images
         run: |
          # push images tagged
-         sudo docker push edin0/service_film_build:latest
+         sudo docker push edin0/service_film_build
       - name: docker test the build
         run: |
          # test the build
