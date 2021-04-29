@@ -31,6 +31,7 @@ jobs:
          sudo docker tag service_film_build edin0/service_film_build
       - name: docker push tagged images
         run: |
+         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login docker.pkg.github.com -u "${{ secrets.DOCKER_USER }}" --password-stdin
          # push images tagged
          sudo docker push edin0/service_film_build
       - name: docker test the build
