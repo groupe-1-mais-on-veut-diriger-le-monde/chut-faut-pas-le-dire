@@ -61,13 +61,13 @@ jobs:
   build:     
     runs-on: ubuntu-latest
     steps:
-      - name: setup env Node
-        env:
-          NODE_VERSION="12.13.1"
-      - name: install node
-        run: nvm install $NODE_VERSION
-      - name: download node
-        run: nvm install $NODE_VERSION
+      #- name: setup env Node
+      #  env:
+      #    NODE_VERSION="12.13.1"
+      #- name: install node
+      #  run: nvm install $NODE_VERSION
+      #- name: download node
+      #  run: nvm install $NODE_VERSION
       - uses: actions/checkout@v1
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin 
