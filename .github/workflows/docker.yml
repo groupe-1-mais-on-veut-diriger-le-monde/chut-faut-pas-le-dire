@@ -23,6 +23,26 @@ jobs:
         run: cd docker_building_scripts
       - name: run building docker services
         run: sudo sh build_services.sh
+      - name: docker build csharp
+        run: |
+          # build les images a partir du dockerfile
+          sudo docker image build -t service_film_build -f ../services/test_film/Dockerfile .
+      - name: docker tag images
+        run: |
+         # change les noms des images et les envoies au docker hub
+         sudo docker tag service_film_build edin0/service_film_build:latest
+      - name: docker push tagged images
+        run: |
+         # push images tagged
+         sudo docker push edin0/service_film_build:latest
+      - name: docker test the build
+        run: |
+         # test the build
+         sudo docker run -p 8080:8080 -d edin0/service_film_build
+      - name: docker test
+        run: |
+         #check website
+         sudo curl localhost:8080
       - name: Test
         run: cd .. && ./mvnw clean test
 
