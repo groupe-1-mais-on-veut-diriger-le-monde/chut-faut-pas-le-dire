@@ -40,11 +40,11 @@ jobs:
       - name: docker build images
         run: |
           # build les images a partir du dockerfile
-          docker image build -t servicefilmbuild -f ./services/test_film/Dockerfile .
+          sudo docker image build -t servicefilmbuild -f ./services/test_film/Dockerfile .
       - name: docker tag images
         run: |
          # change les noms des images et les envoies au docker hub
-         docker tag servicefilmbuild docker.io/edin0/servicefilmbuild
+         sudo docker tag servicefilmbuild docker.io/edin0/servicefilmbuild
       - name: docker push tagged images
         run: |
          echo ${{ secrets.TEST_PASSWORD }} | docker login -u ${{ secrets.TEST_USER }} --password-stdin
@@ -53,11 +53,11 @@ jobs:
          #docker login docker.io
 
          # push images tagged
-         docker push docker.io/edin0/servicefilmbuild
+         sudo docker push docker.io/edin0/servicefilmbuild
       - name: docker test the build
         run: |
          # test the build
-         docker run -p 8080:8080 -d edin0/servicefilmbuild
+         sudo docker run -p 8080:8080 -d edin0/servicefilmbuild
       - name: docker test
         run: |
          #check website
