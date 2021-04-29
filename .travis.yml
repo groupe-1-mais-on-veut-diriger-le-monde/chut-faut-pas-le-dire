@@ -26,10 +26,10 @@ script:
 
 
 jobs:
-  include:
-    - stage: Prepare
-      script:
-      - nvm install $NODE_VERSION
+  #include:
+  #  - stage: Prepare
+  #    script:
+  #    - nvm install $NODE_VERSION
       #- mvn install -N -DskipTests=true -Dmaven.javadoc.skip=true -B -V
     #- stage : Build
       #script:
@@ -47,22 +47,34 @@ jobs:
       #- docker tag unige/web-ui edin0/web-ui:latest      
       #- docker push edin0/web-ui:latest
 
-    - stage : Build
-      env:
-        DOCKER_USER: ${{ secrets.DOCKER_USER }}   
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+   # - stage : Build
+   #   env:
+   #     DOCKER_USER: ${{ secrets.DOCKER_USER }}   
+   #     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       #with:
       #  DOCKER_USER: ${{ secrets.DOCKER_USER }}
       #with:
        # DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      script: 
-      - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-      - echo "ok"
-      - cd docker_building_scripts
-      - sudo sh build_services.sh
+     # script: 
+  build:     
+    runs-on: ubuntu-latest
+    steps:
+      - name: download node
+        run: nvm install $NODE_VERSION
+      - uses: actions/checkout@v1
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin 
 
-    - stage: Test
-      script: ./mvnw clean test
+     #- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: echo ok
+        run: echo "ok"
+      - name: change directory
+        run: cd docker_building_scripts
+      - name: run building docker services
+        run: sudo sh build_services.sh
+      - name: Test
+        run: cd .. && ./mvnw clean test
+
 
 
 notification:
