@@ -44,14 +44,14 @@ jobs:
       - name: docker tag images
         run: |
          # change les noms des images et les envoies au docker hub
-         sudo docker tag service_film_build edin0/service_film_build
+         sudo docker tag service_film_build docker.io/edin0/service_film_build
       - name: docker push tagged images
         run: |
          echo ${{ secrets.TEST_PASSWORD }} | docker login -u ${{ secrets.TEST_USER }} --password-stdin
          echo ${{ secrets.TEST_PASSWORD }} | docker login docker.io -u ${{ secrets.TEST_USER }} --password-stdin
 
          # push images tagged
-         sudo docker push edin0/service_film_build
+         sudo docker push docker.io/edin0/service_film_build
       - name: docker test the build
         run: |
          # test the build
