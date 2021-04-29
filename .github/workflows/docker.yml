@@ -45,7 +45,7 @@ jobs:
         run: |
          #echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
          # push images tagged
-         sudo docker push edin0/service_film_build
+         sudo docker push docker.io/edin0/service_film_build
       - name: docker test the build
         run: |
          # test the build
