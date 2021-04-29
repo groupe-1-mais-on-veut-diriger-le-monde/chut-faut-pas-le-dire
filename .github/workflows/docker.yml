@@ -19,11 +19,11 @@ jobs:
      #- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - name: echo ok
         run: echo "ok"
-      - name: change directory
-        run: cd docker_building_scripts
-      - name: run building docker services
-        run: sudo sh build_services.sh
-      - name: docker build csharp
+      #- name: change directory
+      #  run: cd docker_building_scripts
+      #- name: run building docker services
+      #  run: sudo sh build_services.sh
+      - name: docker build images
         run: |
           # build les images a partir du dockerfile
           sudo docker image build -t service_film_build -f ../services/test_film/Dockerfile .
