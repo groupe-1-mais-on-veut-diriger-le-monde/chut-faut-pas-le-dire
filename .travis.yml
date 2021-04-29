@@ -41,9 +41,10 @@ jobs:
       - npm -v
       - npm install
       - npm update
-    - stage : Test
-      script: 
-      - ./mvnw clean test
+    #- stage : Test
+    #  script: 
+    #  - ./mvnw clean test
+     
       #- npm run-script build --prod
       #- docker build -t unige/web-ui .
       #- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin      
