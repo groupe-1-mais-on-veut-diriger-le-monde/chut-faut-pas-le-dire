@@ -62,7 +62,7 @@ jobs:
       #  run: |
       #   #check website
       #   curl localhost:8080
-      - name: Test
-        run: cd .. && ./mvnw clean test
+      #- name: Test
+      #  run: cd .. && ./mvnw clean test
 
 
