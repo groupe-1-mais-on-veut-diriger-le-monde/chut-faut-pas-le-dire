@@ -1,72 +1,49 @@
 
 language: java
-#language: python
-language: generic
-name: Docker Series Builds
+language: python
 
-on: [push]
+env:
+  - NODE_VERSION="12.13.1"
+
+services:
+  - docker
+
+jdk:
+  - openjdk11
+
+
+addons:
+  sonarcloud:
+    organization: "groupe-1-mais-on-veut-diriger-le-monde"
+    token:
+      secure: "cpvAucJ3wDeSRvh5b12wK5tnmJwUje4MWuxl42KgR0+lWwc7ZkE1wQc1VpLy5m5vOTnk1v5gCjnP36Wz+ow50o6NAaIOO9RTuqR4/nqjBSWZFWdr9OpPC4d0H769QhFyReWDhDuQoAksnUXgurgeP+UEUcroQY2gLuwLOVQ1oJsBy8sdQj8x9RNoc8Hef8Bcl/9TTzezY+bwdLl3eQ+d4gKPTMg/4NUGFVBCVuJ+SQG3KQfOX9XC1Cy5y6/gaVpf8bXA7cDXveKopQiaZo3DGGa733IGtpGCclOdahql5slZU+huy9fDOZ47yfGkVuKuQiLtxgMsU0UA1JZZjrYUnAeKPNCR8v/GoynqXL6+oIJUFGPN23suDucw/1nfWYEytFcbs3nJPENPjM+cgAfz5TXSRO3NrwQ6lskjHTwhEegjfywhzPflTt1wtV2uIvLK7SLmBfuXyfo7PdEJg2XEv73SIIVakCyg7laMm/wFcS3k/ceKrFuwgUyNAWHobHJ3tZ9/warQQ1EyiTq6urbRRDlZ18NdxZ3IXyxUAymNk4SoidwXAzhT6Xdc+Be6Xu3/gY+jIwJ67yXW3CGIjhvIC3nTyEikdFn+ri++HLwx92EPhLGxmvfj16+0H1EbVtYytN27XixdBcfCqMX+pxyk3kuQbn81/uGLlWfVme1vVR8="
+
+script:
+  - ./mvnw clean install
+  - mvn sonar:sonar -Dsonar.projectKey=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire -Dsonar.organization=groupe-1-mais-on-veut-diriger-le-monde -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=8109a8d9e77f615669a530a79e525e73c5db4220
+
+
 
 
 jobs:
-  build:     
-    runs-on: ubuntu-latest
-    steps:
-      - name: setup env Node
-        env:
-          NODE_VERSION="12.13.1"
-      - name: install node
-        run: nvm install $NODE_VERSION
-      - name: download node
-        run: nvm install $NODE_VERSION
-      - uses: actions/checkout@v1
-      - name: Login to DockerHub Registry
-        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin 
-
-     #- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-      - name: echo ok
-        run: echo "ok"
-      - name: change directory
-        run: cd docker_building_scripts
-      - name: run building docker services
-        run: sudo sh build_services.sh
-      - name: Test
-        run: cd .. && ./mvnw clean test
-
-#services:
-#  - docker
-
-#jdk:
-#  - openjdk11
-
-
-#addons:
-#  sonarcloud:
-#    organization: "groupe-1-mais-on-veut-diriger-le-monde"
- #   token:
-  #    secure: "cpvAucJ3wDeSRvh5b12wK5tnmJwUje4MWuxl42KgR0+lWwc7ZkE1wQc1VpLy5m5vOTnk1v5gCjnP36Wz+ow50o6NAaIOO9RTuqR4/#nqjBSWZFWdr9OpPC4d0H769QhFyReWDhDuQoAksnUXgurgeP+UEUcroQY2gLuwLOVQ1oJsBy8sdQj8x9RNoc8Hef8Bcl/9TTzezY+bwdLl3eQ+d4gKPTMg/#4NUGFVBCVuJ+SQG3KQfOX9XC1Cy5y6/gaVpf8bXA7cDXveKopQiaZo3DGGa733IGtpGCclOdahql5slZU+huy9fDOZ47yfGkVuKuQiLtxgMsU0UA1JZZjrYUnAeKPNCR8v/#GoynqXL6+oIJUFGPN23suDucw/1nfWYEytFcbs3nJPENPjM+cgAfz5TXSRO3NrwQ6lskjHTwhEegjfywhzPflTt1wtV2uIvLK7SLmBfuXyfo7PdEJg2XEv73SIIVakCyg7laMm/#wFcS3k/ceKrFuwgUyNAWHobHJ3tZ9/warQQ1EyiTq6urbRRDlZ18NdxZ3IXyxUAymNk4SoidwXAzhT6Xdc+Be6Xu3/gY+jIwJ67yXW3CGIjhvIC3nTyEikdFn+ri+#+HLwx92EPhLGxmvfj16+0H1EbVtYytN27XixdBcfCqMX+pxyk3kuQbn81/uGLlWfVme1vVR8="
-
-#script:
-#  - ./mvnw clean install
-#  - mvn sonar:sonar -Dsonar.projectKey=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire -Dsonar.organization=groupe-1-mais-on-#veut-diriger-le-monde -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=8109a8d9e77f615669a530a79e525e73c5db4220
-
-
-
-
-  #include:
-  #  - stage: Prepare
-  #    script:
-  #    - nvm install $NODE_VERSION
-      #- mvn install -N -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-    #- stage : Build
-      #script:
-      #- mvn install -Ppackage-docker-image  
-    #- stage : Build
-     # script:
-      #- cd web-ui
-      #- pwd
-      #- npm -v
-      #- npm install
-      #- npm update
+  include:
+    - stage: Prepare
+      script:
+      - nvm install $NODE_VERSION
+      - mvn install -N -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+    - stage : Build
+      script:
+      - mvn install -Ppackage-docker-image  
+    - stage : Build
+      script:
+      - cd web-ui
+      - pwd
+      - npm -v
+      - npm install
+      - npm update
+    - stage : Test
+      script: 
+      - ./mvnw clean test
       #- npm run-script build --prod
       #- docker build -t unige/web-ui .
       #- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin      
@@ -82,7 +59,24 @@ jobs:
       #with:
        # DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
      # script: 
+  #build:     
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: download node
+  #      run: nvm install $NODE_VERSION
+  #    - uses: actions/checkout@v1
+  #    - name: Login to DockerHub Registry
+  #      run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin 
 
+     #- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+     # - name: echo ok
+   #     run: echo "ok"
+   #   - name: change directory
+   #     run: cd docker_building_scripts
+   #   - name: run building docker services
+   #     run: sudo sh build_services.sh
+   #   - name: Test
+   #     run: cd .. && ./mvnw clean test
 
 
 
