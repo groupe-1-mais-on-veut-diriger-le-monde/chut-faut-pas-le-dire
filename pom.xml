@@ -31,7 +31,7 @@
 	</properties>
 
 	<modules>
- 		<module>Profile-service</module> 
+ 		<module>Profi-service</module> 
 		<module>Group-service</module> 
   		
 	</modules>
