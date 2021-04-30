@@ -41,7 +41,7 @@ jobs:
       - npm -v
       - npm install
       - npm update
-    - stage : Test groupe service and profile service
+    - stage : Test
       - cd ..
       - mvn test
     #- stage : Test
