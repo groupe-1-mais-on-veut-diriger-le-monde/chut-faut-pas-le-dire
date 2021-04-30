@@ -44,6 +44,8 @@ jobs:
     - stage : Test groups and profile
       script:
       - mvn test
+      notification:
+        email: edin.sljmn@gmail.com
     #- stage : Test
     #  script: 
     #  - ./mvnw clean test
