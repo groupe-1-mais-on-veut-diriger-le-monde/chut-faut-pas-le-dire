@@ -21,7 +21,7 @@ import domain.service.ProfileService;
 
 
 @ApplicationScoped
-@Path("/Profiles")
+@Path("/Profile")
 public class ProfileRestService {
 	
 	@Inject

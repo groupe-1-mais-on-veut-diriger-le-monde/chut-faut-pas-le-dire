@@ -10,6 +10,7 @@ create table Profile (
 		thriller bigint not null,
 		drama bigint not null,
 		mystery bigint not null,
+		crime bigint not null,
 		animation bigint not null,
 		adventure bigint not null,
 		fantasy bigint not null,

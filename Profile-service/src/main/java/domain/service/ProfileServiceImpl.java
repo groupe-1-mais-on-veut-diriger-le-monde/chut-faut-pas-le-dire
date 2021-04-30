@@ -20,7 +20,7 @@ import lombok.extern.java.Log;
 @Log
 public class ProfileServiceImpl implements ProfileService {
 	
-	@PersistenceContext(unitName = "ProfilesPU")
+	@PersistenceContext(unitName = "ProfilePU")
 	private EntityManager em;
 	
 	@Override

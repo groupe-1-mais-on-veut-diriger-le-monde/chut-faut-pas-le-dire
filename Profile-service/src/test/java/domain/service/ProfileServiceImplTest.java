@@ -29,7 +29,7 @@ import eu.drus.jpa.unit.api.JpaUnit;
 public class ProfileServiceImplTest {
 	
 	@Spy
-	@PersistenceContext(unitName = "ProfilesPUTest")
+	@PersistenceContext(unitName = "ProfilePUTest")
 	EntityManager em;
 
 	@InjectMocks
