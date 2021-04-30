@@ -27,14 +27,14 @@ script:
 
 jobs:
   include:
-    - stage: Prepare
+    - stage: Prepare -> install node.js
       script:
       - nvm install $NODE_VERSION
       - mvn install -N -DskipTests=true -Dmaven.javadoc.skip=true -B -V
     #- stage : Build
       #script:
       #- mvn install -Ppackage-docker-image  
-    - stage : Build
+    - stage : Build for web-ui
       script:
       - cd web-ui
       - pwd
