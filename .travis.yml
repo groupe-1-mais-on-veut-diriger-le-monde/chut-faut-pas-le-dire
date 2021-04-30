@@ -46,9 +46,9 @@ jobs:
       - mvn test
       notification:
         email: jan.dirkx.ch@gmail.com
-    - stage : Test
-      script: 
-      - ./mvnw clean test
+    #- stage : Test
+    #  script: 
+    #  - ./mvnw clean test
      
       #- npm run-script build --prod
       #- docker build -t unige/web-ui .
