@@ -41,6 +41,9 @@ jobs:
       - npm -v
       - npm install
       - npm update
+    - stage : Test groupe service and profile service
+      - cd ..
+      - mvn test
     #- stage : Test
     #  script: 
     #  - ./mvnw clean test
