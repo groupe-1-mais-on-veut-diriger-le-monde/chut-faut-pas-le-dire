@@ -45,7 +45,7 @@ jobs:
       script:
       - mvn test
       notification:
-        email: edin.sljmn@gmail.com
+        email: jan.dirkx.ch@gmail.com
     #- stage : Test
     #  script: 
     #  - ./mvnw clean test
