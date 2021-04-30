@@ -46,9 +46,9 @@ jobs:
       - mvn test
       notification:
         email: jan.dirkx.ch@gmail.com
-    - stage : Test
-      script: 
-      - curl localhost:8080
+    #- stage : Test
+      #script: 
+      #- curl localhost:8080
       #- ./mvnw clean test
      
       #- npm run-script build --prod
