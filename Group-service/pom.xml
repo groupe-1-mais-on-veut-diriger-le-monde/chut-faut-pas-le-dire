@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>Group-service</artifactId>
-	<name>Group Service</name>
+	<name>Group-service</name>
 	<packaging>war</packaging>
 
 	<properties>

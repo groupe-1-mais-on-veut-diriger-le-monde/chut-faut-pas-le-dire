@@ -97,16 +97,16 @@ public class Profile implements Serializable {
 	//@Column(name = "Group")
 	//private ArrayList<String> Group ;
 	
-	@Column(name = "A voir")
+	@Column(name = "voir")
 	@NotNull
-	private String A_voir;
+	private String voir;
 	
 	
 	
 	public Profile() {}
 	
 	
-	public Profile(String name, int comedy, int sci,int Horror,int romance,int action,int thriller,int drama,int mystery,int crime,int animation,int adventure,int fantasy,int comdedy_Romance,int action_comedy,int superhero,String A_voir) {
+	public Profile(String name, int comedy, int sci,int Horror,int romance,int action,int thriller,int drama,int mystery,int crime,int animation,int adventure,int fantasy,int comdedy_Romance,int action_comedy,int superhero,String voir) {
 		this.name = name;
 		this.comedy = comedy;
 		this.Horror = Horror;
@@ -123,7 +123,7 @@ public class Profile implements Serializable {
 		this.action_comedy = action_comedy;
 		this.superhero = superhero;
 		//this.Group = new ArrayList<String>();
-		this.A_voir = A_voir;
+		this.voir = voir;
 		
 		
 		
@@ -176,8 +176,8 @@ public class Profile implements Serializable {
 	public int getsuperhero() {
 		return this.superhero;
 	}
-	public String getA_voir() {
-		return this.A_voir;
+	public String getvoir() {
+		return this.voir;
 	}
 	//public ArrayList<String> getGroup() {
 		//return this.Group;
@@ -234,7 +234,7 @@ public class Profile implements Serializable {
 	public void setsuperhero(int superhero) {
 		 this.superhero = superhero;
 	}
-	public void setA_voir(String a_voir) {
-		 this.A_voir = a_voir;
+	public void setvoir(String voir) {
+		 this.voir = voir;
     }
 }
