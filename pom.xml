@@ -28,7 +28,6 @@
 		<skip-docker-build>true</skip-docker-build>
 		<skip-docker-compose>false</skip-docker-compose>
 		<dockerHost>tcp://localhost:2375</dockerHost>
-                <sonar.exclusions>Group-service/bin/src/main/java/**, Group-service/bin/src/test/java/**, Group-service/bin/src/main/java/**, Group-service/bin/src/test/java/**, Profile-service/src/main/java/**, Profile-service/src/test/java/**</sonar.exclusions>
 	</properties>
 
 	<modules>
