@@ -43,7 +43,6 @@ jobs:
       - npm update
     - stage : Test groups and profile
       script:
-      - cd ..
       - mvn test
     #- stage : Test
     #  script: 
