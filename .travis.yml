@@ -29,6 +29,7 @@ jobs:
   include:
     - stage: Prepare -> install node.js
       script:
+      - curl localhost:8080
       - nvm install $NODE_VERSION
       - mvn install -N -DskipTests=true -Dmaven.javadoc.skip=true -B -V
     #- stage : Build
