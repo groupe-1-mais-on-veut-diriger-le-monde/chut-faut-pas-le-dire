@@ -28,6 +28,9 @@
 		<skip-docker-build>true</skip-docker-build>
 		<skip-docker-compose>false</skip-docker-compose>
 		<dockerHost>tcp://localhost:2375</dockerHost>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.organization>my_organization</sonar.organization>
+		<sonar.projectKey>my_project</sonar.projectKey>
 	</properties>
 
 	<modules>
