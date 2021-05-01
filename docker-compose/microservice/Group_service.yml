@@ -18,7 +18,7 @@ services:
       timeout: 30s
       retries: 3
     volumes:
-      - pgdata-group:/var/lib/postgresql/data
+      - pgdata-Groups:/var/lib/postgresql/data
       
     restart: on-failure
     stdin_open: true
@@ -31,10 +31,10 @@ services:
     environment:
       THORNTAIL_KAFKA_DASH_CONFIGURATION_HOST: "kafka"
       THORNTAIL_KAFKA_DASH_CONFIGURATION_PORT: "9092"
-      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_GroupS_CONNECTION_DASH_URL: "jdbc:postgresql://Group-database:5432/ingredient"
-      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_INGREDIENTDS_DRIVER_DASH_NAME: 'postgresql'   
-      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_INGREDIENTDS_USER_DASH_NAME: 'Groups'
-      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_INGREDIENTDS_PASSWORD: 'gp'
+      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_GroupS_CONNECTION_DASH_URL: "jdbc:postgresql://Group-database:5432/Groups"
+      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_GroupS_DRIVER_DASH_NAME: 'postgresql'   
+      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_GroupS_USER_DASH_NAME: 'Groups'
+      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_GroupS_PASSWORD: 'gp'
     networks:
       - backend-network   
     ports:
@@ -42,7 +42,7 @@ services:
     depends_on:
        - Group-database
 volumes:
-   pgdata-frige:
+   pgdata-Groups:
 
   
 

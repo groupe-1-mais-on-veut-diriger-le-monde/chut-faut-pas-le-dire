@@ -30,10 +30,10 @@ services:
     environment:
       THORNTAIL_KAFKA_DASH_CONFIGURATION_HOST: "kafka"
       THORNTAIL_KAFKA_DASH_CONFIGURATION_PORT: "9092"
-      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_RECIPEDS_CONNECTION_DASH_URL: "jdbc:postgresql://Profile-service-database:5432/recipe"
-      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_RECIPEDS_DRIVER_DASH_NAME: 'postgresql'   
-      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_RECIPEDS_USER_DASH_NAME: 'profile'
-      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_RECIPEDS_PASSWORD: 'profile'
+      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_Profile_CONNECTION_DASH_URL: "jdbc:postgresql://Profile-service-database:5432/Profile"
+      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_Profile_DRIVER_DASH_NAME: 'postgresql'   
+      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_Profile_USER_DASH_NAME: 'profile'
+      THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_Profile_PASSWORD: 'profile'
     networks:
       - backend-network   
     ports:
@@ -41,7 +41,7 @@ services:
     depends_on:
        - profile-database
 volumes:
-   pgdata-frige:
+   pgdata-Profile:
 
   
 
