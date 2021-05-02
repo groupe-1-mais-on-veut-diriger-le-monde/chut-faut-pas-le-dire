@@ -2,7 +2,7 @@ package domain.model;
 
 import java.awt.List;
 import java.io.Serializable;
-//import java.util.ArrayList;
+
 
 import javax.persistence.Column;
 //import javax.persistence.ElementCollection;
@@ -122,7 +122,7 @@ public class Profile implements Serializable {
 		this.comdedy_Romance = comdedy_Romance;
 		this.action_comedy = action_comedy;
 		this.superhero = superhero;
-		//this.Group = new ArrayList<String>();
+		
 		this.voir = voir;
 		
 		
@@ -179,15 +179,7 @@ public class Profile implements Serializable {
 	public String getvoir() {
 		return this.voir;
 	}
-	//public ArrayList<String> getGroup() {
-		//return this.Group;
-	//}
-	//public void addGroup(String group){
-		// this.Group.add(group);
-	//}
-	//public void removeGroup(String group){
-		// this.Group.remove(group);
-	//}
+	
 	
 	
 	

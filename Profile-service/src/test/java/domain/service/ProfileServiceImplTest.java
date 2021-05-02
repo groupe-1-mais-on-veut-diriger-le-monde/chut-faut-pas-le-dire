@@ -50,7 +50,7 @@ public class ProfileServiceImplTest {
 	
 	
 	@Test
-	public void testGetById() {
+	 void testGetById() {
 		initDataStore();
 		List<Profile> Profiles = ProfileServiceImpl.getAll();
 		if(Profiles.isEmpty()) {
@@ -63,7 +63,7 @@ public class ProfileServiceImplTest {
 	}
 	
 	@Test
-	public void testGetByName() {
+	 void testGetByName() {
 		List<Profile> Profiles = ProfileServiceImpl.getAll();
 		if(Profiles.isEmpty()) {
 			Profiles.add(getRandomProfile());
@@ -77,7 +77,7 @@ public class ProfileServiceImplTest {
 	
 	
 	@Test
-	public void testCreate() {
+	 void testCreate() {
 		Profile Profile = getRandomProfile();
 		ProfileServiceImpl.create(Profile);
 		Profile i = em.find(Profile.class, Profile.getid());
@@ -88,7 +88,7 @@ public class ProfileServiceImplTest {
 	}
 
 	@Test
-	public void testDelete() {
+	 void testDelete() {
 		Profile Profile = getRandomProfile();
 		ProfileServiceImpl.create(Profile);
 		ProfileServiceImpl.delete(Profile);
@@ -97,7 +97,7 @@ public class ProfileServiceImplTest {
 	}
 	
 	@Test
-	public void testExistByName() {
+	 void testExistByName() {
 		List<Profile> Profiles = ProfileServiceImpl.getAll();
 		if(Profiles.isEmpty()) {
 			Profiles.add(getRandomProfile());

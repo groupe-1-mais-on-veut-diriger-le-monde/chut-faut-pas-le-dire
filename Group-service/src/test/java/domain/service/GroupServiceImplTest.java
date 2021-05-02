@@ -36,7 +36,7 @@ public class GroupServiceImplTest {
 	private GroupServiceImpl GroupServiceImpl;
 
 	@Test
-    public void testGetAll() {
+     void testGetAll() {
         List<Group> Groups = GroupServiceImpl.getAll();
         int size = Groups.size();
 
@@ -50,7 +50,7 @@ public class GroupServiceImplTest {
 	
 	
 	@Test
-	public void testGetById() {
+	 void testGetById() {
 		initDataStore();
 		List<Group> Groups = GroupServiceImpl.getAll();
 		if(Groups.isEmpty()) {
@@ -63,7 +63,7 @@ public class GroupServiceImplTest {
 	}
 	
 	@Test
-	public void testGetByName() {
+	 void testGetByName() {
 		List<Group> Groups = GroupServiceImpl.getAll();
 		if(Groups.isEmpty()) {
 			Groups.add(getRandomGroup());
@@ -88,7 +88,7 @@ public class GroupServiceImplTest {
 	}
 
 	@Test
-	public void testDelete() {
+	 void testDelete() {
 		Group Group = getRandomGroup();
 		GroupServiceImpl.create(Group);
 		GroupServiceImpl.delete(Group);
@@ -97,7 +97,7 @@ public class GroupServiceImplTest {
 	}
 	
 	@Test
-	public void testExistByName() {
+	 void testExistByName() {
 		List<Group> Groups = GroupServiceImpl.getAll();
 		if(Groups.isEmpty()) {
 			Groups.add(getRandomGroup());
