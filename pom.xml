@@ -11,11 +11,13 @@
 
 	<packaging>pom</packaging>
 
-
 	<properties>
-                <sonar.projectKey>groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire</sonar.projectKey>
-                <sonar.organization>groupe-1-mais-on-veut-diriger-le-monde</sonar.organization>
-                <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  		<sonar.projectKey>groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire</sonar.projectKey>
+  		<sonar.organization>groupe-1-mais-on-veut-diriger-le-monde</sonar.organization>
+  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+	</properties>
+	<properties>
+
 		<version.thorntail>2.7.0.Final</version.thorntail>
 		<java-ee-api.version>8.0.1</java-ee-api.version>
 		<postgresql.jdbc.driver.version>42.2.14</postgresql.jdbc.driver.version>
