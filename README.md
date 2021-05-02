@@ -23,3 +23,4 @@ Coverage Status - [![Coverage](https://sonarcloud.io/api/project_badges/measure?
 
 Bugs - [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire&metric=bugs)](https://sonarcloud.io/dashboard?id=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire)
 
+Security Rating - [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire&metric=security_rating)](https://sonarcloud.io/dashboard?id=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire)
