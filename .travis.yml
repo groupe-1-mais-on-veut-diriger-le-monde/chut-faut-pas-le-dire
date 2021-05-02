@@ -34,13 +34,16 @@ jobs:
     #- stage : Build
       #script:
       #- mvn install -Ppackage-docker-image  
-    - stage : Build for web-ui
+    - stage: SonarCloud
       script:
-      - cd web-ui
-      - pwd
-      - npm -v
-      - npm install
-      - npm update
+      - mvn clean package sonar:sonar -Dsonar.projectKey=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire -Dsonar.organization=groupe-1-mais-on-veut-diriger-le-monde -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=8109a8d9e77f615669a530a79e525e73c5db4220
+    #- stage : Build for web-ui
+    #  script:
+    #  - cd web-ui
+    #  - pwd
+    #  - npm -v
+    #  - npm install
+    #  - npm update
     - stage : Test groups and profile
       script:
       - mvn test
