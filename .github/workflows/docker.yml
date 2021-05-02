@@ -3,13 +3,7 @@
 
 name: Docker Series Builds
 
-on: 
-  push:
-    branches:
-      - master
-  
-  pull_request:
-    types: [opened, synchronize, reopened]
+on: [push]
 
 
 jobs:
