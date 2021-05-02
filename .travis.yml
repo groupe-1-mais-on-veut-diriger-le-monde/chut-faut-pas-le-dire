@@ -36,6 +36,7 @@ jobs:
       #- mvn install -Ppackage-docker-image  
     - stage: SonarCloud
       script:
+      - pwd
       - mvn clean install
       - mvn sonar:sonar -Dsonar.projectKey=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire -Dsonar.organization=groupe-1-mais-on-veut-diriger-le-monde -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=8109a8d9e77f615669a530a79e525e73c5db4220
 
@@ -48,6 +49,7 @@ jobs:
     #  - npm update
     - stage : Build clean install groups and profile
       script:
+      - pwd
       - mvn clean install
     - stage : Test groups and profile
       script:
