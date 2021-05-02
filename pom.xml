@@ -29,7 +29,7 @@
 		<skip-docker-build>true</skip-docker-build>
 		<skip-docker-compose>false</skip-docker-compose>
 		<dockerHost>tcp://localhost:2375</dockerHost>
-                <sonar.projectKey>groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire</sonar.projectKey>
+                <sonar.projectKey>groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire-${project.groupId}:${project.artifactId}</sonar.projectKey>
                 <sonar.organization>groupe-1-mais-on-veut-diriger-le-monde</sonar.organization>
                 <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
