@@ -13,7 +13,7 @@
 
 
 	<properties>
-                <sonar.projectKey>groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire</sonar.projectKey>
+
                 <sonar.organization>groupe-1-mais-on-veut-diriger-le-monde</sonar.organization>
                 <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<version.thorntail>2.7.0.Final</version.thorntail>
