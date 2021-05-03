@@ -27,6 +27,9 @@ script:
 
 jobs:
   include:
+    - stage: sonarcloud
+      script:
+      - mvn -B org.jacoco:jacoco-maven-plugin:prepare-agent verify org.jacoco:jacoco-maven-plugin:report org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire -Dsonar.organization=groupe-1-mais-on-veut-diriger-le-monde -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=8109a8d9e77f615669a530a79e525e73c5db4220
     - stage: Prepare -> install node.js
       script:
       - nvm install $NODE_VERSION
@@ -38,9 +41,7 @@ jobs:
       script:
       - pwd
       - mvn clean install
-    - stage: sonarcloud
-      script:
-      - mvn -B org.jacoco:jacoco-maven-plugin:prepare-agent verify org.jacoco:jacoco-maven-plugin:report org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire -Dsonar.organization=groupe-1-mais-on-veut-diriger-le-monde -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=8109a8d9e77f615669a530a79e525e73c5db4220
+
       #- mvn sonar:sonar -Dsonar.projectKey=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire -Dsonar.organization=groupe-1-mais-on-veut-diriger-le-monde -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=8109a8d9e77f615669a530a79e525e73c5db4220
 
     #- stage : Build for web-ui
