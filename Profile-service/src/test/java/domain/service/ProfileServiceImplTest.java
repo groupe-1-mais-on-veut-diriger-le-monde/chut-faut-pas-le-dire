@@ -26,7 +26,7 @@ import eu.drus.jpa.unit.api.JpaUnit;
 
 @ExtendWith(JpaUnit.class)
 @ExtendWith(MockitoExtension.class)
-public class ProfileServiceImplTest {
+ class ProfileServiceImplTest {
 	
 	@Spy
 	@PersistenceContext(unitName = "ProfilePUTest")
@@ -86,6 +86,20 @@ public class ProfileServiceImplTest {
 				() -> ProfileServiceImpl.create(Profile),"Profile already exists");
 		assertTrue(thrown.getMessage().contains("Profile already exists"));
 	}
+	
+	@Test
+	 void testUpdate() {
+		ProfileServiceImpl.create(getRandomProfile());
+		Profile Profile = ProfileServiceImpl.getAll().get(0);
+	  assertNotNull(Profile);
+	  int id = Profile.getid();
+	  Profile.setname("jan");
+	  ProfileServiceImpl.update(Profile);
+	  Profile = ProfileServiceImpl.getById(id);
+	  assertEquals("jan", Profile.getname());
+	 }
+	
+	
 
 	@Test
 	 void testDelete() {

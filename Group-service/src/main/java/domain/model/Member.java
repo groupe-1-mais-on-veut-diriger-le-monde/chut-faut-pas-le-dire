@@ -1,10 +1,9 @@
 package domain.model;
 
 
-import java.awt.List;
-//import java.util.ArrayList;
+
 import java.io.Serializable;
-import java.util.ArrayList;
+
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;

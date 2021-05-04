@@ -22,11 +22,12 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import domain.model.Group;
+
 import eu.drus.jpa.unit.api.JpaUnit;
 
 @ExtendWith(JpaUnit.class)
 @ExtendWith(MockitoExtension.class)
-public class GroupServiceImplTest {
+ class GroupServiceImplTest {
 	
 	@Spy
 	@PersistenceContext(unitName = "GroupsPUTest")
@@ -77,7 +78,7 @@ public class GroupServiceImplTest {
 	
 	
 	@Test
-	public void testCreate() {
+	 void testCreate() {
 		Group Group = getRandomGroup();
 		GroupServiceImpl.create(Group);
 		Group i = em.find(Group.class, Group.getid());
@@ -86,6 +87,19 @@ public class GroupServiceImplTest {
 				() -> GroupServiceImpl.create(Group),"Group already exists");
 		assertTrue(thrown.getMessage().contains("Group already exists"));
 	}
+	
+	
+	@Test
+	 void testUpdate() {
+		GroupServiceImpl.create(getRandomGroup());
+		Group Group = GroupServiceImpl.getAll().get(0);
+	  assertNotNull(Group);
+	  int id = Group.getid();
+	  Group.setname("jan");
+	  GroupServiceImpl.update(Group);
+	  Group = GroupServiceImpl.getById(id);
+	  assertEquals("jan", Group.getname());
+	 }
 
 	@Test
 	 void testDelete() {

@@ -1,9 +1,7 @@
 package domain.model;
 
-import java.awt.List;
-
 import java.io.Serializable;
-import java.util.ArrayList;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -42,9 +40,7 @@ public class Group implements Serializable {
 	@NotNull
 	private String Host;	
 	
-	//@ElementCollection
-	//@Column(name = "Member")
-	//private ArrayList<String> Member ;
+	
 	
 	//@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true )
 	//@JoinColumn(name="member_id")

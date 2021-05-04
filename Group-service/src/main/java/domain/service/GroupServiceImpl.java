@@ -26,7 +26,6 @@ public class GroupServiceImpl implements GroupService {
 	
 	@Override
 	public List<Group> getAll() {
-		//log.info("Get all Groups");
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Group> criteria = builder.createQuery(Group.class);
 		criteria.from(Group.class);
@@ -35,7 +34,6 @@ public class GroupServiceImpl implements GroupService {
 	
 	@Override
 	public Group getById(int id) {
-		//log.info("Get an Group by id");
 		return em.find(Group.class, id);
 	}
 	
@@ -67,7 +65,7 @@ public class GroupServiceImpl implements GroupService {
 	
 	@Override
 	public int create(Group Group) {
-		//log.info("Create an Group");
+	
 		if(em.contains(Group)) {
 			throw new IllegalArgumentException("Group already exists");
 		}
@@ -77,14 +75,12 @@ public class GroupServiceImpl implements GroupService {
 	}
 	
 	@Override
-	public void delete(Group Group) {
-		//log.info("Delete an Group");
+	public void delete(Group Group) {		
 		em.remove(em.contains(Group) ? Group : em.merge(Group));
 	}
 	
 	@Override
 	public boolean existByName(String name) {
-		//log.info("Check if an Group exists");
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Group> criteria = builder.createQuery(Group.class);
 		Root<Group> i = criteria.from(Group.class);

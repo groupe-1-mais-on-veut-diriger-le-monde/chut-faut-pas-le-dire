@@ -25,7 +25,6 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Override
 	public List<Profile> getAll() {
-		//log.info("Get all Profiles");
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Profile> criteria = builder.createQuery(Profile.class);
 		criteria.from(Profile.class);
@@ -34,7 +33,6 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Override
 	public Profile getById(int id) {
-		//log.info("Get an Profile by id");
 		return em.find(Profile.class, id);
 	}
 	
@@ -48,7 +46,6 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Override
 	public Profile getByName(String name) {
-		//log.info("Get unit by Profile name");
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Profile> criteria = builder.createQuery(Profile.class);
 		Root<Profile> i = criteria.from(Profile.class);
@@ -69,7 +66,6 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Override
 	public int create(Profile Profile) {
-		//log.info("Create an Profile");
 		if(em.contains(Profile)) {
 			throw new IllegalArgumentException("Profile already exists");
 		}
@@ -80,13 +76,11 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Override
 	public void delete(Profile Profile) {
-		//log.info("Delete an Profile");
 		em.remove(em.contains(Profile) ? Profile : em.merge(Profile));
 	}
 	
 	@Override
 	public boolean existByName(String name) {
-		//log.info("Check if an Profile exists");
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Profile> criteria = builder.createQuery(Profile.class);
 		Root<Profile> i = criteria.from(Profile.class);

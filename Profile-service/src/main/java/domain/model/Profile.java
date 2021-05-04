@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 
 import javax.persistence.Column;
-//import javax.persistence.ElementCollection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -139,46 +139,7 @@ public class Profile implements Serializable {
 	
 
 	
-	public int getcomedy() {
-		return this.comedy;
-	}
 	
-	public int getromance() {
-		return this.romance;
-	}
-	public int getaction() {
-		return this.action;
-	}
-	public int getmystery() {
-		return this.mystery;
-	}
-	public int getdrama() {
-		return this.drama;
-	}
-	public int getcrime() {
-		return this.crime;
-	}
-	public int getanimation() {
-		return this.animation;
-	}
-	public int getadventure() {
-		return this.adventure;
-	}
-	public int getfantasy() {
-		return this.fantasy;
-	}
-	public int getcomdedy_Romance() {
-		return this.comdedy_Romance;
-	}
-	public int getaction_comedy() {
-		return this.action_comedy;
-	}
-	public int getsuperhero() {
-		return this.superhero;
-	}
-	public String getvoir() {
-		return this.voir;
-	}
 	
 	
 	
@@ -189,44 +150,5 @@ public class Profile implements Serializable {
 	
 	
 	
-	public void setcomedy(int comedy) {
-		 this.comedy = comedy;
-	}
 	
-	public void setromance(int romance) {
-		 this.romance =romance;
-	}
-	public void setaction(int action) {
-		 this.action = action;
-	}
-	public void setmystery(int mystery) {
-		 this.mystery= mystery;
-	}
-	public void setdrama(int drama) {
-		 this.drama =drama;
-	}
-	public void setcrime(int crime) {
-		 this.crime = crime;
-	}
-	public void setanimation(int animation) {
-		 this.animation = animation;
-	}
-	public void setadventure(int adventure) {
-		 this.adventure = adventure;
-	}
-	public void setfantasy(int fantasy) {
-		 this.fantasy = fantasy;
-	}
-	public void setcomdedy_Romance(int comdedy_Romance) {
-		 this.comdedy_Romance = comdedy_Romance;
-	}
-	public void setaction_comedy(int action_comedy) {
-		 this.action_comedy= action_comedy;
-	}
-	public void setsuperhero(int superhero) {
-		 this.superhero = superhero;
-	}
-	public void setvoir(String voir) {
-		 this.voir = voir;
-    }
 }
