@@ -40,6 +40,11 @@ public class Group implements Serializable {
 	@NotNull
 	private String Host;	
 	
+	@Column(name = "member1")
+	private int member1;
+	
+	@Column(name = "member2")
+	private int member2;
 	
 	
 	//@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true )
@@ -51,10 +56,12 @@ public class Group implements Serializable {
 	public Group() {}
 	
 	
-	public Group(String name, String Host) {
+	public Group(String name, String Host,int member1,int member2) {
 		this.name = name;
 		this.Host = Host;
-		
+		this.member1 = member1;
+		this.member2 = member2;
+ 		
 		
 		
 	}

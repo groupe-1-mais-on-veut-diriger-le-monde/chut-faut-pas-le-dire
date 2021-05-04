@@ -101,12 +101,15 @@ public class Profile implements Serializable {
 	@NotNull
 	private String voir;
 	
+	@Column(name = "Group1")
+	
+	private int Group1;
 	
 	
 	public Profile() {}
 	
 	
-	public Profile(String name, int comedy, int sci,int Horror,int romance,int action,int thriller,int drama,int mystery,int crime,int animation,int adventure,int fantasy,int comdedy_Romance,int action_comedy,int superhero,String voir) {
+	public Profile(String name, int comedy, int sci,int Horror,int romance,int action,int thriller,int drama,int mystery,int crime,int animation,int adventure,int fantasy,int comdedy_Romance,int action_comedy,int superhero,String voir,int Group1) {
 		this.name = name;
 		this.comedy = comedy;
 		this.Horror = Horror;
@@ -124,6 +127,7 @@ public class Profile implements Serializable {
 		this.superhero = superhero;
 		
 		this.voir = voir;
+		this.Group1 = Group1;
 		
 		
 		

@@ -142,7 +142,7 @@ import eu.drus.jpa.unit.api.JpaUnit;
 				, ThreadLocalRandom.current().nextInt(0, 2), ThreadLocalRandom.current().nextInt(0, 2)
 				, ThreadLocalRandom.current().nextInt(0, 2), ThreadLocalRandom.current().nextInt(0, 2),
 				ThreadLocalRandom.current().nextInt(0, 2), ThreadLocalRandom.current().nextInt(0, 2), 
-				UUID.randomUUID().toString());
+				UUID.randomUUID().toString(),ThreadLocalRandom.current().nextInt(0, 2));
 		return Profile;
 	}
 	

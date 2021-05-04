@@ -134,7 +134,7 @@ import eu.drus.jpa.unit.api.JpaUnit;
 	
 
 	private Group getRandomGroup() {
-		Group Group = new Group(UUID.randomUUID().toString(), UUID.randomUUID().toString());
+		Group Group = new Group(UUID.randomUUID().toString(), UUID.randomUUID().toString(),ThreadLocalRandom.current().nextInt(0, 2),ThreadLocalRandom.current().nextInt(0, 2));
 		return Group;
 	}
 	
