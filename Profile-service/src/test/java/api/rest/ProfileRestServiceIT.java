@@ -11,7 +11,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
 
-public class ProfileRestServiceIT {
+ class ProfileRestServiceIT {
 
 	@BeforeAll
 	public static void setup() {
@@ -19,24 +19,24 @@ public class ProfileRestServiceIT {
 		RestAssured.port = 8080;
 	}
 	@Test
- 	public void testGetAll() {
+ 	 void testGetAll() {
  		when().get("/").then().body(containsString("jan"));
  	}
 
  	@Test
- 	public void testGetById() {
+ 	 void testGetById() {
  		when().get("/id/1").then().body(containsString("jan"));
  	}
 
  	@Test
- 	public void testGetByName() {
+ 	 void testGetByName() {
  		when().get("/name/jan").then().body(containsString("jan"));
  	}
 
  	
 	
 	@Test
-	public void testDelete() {
+	 void testDelete() {
 		with().contentType(ContentType.JSON).when().request("DELETE", "/delete/2").then().statusCode(200);
 	}
 	

@@ -11,7 +11,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
 
-public class GroupsRestServiceIT {
+ class GroupsRestServiceIT {
 
 	@BeforeAll
 	public static void setup() {
@@ -19,24 +19,24 @@ public class GroupsRestServiceIT {
 		RestAssured.port = 8080;
 	}
 	@Test
- 	public void testGetAll() {
+ 	 void testGetAll() {
  		when().get("/").then().body(containsString("group1"));
  	}
 
  	@Test
- 	public void testGetById() {
+ 	 void testGetById() {
  		when().get("/id/2").then().body(containsString("group2"));
  	}
 
  	@Test
- 	public void testGetByName() {
+ 	 void testGetByName() {
  		when().get("/name/group1").then().body(containsString("group1"));
  	}
 
  	
 	
 	@Test
-	public void testDelete() {
+	 void testDelete() {
 		with().contentType(ContentType.JSON).when().request("DELETE", "/delete/3").then().statusCode(200);
 	}
 	
