@@ -71,17 +71,12 @@ public class Group implements Serializable {
 		return this.name;
 	}
 	
-	public String getHost() {
-		return this.Host;
-	}
-	
+
 	
 	
 	public void setname(String name) {
 		 this.name = name;
 	}
 	
-	public void setHost(String Host) {
-		 this.Host = Host;
-	}
+	
 }
