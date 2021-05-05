@@ -3,8 +3,8 @@ create table Groups (
 		id bigint not null,
 		name varchar(50) not null,
 		Host varchar(20) not null, 
-		member1 bigint not null,
-		member2 bigint not null,
+		member1 bigint ,
+		member2 bigint ,
 		
         primary key (id)
 );

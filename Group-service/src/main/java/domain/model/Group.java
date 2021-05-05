@@ -3,21 +3,20 @@ package domain.model;
 import java.io.Serializable;
 
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import lombok.Data;
-import domain.model.Member;
+
 
 @Data
 @Entity
@@ -47,9 +46,7 @@ public class Group implements Serializable {
 	private int member2;
 	
 	
-	//@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true )
-	//@JoinColumn(name="member_id")
-	//private ArrayList<Member> member;
+	
 	
 	
 	

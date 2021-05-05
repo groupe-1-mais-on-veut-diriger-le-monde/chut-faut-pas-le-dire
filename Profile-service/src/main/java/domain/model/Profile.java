@@ -1,6 +1,6 @@
 package domain.model;
 
-import java.awt.List;
+
 import java.io.Serializable;
 
 
@@ -93,9 +93,7 @@ public class Profile implements Serializable {
 	@NotNull
 	private int superhero;	
 	
-	//@ElementCollection
-	//@Column(name = "Group")
-	//private ArrayList<String> Group ;
+	
 	
 	@Column(name = "voir")
 	@NotNull

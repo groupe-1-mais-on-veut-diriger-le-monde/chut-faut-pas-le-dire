@@ -18,7 +18,7 @@ create table Profile (
 		action_comedy bigint not null,
 		superhero bigint not null,
 		voir varchar(20) not null,
-		Group1 bigint not null,
+		Group1 bigint ,
 		 primary key (id)
         
 );
