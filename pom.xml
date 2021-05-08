@@ -310,14 +310,14 @@
 							<dockerHost>${dockerHost}</dockerHost>
 							<images>
 								<image>
-									<name>diges/%a:%l</name>
+									<name>MMM/%a:%l</name>
 									<run>
 										<ports>
 											<port>8080:8080</port>
 										</ports>
 									</run>
 									<build>
-										<from>java:openjdk-11-jdk</from>
+										<from>java:openjdk-8-jdk</from>
 										<ports>
 											<port>8080</port>
 										</ports>
