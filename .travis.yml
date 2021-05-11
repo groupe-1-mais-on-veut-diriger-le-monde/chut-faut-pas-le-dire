@@ -44,6 +44,9 @@ jobs:
     - stage: before install
       script:
       - openssl aes-256-cbc -K $encrypted_189e52c2c347_key -iv $encrypted_189e52c2c347_iv -in deploy_key.enc -out deploy_key -d
+      - cd test_ui_deployment
+      - sudo microk8s.kubectl apply -f ui-app.yaml
+      - sudo microk8s.kubectl apply -f ui-ingress.yaml
     #- stage : Build
       #script:
       #- mvn install -Ppackage-docker-image  
