@@ -4,6 +4,10 @@ language: python
 
 env:
   - NODE_VERSION="12.13.1"
+  - SERVER_IP_ADDRESS=129.194.10.126
+  - KUBERNETES_VERSION="1.21.0"
+
+
 
 services:
   - docker
@@ -13,6 +17,9 @@ jdk:
 
 
 addons:
+  snaps:
+    - name: microk8s
+      confinement: classic
   sonarcloud:
     organization: "groupe-1-mais-on-veut-diriger-le-monde"
     token:
