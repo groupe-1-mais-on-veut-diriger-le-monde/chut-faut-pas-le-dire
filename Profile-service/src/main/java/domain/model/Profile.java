@@ -34,6 +34,10 @@ public class Profile implements Serializable {
 	@NotNull
 	private String name;
 	
+	@Column(name = "age")
+	@NotNull
+	private int age;
+	
 	
 	
 	@Column(name = "comedy")
@@ -100,15 +104,27 @@ public class Profile implements Serializable {
 	private String voir;
 	
 	@Column(name = "Group1")
-	
 	private int Group1;
 	
+	@Column(name = "Group2")
+	private int Group2;
+
+	@Column(name = "Group3")
+	private int Group3;
+
+	@Column(name = "Group4")
+	private int Group4;
+	
+	@Column(name = "Group5")
+	private int Group5;
 	
 	public Profile() {}
 	
 	
-	public Profile(String name, int comedy, int sci,int Horror,int romance,int action,int thriller,int drama,int mystery,int crime,int animation,int adventure,int fantasy,int comdedy_Romance,int action_comedy,int superhero,String voir,int Group1) {
+	public Profile(String name,int age, int comedy, int sci,int Horror,int romance,int action,int thriller,int drama,int mystery,int crime,int animation,int adventure,int fantasy,int comdedy_Romance,int action_comedy,int superhero,String voir,int Group1,
+				int Group2,int Group3,int Group4,int Group5) {
 		this.name = name;
+		this.age = age;
 		this.comedy = comedy;
 		this.Horror = Horror;
 		this.romance = romance;
@@ -126,6 +142,10 @@ public class Profile implements Serializable {
 		
 		this.voir = voir;
 		this.Group1 = Group1;
+		this.Group2 = Group2;
+		this.Group3 = Group3;
+		this.Group4 = Group4;
+		this.Group5 = Group5;
 		
 		
 		
