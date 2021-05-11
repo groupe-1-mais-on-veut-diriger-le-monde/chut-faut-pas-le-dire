@@ -1,6 +1,9 @@
 #FROM node:7
 FROM nginx:1.19-alpine
+CMD ["pwd"]
+WORKDIR ./chut-faut-pas-le-dire/web-ui
 COPY ./src/app /usr/share/nginx/html
+
 COPY nginx.default /etc/nginx/conf.d/default.conf
 EXPOSE 80
 
