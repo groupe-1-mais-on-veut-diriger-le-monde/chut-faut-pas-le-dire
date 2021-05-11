@@ -72,10 +72,13 @@ jobs:
         run: |
           # build les images a partir du dockerfile
           docker image build -t servicefilmbuild -f ./services/test_film/Dockerfile .
+          docker image build -t ui-mmm -f ./web-ui/Dockerfile .
       - name: docker tag images
         run: |
          # change les noms des images et les envoies au docker hub
          docker tag servicefilmbuild docker.io/edin0/servicefilmbuild
+         docker tag ui-mmm docker.io/edin0/ui-mmm
+
       - name: docker push tagged images
         run: |
          echo ${{ secrets.TEST_PASSWORD }} | docker login -u ${{ secrets.TEST_USER }} --password-stdin
@@ -85,6 +88,8 @@ jobs:
 
          # push images tagged
          docker push docker.io/edin0/servicefilmbuild
+         docker push docker.io/edin0/ui-mmm
+
       - name: docker test the build
         run: |
          # test the build
