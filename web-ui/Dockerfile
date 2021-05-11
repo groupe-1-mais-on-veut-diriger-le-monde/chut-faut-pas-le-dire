@@ -10,7 +10,7 @@ COPY . /usr/share/nginx/html
 WORKDIR /chut-faut-pas-le-dire/web-ui
 RUN pwd
 RUN ls
-COPY ./nginx.default /etc/nginx/conf.d/default.conf
+COPY nginx.default /etc/nginx/conf.d/default.conf
 EXPOSE 80
 
 #RUN mkdir /home/sampleTest && cd /home/sampleTest && git clone https://github.com/groupe-1-mais-on-veut-#diriger-le-monde/chut-faut-pas-le-dire.git
