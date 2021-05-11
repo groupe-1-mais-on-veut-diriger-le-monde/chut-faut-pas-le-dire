@@ -5,9 +5,9 @@ RUN ls
 COPY . /chut-faut-pas-le-dire
 RUN pwd
 RUN ls
-WORKDIR ./chut-faut-pas-le-dire/web-ui/src/app
+WORKDIR /chut-faut-pas-le-dire/web-ui/src/app
 COPY . /usr/share/nginx/html
-WORKDIR ./chut-faut-pas-le-dire/web-ui
+WORKDIR /chut-faut-pas-le-dire/web-ui
 RUN pwd
 RUN ls
 COPY ./nginx.default /etc/nginx/conf.d/default.conf
