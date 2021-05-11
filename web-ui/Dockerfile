@@ -2,13 +2,13 @@
 FROM nginx:1.19-alpine
 RUN pwd
 RUN ls
-COPY . .
+COPY . /chut-faut-pas-le-dire
 RUN pwd
 RUN ls
 WORKDIR ./src/app
 RUN pwd
 RUN ls
-COPY ./src/app/. /usr/share/nginx/html
+COPY ./chut-faut-pas-le-dire/web-ui/src/app/. /usr/share/nginx/html
 COPY nginx.default /etc/nginx/conf.d/default.conf
 EXPOSE 80
 
