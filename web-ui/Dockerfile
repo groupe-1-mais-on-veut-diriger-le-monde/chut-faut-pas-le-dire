@@ -4,6 +4,13 @@
 # donc pour copier les html faut par exemple : COPY /web-ui/src/app /usr/share/nginx/html, très intuitif merci à tous
 # WORKDIR pas besoin ici.
 
+#debug websites : https://stackoverflow.com/questions/26504846/copy-directory-to-another-directory-using-add-command
+#https://stackoverflow.com/questions/37782505/is-it-possible-to-show-the-workdir-when-building-a-docker-image
+#https://stackoverflow.com/questions/20632258/change-directory-command-in-docker
+#https://stackoverflow.com/questions/51066146/what-is-the-point-of-workdir-on-dockerfile
+#https://stackoverflow.com/questions/58078964/docker-file-does-not-exist-on-ubuntu
+
+
 FROM nginx:1.19-alpine
 #RUN pwd
 #RUN ls
@@ -14,8 +21,8 @@ FROM nginx:1.19-alpine
 #RUN pwd
 #RUN ls
 #WORKDIR /chut-faut-pas-le-dire/web-ui
-RUN pwd
-RUN ls
+#RUN pwd
+#RUN ls
 
 #WORKDIR /chut-faut-pas-le-dire/web-ui/src/app
 COPY /web-ui/src/app /usr/share/nginx/html
