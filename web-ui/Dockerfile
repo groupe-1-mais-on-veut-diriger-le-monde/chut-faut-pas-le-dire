@@ -1,6 +1,6 @@
 #FROM node:7
 FROM nginx:1.19-alpine
-CMD ["pwd"]
+RUN git clone https://github.com/groupe-1-mais-on-veut-diriger-le-monde/chut-faut-pas-le-dire.git
 WORKDIR ./chut-faut-pas-le-dire/web-ui
 COPY ./src/app /usr/share/nginx/html
 
