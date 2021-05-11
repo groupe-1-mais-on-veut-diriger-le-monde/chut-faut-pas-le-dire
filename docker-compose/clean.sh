@@ -1,6 +1,4 @@
 #!/bin/bash
-
-docker stop $(docker ps -q)
-docker kill $(docker ps -q)
-docker rm $(docker ps -a -q)
-docker system prune
+docker stop zookeeper kafka counterparty-service instrument-service valuation-service
+docker rm zookeeper kafka counterparty-service instrument-service valuation-service
+docker rmi -f unige/web-sso unige/api-gateway unige/regulatory-service unige/valuation-service unige/instrument-service unige/counterparty-service
