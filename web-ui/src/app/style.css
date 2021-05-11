@@ -63,14 +63,14 @@ body {
 .leftSideDivStyle {
     position: fixed;
     width: 25%;
-    height: 100%;
+    height: 90%;
     left: 0;
 }
 
 .rightSideDivStyle {
     position: fixed;
     width: 75%;
-    height: 100%;
+    height: 90%;
     right: 0;
 }
 
