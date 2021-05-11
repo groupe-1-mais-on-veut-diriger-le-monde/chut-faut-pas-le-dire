@@ -1,0 +1,184 @@
+body {
+    background-color: #2E2E2E;
+    color: #000000;
+    font-family: Noto Sans, sans-serif;
+}
+
+
+/* ---------------------- style général ---------------------- */
+
+.header {
+    background-color: #000000;
+    color: #f79a40;
+    font-size: 40px;
+    height: 10%;
+    font-family: Noto Sans, sans-serif;
+}
+
+.button {
+    background-color: #D3D8D8;
+    /* couleurs et style des boutons */
+    border: 1px solid #000000;
+    color: #000000;
+    font-family: Noto Sans, sans-serif;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 0px;
+    transition: all 0.5s;
+    cursor: pointer;
+    width: 33.3%;
+}
+
+.titresMain {
+    /* classe affichage du pseudo et des titres de film */
+    position: absolute;
+    left: 10px;
+    font-size: 42px;
+    font-weight: bold;
+}
+
+.textC {
+    /* style du nom des cathégories */
+    color: #000000;
+    font-family: Noto Sans, sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.textInfo {
+    /* style du nom des cathégories */
+    color: #000000;
+    font-family: Noto Sans, sans-serif;
+    font-size: 24px;
+}
+
+
+/* ---------------------- main Screen ---------------------- */
+
+.leftSideDivStyle {
+    position: fixed;
+    width: 25%;
+    height: 100%;
+    left: 0;
+}
+
+.rightSideDivStyle {
+    position: fixed;
+    width: 75%;
+    height: 100%;
+    right: 0;
+}
+
+.userDetails {
+    /* classe qui gere le div userName + userDetails */
+    position: absolute;
+    top: 5%;
+    left: 15%;
+    width: 70%;
+    height: 25%;
+    border-radius: 10px;
+    background: #F59937;
+}
+
+.profilMain {
+    /* classe des details du profil */
+    position: absolute;
+    top: 15%;
+    left: 30px;
+    font-size: 25px;
+}
+
+.genreFilmesStyle {
+    position: absolute;
+    border-radius: 10px;
+    background: #7F7F7F;
+    left: 15%;
+    width: 70%;
+    height: 25%;
+    top: 35%;
+}
+
+.boutonsMain {
+    /* placement des boutons du mainScreen */
+    position: absolute;
+    top: 65%;
+    left: 15%;
+    width: 70%;
+    height: 40px;
+}
+
+.searchMain {
+    /* classe de la bare de recherche */
+    position: absolute;
+    bottom: 20%;
+    left: 15%;
+    width: 70%;
+    height: 40px;
+    border-radius: 10px;
+    background: #2E2E2E;
+}
+
+.searchBarStyle {
+    width: 80%;
+    padding: 5px 5px;
+    margin: 2% 0px;
+    background-color: #7F7F7F;
+    border: 1px solid #000000;
+    color: #000000;
+    font-family: Noto Sans, sans-serif;
+    font-size: 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+
+/* ---------------------- login Screen ---------------------- */
+
+.loginScreen {
+    /* classe du premier texte */
+    position: relative;
+    top: 175px;
+    left: 225px;
+    font-size: 28px;
+}
+
+
+/* ---------------------- Show Film Div ---------------------- */
+
+.insideRightSideStyle {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    bottom: 20%;
+    border-radius: 10px;
+    background: #7F7F7F;
+}
+
+.movieTitle {
+    position: absolute;
+    width: 65%;
+    height: 100%;
+    left: 1%;
+}
+
+.movieGeneralInfoStyle {
+    position: absolute;
+    top: 10%;
+    width: 55%;
+    height: 100%;
+    left: 5%;
+}
+
+.movieImageStyle {
+    position: absolute;
+    top: 10%;
+    width: 35%;
+    height: 80%;
+    right: 1%;
+}

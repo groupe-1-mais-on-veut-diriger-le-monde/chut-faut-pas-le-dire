@@ -1,0 +1,13 @@
+{
+    "id": 1,
+    "name": "Joao Quinta",
+    "age": "23",
+    "genresFilmes": [
+        "comedy",
+        "Horror",
+        "action"
+    ],
+    "groupe": [
+        "1"
+    ]
+}
