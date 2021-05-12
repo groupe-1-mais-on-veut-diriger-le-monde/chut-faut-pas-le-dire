@@ -118,6 +118,6 @@ after_failure:
   - chmod +x send.sh
   - ./send.sh failure $WEBHOOK_URL
 
-notification:
-  email: edin.sljmn@gmail.com
+#notification:
+#  email: edin.sljmn@gmail.com
 
