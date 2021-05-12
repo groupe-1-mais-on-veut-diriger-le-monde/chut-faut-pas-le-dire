@@ -6,32 +6,55 @@ function makeFirstLogInScreen(userDetails) {
 
     const textBoxesId = ["userName", "age"];
 
-    const differentGenres = [["comedy", "Horror", "romance", "action"], ["thriller", "drama", "mystery", "crime"], ["animation", "adventure", "fantasy", "comdedy_Romance"], ["action_comedy", "superhero"]];
-    const differentGenresIds = [["genreId1", "genreId2", "genreId3", "genreId4"], ["genreId5", "genreId6", "genreId7", "genreId8"], ["genreId9", "genreId10", "genreId11", "genreId12"], ["genreId13", "genreId14"]];
+    const differentGenres = [
+        ["comedy", "Horror", "romance", "action"],
+        ["thriller", "drama", "mystery", "crime"],
+        ["animation", "adventure", "fantasy", "comdedy_Romance"],
+        ["action_comedy", "superhero"]
+    ];
+    const differentGenresIds = [
+        ["genreId1", "genreId2", "genreId3", "genreId4"],
+        ["genreId5", "genreId6", "genreId7", "genreId8"],
+        ["genreId9", "genreId10", "genreId11", "genreId12"],
+        ["genreId13", "genreId14"]
+    ];
 
     const idDivUserInputBoxes = "userInput";
     const idDivCheckBox = "movieGenreCheckBox";
     const idDivButtonValidate = "buttonValidate";
 
-    //create divs
-    d3.select("body").append("div").attr("id", "introDiv").attr("class", "loginScreen");
-    d3.select("body").append("div").attr("id", idDivUserInputBoxes).attr("class", "loginScreen");
-    d3.select("body").append("div").attr("id", idDivCheckBox).attr("class", "loginScreen");
-    d3.select("body").append("div").attr("id", idDivButtonValidate).attr("class", "loginScreen");
+    //header creator
+    d3.select("body").append("div").attr("id", "header").attr("class", "header");
+    d3.select("#header").append("svg").attr("id", "svgImage").attr("width", 600).attr("height", 150);
+    d3.select("#svgImage").append('image').attr("width", 600).attr("height", 150).attr('xlink:href', "img/header.png");
+
+    d3.select("body").append("div").attr("id", "login").attr("class", "login");
+
+    d3.select("#login").append("div").attr("id", "titreDiv").attr("class", "titreLogin");
+    d3.select("#login").append("div").attr("id", "introDiv").attr("class", "text1Log");
+    d3.select("#login").append("div").attr("id", idDivUserInputBoxes).attr("class", "champsLog");
+    d3.select("#login").append("div").attr("id", idDivCheckBox).attr("class", "genresLog");
+    d3.select("#login").append("div").attr("id", idDivButtonValidate).attr("class", "bouttonValidLog");
 
     //adds
+    d3.select("#titreDiv")
+        .append("p")
+        .attr("id", "titre")
+        .append("text")
+        .text("Sign up").attr("class", "titresMain");
+
     d3.select("#introDiv")
         .append("p")
         .attr("id", "introPwithId")
         .append("text")
-        .text("Votre ID d'utilisateur est unique est inchangeable : " + userDetails.id);
+        .text("Votre ID d'utilisateur est unique est inchangeable : " + userDetails.id).attr("class", "textInfo");
 
     //random text on top, can be replaced by a function if we decide to add more text
     d3.select("#introDiv")
         .append("p")
         .attr("id", "introP")
         .append("text")
-        .text("Tous les champs sont obligatoires : ");
+        .text("Tous les champs sont obligatoires : ").attr("class", "textInfo");
 
     addTextBoxes(textBoxesId, idDivUserInputBoxes);
     addCheckBox(differentGenres, differentGenresIds, idDivCheckBox);
@@ -65,7 +88,7 @@ function addTextBoxes(textBoxesId, divName) {
         p.append("input")
             .attr("type", "text")
             .attr("id", textBoxesId[val])
-            .attr("placeholder", textBoxesPlaceholders[val]);
+            .attr("placeholder", textBoxesPlaceholders[val]).attr("class", "champs");
     }
 }
 
@@ -80,23 +103,24 @@ function addCheckBox(checkboxLables, checkboxLablesIds, divName) {
     d3.select("#" + divName)
         .append("p")
         .append("text")
-        .text("Veuillez choisir les genres de filmes qui vous plaisent : ");
+        .text("Veuillez choisir les genres de filmes qui vous plaisent : ").attr("class", "textInfo");
 
     //
-    for (sousList in checkboxLables){
+    for (sousList in checkboxLables) {
         d3.select("#" + divName)
-        .append("p")
-        .selectAll("input")
-        .data(checkboxLables[sousList])
-        .enter()
-        .append('label')
-        .attr('for', function(d, i) { return checkboxLablesIds[sousList][i];})
-        .text(function(d) { return d; })
-        .append("input")
-        .attr("type", "checkbox")
-        .attr("unchecked", false)
-        .attr("id", function(d, i) { return checkboxLablesIds[sousList][i];});
-    } 
+            .append("p")
+            .selectAll("input")
+            .data(checkboxLables[sousList])
+            .enter()
+            .append('label')
+            .attr('for', function(d, i) { return checkboxLablesIds[sousList][i]; })
+            .text(function(d) { return d; })
+            .attr("class", "textInfo")
+            .append("input")
+            .attr("type", "checkbox")
+            .attr("unchecked", false)
+            .attr("id", function(d, i) { return checkboxLablesIds[sousList][i]; });
+    }
     /*
     d3.select("#" + divName).selectAll("input")
         .data(checkboxLables)
@@ -121,8 +145,8 @@ function addValidateButton(textBoxesId, differentGenresIds, divName, differentGe
             clickValidateButton(textBoxesId, differentGenresIds, differentGenres, userDe);
         });
     d3.select("#" + divName)
-    .append("p")
-    .attr("id","wrongInput");
+        .append("p")
+        .attr("id", "wrongInput");
 }
 
 //genre de films isnt working
@@ -134,9 +158,9 @@ function clickValidateButton(textBoxesId, differentGenresIds, differentGenres, u
     console.log("Age : " + age);
 
     var checkedGenres = [];
-    for (sousList in differentGenresIds){
-        for (val in differentGenresIds[sousList]){
-            if(d3.select("#" + differentGenresIds[sousList][val]).property("checked")){
+    for (sousList in differentGenresIds) {
+        for (val in differentGenresIds[sousList]) {
+            if (d3.select("#" + differentGenresIds[sousList][val]).property("checked")) {
                 checkedGenres.push(differentGenres[sousList][val]);
             }
         }
@@ -144,24 +168,24 @@ function clickValidateButton(textBoxesId, differentGenresIds, differentGenres, u
     console.log("la liste des genres de films que vous aimez : ")
     console.log(checkedGenres);
 
-    if(userName == "" || age == "" || Number.isNaN(Number(age)) || Number(age) < 0){
+    if (userName == "" || age == "" || Number.isNaN(Number(age)) || Number(age) < 0) {
         d3.select("#wrongInput")
-        .selectAll("*")
-        .remove();
+            .selectAll("*")
+            .remove();
 
         d3.select("#wrongInput")
-        .append("text")
-        .text("Les champs 'username' et 'age' sont obligatoires");
-    }else{
+            .append("text")
+            .text("Les champs 'username' et 'age' sont obligatoires");
+    } else {
         d3.select("#wrongInput")
-        .selectAll("*")
-        .remove();
+            .selectAll("*")
+            .remove();
 
         //le user en forme finale
         userD.name = userName;
         userD.age = age;
         userD.genresFilmes = checkedGenres;
-        
+
         console.log(userD);
         console.log("legal user");
     }

@@ -4,6 +4,7 @@ var getGroupById = "group=";
 var getMovieById = "film=";
 
 async function getJson(type, id) {
+
     var url = "";
 
     switch(type) {
@@ -25,9 +26,7 @@ async function getJson(type, id) {
     }
 
     var response = await fetch(url);
-    console.log(response);
     var jsonData = await response.json();
-    
     return jsonData;
     
 }
