@@ -40,16 +40,23 @@ jobs:
   - stage: before_install
     script:
     - openssl aes-256-cbc -K $encrypted_dfdcfd5172af_key -iv $encrypted_dfdcfd5172af_iv -in deploy_key.enc -out ./deploy_key -d
+    
+    #start the ssh-agent (so that we can run ssh commands)
     - eval "$(ssh-agent -s)"
+    
+    #change permissions on deploy_key to avoid warnings.
     - chmod 600 ./deploy_key
     - ls
     - pwd
+    
+    #avoid Travis asking if we want to "check" the identity of our host (VPS)
     - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+    
+    #add the deploy_key as our preferred ssh RSA key.
     - ssh-add ./deploy_key
-    #- ssh -i ./deploy_key sulejma7@129.194.10.126 < input.txt
-    - ssh -i ./deploy_key sulejma7@129.194.10.126 
-    - pwd
-    #- ssh-add ./deploy_key
+    
+    #run the pwd command on the deployment server using the deploy_key as our "identity" file (RSA Key)
+    #- ssh -i ./deploy_key sulejma7@129.194.10.126 
 
   - stage: Test groups and profile
     script:
