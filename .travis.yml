@@ -22,19 +22,6 @@ script:
 - "./mvnw clean install"
 jobs:
   include:
-  - stage: before_install
-    script:
-    - openssl aes-256-cbc -K $encrypted_dfdcfd5172af_key -iv $encrypted_dfdcfd5172af_iv -in deploy_key.enc -out ./deploy_key -d
-    - eval "$(ssh-agent -s)"
-    - chmod 600 ./deploy_key
-    - ls
-    - pwd
-    - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-    - ssh-add ./deploy_key
-    #- ssh -i ./deploy_key sulejma7@129.194.10.126 < input.txt
-    - ssh -i ./deploy_key sulejma7@129.194.10.126 
-    - pwd
-    #- ssh-add ./deploy_key
   - stage: Sonarcloud + Clean install groups and profile
     script:
     - mvn -B org.jacoco:jacoco-maven-plugin:prepare-agent verify org.jacoco:jacoco-maven-plugin:report
@@ -50,6 +37,19 @@ jobs:
   #  - openssl aes-256-cbc -K $encrypted_189e52c2c347_key -iv $encrypted_189e52c2c347_iv
   #    -in deploy_key.enc -out deploy_key -d
 
+  - stage: before_install
+    script:
+    - openssl aes-256-cbc -K $encrypted_dfdcfd5172af_key -iv $encrypted_dfdcfd5172af_iv -in deploy_key.enc -out ./deploy_key -d
+    - eval "$(ssh-agent -s)"
+    - chmod 600 ./deploy_key
+    - ls
+    - pwd
+    - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+    - ssh-add ./deploy_key
+    #- ssh -i ./deploy_key sulejma7@129.194.10.126 < input.txt
+    - ssh -i ./deploy_key sulejma7@129.194.10.126 
+    - pwd
+    #- ssh-add ./deploy_key
 
   - stage: Test groups and profile
     script:
