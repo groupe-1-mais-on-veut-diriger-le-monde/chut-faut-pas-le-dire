@@ -40,7 +40,8 @@ jobs:
     - chmod 600 ./deploy_key
     - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
     - ssh-add ./deploy_key
-    - ssh -i ./deploy_key sulejma7@129.194.10.126 pwd
+    - ssh -i ./deploy_key sulejma7@129.194.10.126
+    - pwd
     #- ssh-add ./deploy_key
 
   - stage: Test groups and profile
