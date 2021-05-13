@@ -53,7 +53,7 @@ body {
     /* classe affichage du pseudo et des titres */
     position: absolute;
     left: 10px;
-    font-size: 42px;
+    font-size: 2vw;
     font-weight: bold;
 }
 
@@ -61,7 +61,7 @@ body {
     /* style du nom des cathégories */
     color: #000000;
     font-family: Noto Sans, sans-serif;
-    font-size: 26px;
+    font-size: 1.5vw;
     font-weight: bold;
 }
 
@@ -69,7 +69,7 @@ body {
     /* style du texte */
     color: #000000;
     font-family: Noto Sans, sans-serif;
-    font-size: 24px;
+    font-size: 1.25vw;
 }
 
 
@@ -103,7 +103,7 @@ body {
 .profilMain {
     /* classe des details du profil */
     position: absolute;
-    top: 15%;
+    top: 25%;
     left: 30px;
     font-size: 25px;
 }
