@@ -1,123 +1,59 @@
-
-language: java
 language: python
-
 env:
-  - NODE_VERSION="12.13.1"
-  - SERVER_IP_ADDRESS=129.194.10.126
-  - KUBERNETES_VERSION="1.21.0"
-
-
-
+- NODE_VERSION="12.13.1"
+- SERVER_IP_ADDRESS=129.194.10.126
+- KUBERNETES_VERSION="1.21.0"
 services:
-  - docker
-
+- docker
 jdk:
-  - openjdk11
-
-
+- openjdk11
 addons:
   snaps:
-    - name: microk8s
-      confinement: classic
+  - name: microk8s
+    confinement: classic
   sonarcloud:
-    organization: "groupe-1-mais-on-veut-diriger-le-monde"
+    organization: groupe-1-mais-on-veut-diriger-le-monde
     token:
-      secure: "cpvAucJ3wDeSRvh5b12wK5tnmJwUje4MWuxl42KgR0+lWwc7ZkE1wQc1VpLy5m5vOTnk1v5gCjnP36Wz+ow50o6NAaIOO9RTuqR4/nqjBSWZFWdr9OpPC4d0H769QhFyReWDhDuQoAksnUXgurgeP+UEUcroQY2gLuwLOVQ1oJsBy8sdQj8x9RNoc8Hef8Bcl/9TTzezY+bwdLl3eQ+d4gKPTMg/4NUGFVBCVuJ+SQG3KQfOX9XC1Cy5y6/gaVpf8bXA7cDXveKopQiaZo3DGGa733IGtpGCclOdahql5slZU+huy9fDOZ47yfGkVuKuQiLtxgMsU0UA1JZZjrYUnAeKPNCR8v/GoynqXL6+oIJUFGPN23suDucw/1nfWYEytFcbs3nJPENPjM+cgAfz5TXSRO3NrwQ6lskjHTwhEegjfywhzPflTt1wtV2uIvLK7SLmBfuXyfo7PdEJg2XEv73SIIVakCyg7laMm/wFcS3k/ceKrFuwgUyNAWHobHJ3tZ9/warQQ1EyiTq6urbRRDlZ18NdxZ3IXyxUAymNk4SoidwXAzhT6Xdc+Be6Xu3/gY+jIwJ67yXW3CGIjhvIC3nTyEikdFn+ri++HLwx92EPhLGxmvfj16+0H1EbVtYytN27XixdBcfCqMX+pxyk3kuQbn81/uGLlWfVme1vVR8="
-
+      secure: cpvAucJ3wDeSRvh5b12wK5tnmJwUje4MWuxl42KgR0+lWwc7ZkE1wQc1VpLy5m5vOTnk1v5gCjnP36Wz+ow50o6NAaIOO9RTuqR4/nqjBSWZFWdr9OpPC4d0H769QhFyReWDhDuQoAksnUXgurgeP+UEUcroQY2gLuwLOVQ1oJsBy8sdQj8x9RNoc8Hef8Bcl/9TTzezY+bwdLl3eQ+d4gKPTMg/4NUGFVBCVuJ+SQG3KQfOX9XC1Cy5y6/gaVpf8bXA7cDXveKopQiaZo3DGGa733IGtpGCclOdahql5slZU+huy9fDOZ47yfGkVuKuQiLtxgMsU0UA1JZZjrYUnAeKPNCR8v/GoynqXL6+oIJUFGPN23suDucw/1nfWYEytFcbs3nJPENPjM+cgAfz5TXSRO3NrwQ6lskjHTwhEegjfywhzPflTt1wtV2uIvLK7SLmBfuXyfo7PdEJg2XEv73SIIVakCyg7laMm/wFcS3k/ceKrFuwgUyNAWHobHJ3tZ9/warQQ1EyiTq6urbRRDlZ18NdxZ3IXyxUAymNk4SoidwXAzhT6Xdc+Be6Xu3/gY+jIwJ67yXW3CGIjhvIC3nTyEikdFn+ri++HLwx92EPhLGxmvfj16+0H1EbVtYytN27XixdBcfCqMX+pxyk3kuQbn81/uGLlWfVme1vVR8=
 script:
-  - ./mvnw clean install
-  #- mvn sonar:sonar -Dsonar.projectKey=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire -Dsonar.organization=groupe-1-mais-on-veut-diriger-le-monde -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=8109a8d9e77f615669a530a79e525e73c5db4220
-
-
-
-
+- "./mvnw clean install"
 jobs:
   include:
-    - stage: Sonarcloud + Clean install groups and profile
-      script:
-      - mvn -B org.jacoco:jacoco-maven-plugin:prepare-agent verify org.jacoco:jacoco-maven-plugin:report org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire -Dsonar.organization=groupe-1-mais-on-veut-diriger-le-monde -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=8109a8d9e77f615669a530a79e525e73c5db4220
-    - stage: Prepare -> install node.js
-      script:
-      - nvm install $NODE_VERSION
-      - mvn install -N -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-    - stage: before install
-      script:
-      - openssl aes-256-cbc -K $encrypted_189e52c2c347_key -iv $encrypted_189e52c2c347_iv -in deploy_key.enc -out deploy_key -d
-      #- cd test_ui_deployment
-      #- sudo microk8s.kubectl apply -f ui-app.yaml
-      #- sudo microk8s.kubectl apply -f ui-ingress.yaml
-    #- stage : Build
-      #script:
-      #- mvn install -Ppackage-docker-image  
-    #- stage: Clean install groups and profile
-      #script:
-      #- pwd
-      #- mvn clean install
+  - stage: Sonarcloud + Clean install groups and profile
+    script:
+    - mvn -B org.jacoco:jacoco-maven-plugin:prepare-agent verify org.jacoco:jacoco-maven-plugin:report
+      org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire
+      -Dsonar.organization=groupe-1-mais-on-veut-diriger-le-monde -Dsonar.host.url=https://sonarcloud.io/
+      -Dsonar.login=8109a8d9e77f615669a530a79e525e73c5db4220
+  - stage: Prepare -> install node.js
+    script:
+    - nvm install $NODE_VERSION
+    - mvn install -N -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  #- stage: before install
+  #  script:
+  #  - openssl aes-256-cbc -K $encrypted_189e52c2c347_key -iv $encrypted_189e52c2c347_iv
+  #    -in deploy_key.enc -out deploy_key -d
+  - stage: before_install
+    script:
+    - openssl aes-256-cbc -K $encrypted_dfdcfd5172af_key -iv $encrypted_dfdcfd5172af_iv -in deploy_key.enc -out ./deploy_key -d
+    - eval "$(ssh-agent -s)"
+    - chmod 600 ./deploy_key
+    - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+    - ssh-add ./deploy_key
+    - ssh -i ./deploy_key sulejma7@129.194.10.126 pwd
+    #- ssh-add ./deploy_key
 
-      #- mvn sonar:sonar -Dsonar.projectKey=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire -Dsonar.organization=groupe-1-mais-on-veut-diriger-le-monde -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=8109a8d9e77f615669a530a79e525e73c5db4220
-
-    #- stage : Build for web-ui
-    #  script:
-    #  - cd web-ui
-    #  - pwd
-    #  - npm -v
-    #  - npm install
-    #  - npm update
-    - stage : Test groups and profile
-      script:
-      - mvn test
-      notification:
-        email: jan.dirkx.ch@gmail.com
-    #- stage : Test
-      #script: 
-      #- curl localhost:8080
-      #- ./mvnw clean test
-     
-      #- npm run-script build --prod
-      #- docker build -t unige/web-ui .
-      #- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin      
-      #- docker tag unige/web-ui edin0/web-ui:latest      
-      #- docker push edin0/web-ui:latest
-
-   # - stage : Build
-   #   env:
-   #     DOCKER_USER: ${{ secrets.DOCKER_USER }}   
-   #     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      #with:
-      #  DOCKER_USER: ${{ secrets.DOCKER_USER }}
-      #with:
-       # DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-     # script: 
-  #build:     
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - name: download node
-  #      run: nvm install $NODE_VERSION
-  #    - uses: actions/checkout@v1
-  #    - name: Login to DockerHub Registry
-  #      run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin 
-
-     #- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-     # - name: echo ok
-   #     run: echo "ok"
-   #   - name: change directory
-   #     run: cd docker_building_scripts
-   #   - name: run building docker services
-   #     run: sudo sh build_services.sh
-   #   - name: Test
-   #     run: cd .. && ./mvnw clean test
-
-
+  - stage: Test groups and profile
+    script:
+    - mvn test
+    notification:
+      email: jan.dirkx.ch@gmail.com
 after_success:
-  - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
-  - chmod +x send.sh
-  - ./send.sh success $WEBHOOK_URL
+- wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
+- chmod +x send.sh
+- "./send.sh success $WEBHOOK_URL"
 after_failure:
-  - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
-  - chmod +x send.sh
-  - ./send.sh failure $WEBHOOK_URL
-
-#notification:
-#  email: edin.sljmn@gmail.com
+- wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
+- chmod +x send.sh
+- "./send.sh failure $WEBHOOK_URL"
 
