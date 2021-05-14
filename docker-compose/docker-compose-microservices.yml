@@ -67,7 +67,7 @@ services:
   #The counterparty service provides counterparty data, it is also the single version of truth for these data
   profile-service:
     container_name: profile-service  
-    image: diges/profile-service:latest
+    image: edin0/profile-service:latest
     hostname: profile-service
     environment:
       THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_PROFILE_CONNECTION_DASH_URL: "jdbc:postgresql://profile-database:5432/profile"
@@ -112,7 +112,7 @@ services:
   #The counterparty service provides counterparty data, it is also the single version of truth for these data
   group-service:
     container_name: group-service  
-    image: diges/group-service:latest
+    image: edin0/group-service:latest
     hostname: group-service
     environment:
       THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_GROUP_CONNECTION_DASH_URL: "jdbc:postgresql://group-database:5432/group"
