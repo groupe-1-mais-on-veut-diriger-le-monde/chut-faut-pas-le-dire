@@ -76,6 +76,8 @@ jobs:
          docker tag servicefilmbuild docker.io/edin0/servicefilmbuild
          docker tag ui-mmm docker.io/edin0/ui-mmm
          docker tag edin0/group-service docker.io/edin0/group-service
+         docker tag edin0/profile-service docker.io/edin0/profile-service
+
 
       - name: docker push tagged images
         run: |
@@ -88,6 +90,7 @@ jobs:
          docker push docker.io/edin0/servicefilmbuild
          docker push docker.io/edin0/ui-mmm
          docker push docker.io/edin0/group-service
+         docker push docker.io/edin0/profile-service
 
       - name: docker test the build
         run: |
