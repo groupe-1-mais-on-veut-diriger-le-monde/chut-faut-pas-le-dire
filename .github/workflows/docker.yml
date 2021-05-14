@@ -40,7 +40,10 @@ jobs:
       #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       #  run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
         
-
+      - name: test mvn docker-compose
+        run: |
+          pwd
+          cd .. && mvn install -Ppackage-docker-image
       - name: Login to DockerHub Registry
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login docker.pkg.github.com -u "${{ secrets.DOCKER_USER }}" --password-stdin
       #- name: Login to Docker.io
