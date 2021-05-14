@@ -58,7 +58,7 @@ services:
       timeout: 30s
       retries: 3
     volumes:
-      - pgdata-profile:/var/lib/postgresql/data
+      - pgdata-pro:/var/lib/postgresql/data
       - ./test-data/profile.sql:/docker-entrypoint-initdb.d/init.sql
     restart: on-failure
     stdin_open: true
@@ -130,7 +130,7 @@ services:
        
        
 volumes:
-  pgdata-profile:
+  pgdata-pro:
   pgdata-gro:
 
 

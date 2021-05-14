@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>Profile-service</artifactId>
-	<name>Profile-Service</name>
+	<name>Profile Service</name>
 	<packaging>war</packaging>
 
 	<properties>
