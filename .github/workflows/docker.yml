@@ -75,7 +75,7 @@ jobs:
          # change les noms des images et les envoies au docker hub
          docker tag servicefilmbuild docker.io/edin0/servicefilmbuild
          docker tag ui-mmm docker.io/edin0/ui-mmm
-         docker tag group-service docker.io//Group-service/target/docker/edin0/group-service
+         docker tag group-service docker.io/Group-service/target/docker/edin0/group-service
 
       - name: docker push tagged images
         run: |
