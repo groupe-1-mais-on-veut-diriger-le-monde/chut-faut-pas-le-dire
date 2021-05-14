@@ -103,7 +103,7 @@ services:
       timeout: 30s
       retries: 3
     volumes:
-      - pgdata-ing:/var/lib/postgresql/data
+      - pgdata-group:/var/lib/postgresql/data
       - ./test-data/group.sql:/docker-entrypoint-initdb.d/init.sql
     restart: on-failure
     stdin_open: true
@@ -127,5 +127,15 @@ services:
       - "12084:28080"
     depends_on:
        - kafka
+       
+       
+volumes:
+  pgdata-profile:
+  pgdata-group:
 
+
+
+networks:
+  backend-network:
+    driver: bridge
 
