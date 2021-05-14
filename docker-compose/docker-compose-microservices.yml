@@ -96,14 +96,14 @@ services:
     environment:
       POSTGRES_USER: gro
       POSTGRES_PASSWORD: gro
-      POSTGRES_DB: ing
+      POSTGRES_DB: gro
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "gro", "-d", "gro"]
       interval: 30s
       timeout: 30s
       retries: 3
     volumes:
-      - pgdata-group:/var/lib/postgresql/data
+      - pgdata-gro:/var/lib/postgresql/data
       - ./test-data/group.sql:/docker-entrypoint-initdb.d/init.sql
     restart: on-failure
     stdin_open: true
@@ -131,7 +131,7 @@ services:
        
 volumes:
   pgdata-profile:
-  pgdata-group:
+  pgdata-gro:
 
 
 
