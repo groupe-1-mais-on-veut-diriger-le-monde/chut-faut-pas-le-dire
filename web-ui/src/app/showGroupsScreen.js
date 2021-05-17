@@ -1,4 +1,6 @@
 var user = localStorage['user'];
+const userDetailsName = ["pId", "pAge"];
+const userDetailsDescribe = ["ID :   ", "Âge :   "];
 
 makeGroupesScreen(user);
 
@@ -15,4 +17,17 @@ function makeGroupesScreen(user) {
 
     console.log("new screen - Groups - function called by user :");
     console.log(user);
+
+    //splits rest of body in 2 sides -> 30% and 70% for now
+    d3.select("body").append("div").attr("id", "leftSideDiv").attr("class", "leftSideDivStyle");
+    d3.select("body").append("div").attr("id", "rightSideDiv").attr("class", "rightSideDivStyle");
+
+
+    d3.select("#leftSideDiv").append("div").attr("id", "userDetailsWithStyle").attr("onclick", "location.href='mainScreen.html'").attr("class", "userDetails");
+
+    makeUserIDDiv();
+}
+
+function makeUserDetailsDiv() {
+
 }
