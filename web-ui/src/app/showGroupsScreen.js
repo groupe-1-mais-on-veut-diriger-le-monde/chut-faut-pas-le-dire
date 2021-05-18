@@ -1,6 +1,6 @@
 var user = localStorage['user'];
-const userDetailsName = ["pId", "pAge"];
-const userDetailsDescribe = ["ID :   ", "Âge :   "];
+const userDetailsName = ["pId"];
+const userDetailsDescribe = ["ID :   "];
 
 makeGroupesScreen(user);
 
@@ -22,12 +22,16 @@ function makeGroupesScreen(user) {
     d3.select("body").append("div").attr("id", "leftSideDiv").attr("class", "leftSideDivStyle");
     d3.select("body").append("div").attr("id", "rightSideDiv").attr("class", "rightSideDivStyle");
 
-
-    d3.select("#leftSideDiv").append("div").attr("id", "userDetailsWithStyle").attr("onclick", "location.href='mainScreen.html'").attr("class", "userDetails");
+    //div clicable avec le pseudo et l'ID de l'tilisateur
+    d3.select("#leftSideDiv").append("div").attr("id", "userID").attr("onclick", "location.href='mainScreen.html'").attr("class", "userDetails");
 
     makeUserIDDiv();
 }
 
-function makeUserDetailsDiv() {
+function makeUserIDDiv() {
+    d3.select("#userID").append("p").attr("id", "pseudo");
+    d3.select("#pseudo").append("text").text(user.name).attr("class", "titresMain");
 
+    d3.select("#userID").append("p").attr("id", "ID");
+    d3.select("#ID").append("text").text(user.id).attr("class", "textC");
 }
