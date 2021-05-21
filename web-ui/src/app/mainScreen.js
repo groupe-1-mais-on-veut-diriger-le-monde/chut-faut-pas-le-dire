@@ -11,7 +11,7 @@ add beauty -> how do i do that ?
 var user;
 const userDetailsName = ["pId", "pAge"];
 const userDetailsDescribe = ["ID :   ", "Âge :   "];
-const buttonNames = ["deja vu", "a voir", "groupes"];
+const buttonNames = ["Créer un groupe", "Rejoindre un groupe"];
 
 // this function calls the first log in screen in case it is 1st log in
 function choseMainScreen(user) {
@@ -55,6 +55,10 @@ function makeMainScreen(userDetails) {
     makeButtonsDiv();
     makeSearchBarDiv();
     showUserDetails();
+
+    if(user.groupe != null){
+        getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
+    }
     //console.log(d3.select("#userDetails"));
 }
 
@@ -212,6 +216,7 @@ function updatesUserDetails() {
 //fonction qui fait les actions pour chaque button
 function clickAction(buttonClicked) {
     //buttonNames = ["deja vu", "a voir", "preferences", "groupes"];
+    //["Créer un groupe", "Rejoindre un groupe"];
     switch (buttonClicked.value) {
         case "deja vu":
             console.log("GROS TO DO");
@@ -242,6 +247,15 @@ function clickAction(buttonClicked) {
             //reset changes click
             makeUserDetailsDiv();
             showUserDetails();
+            break;
+        case "Créer un groupe":
+            createGroup();
+            joinGroup(1);
+            getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
+            break;
+        case "Rejoindre un groupe":
+            joinGroup(1);
+            getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
             break;
         default:
             console.log("error in clickAction");

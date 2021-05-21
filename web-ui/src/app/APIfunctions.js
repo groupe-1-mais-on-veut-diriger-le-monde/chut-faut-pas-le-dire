@@ -30,3 +30,13 @@ async function getJson(type, id) {
     return jsonData;
     
 }
+
+// TO DO
+function createGroup(){
+    console.log("create Grp");
+}
+
+// TO DO
+function joinGroup(ID){
+    console.log("joining grp id " + ID);
+}

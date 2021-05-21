@@ -1,8 +1,9 @@
 {
-    "id": 1,
-    "name": "groupe des cons",
-    "langues": [
-        "fr",
-        "en"
-    ]
+    "name": "1",
+    "Host": "Joao Quinta",
+    "member1": "Lea",
+    "member2": "Edin",
+    "member3": "Jan",
+    "member4": "Antoine",
+    "member5": null
 }

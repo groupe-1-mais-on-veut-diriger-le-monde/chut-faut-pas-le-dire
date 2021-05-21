@@ -2,12 +2,9 @@
     "id": 1,
     "name": "Joao Quinta",
     "age": "23",
-    "genresFilmes": [
-        "comedy",
-        "Horror",
-        "action"
-    ],
-    "groupe": [
-        "1"
-    ]
+    "genre1": "comedy",
+    "genre2": "horror",
+    "genre3": "crime",
+    "groupe": "1",
+    "host": "1"
 }
