@@ -218,16 +218,13 @@ function clickAction(buttonClicked) {
     //buttonNames = ["deja vu", "a voir", "preferences", "groupes"];
     //["Créer un groupe", "Rejoindre un groupe"];
     switch (buttonClicked.value) {
-        case "deja vu":
-            console.log("GROS TO DO");
-            break;
-        case "a voir":
-            console.log("GROS TO DO");
-            break;
-        case "groupes":
+        case "creer un groupe":
             localStorage.setItem('user', user);
             console.log("GROS TO DO");
             document.location.href = "listGroupScreen.html";
+            break;
+        case "rejoindre un groupe":
+            console.log("GROS TO DO");
             break;
         case "🖉":
             makeUserDetailsUpdateDiv();

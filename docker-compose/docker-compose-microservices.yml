@@ -58,7 +58,7 @@ services:
       timeout: 30s
       retries: 3
     volumes:
-      - pgdata-profile:/var/lib/postgresql/data
+      - pgdata-pro:/var/lib/postgresql/data
       - ./test-data/profile.sql:/docker-entrypoint-initdb.d/init.sql
     restart: on-failure
     stdin_open: true
@@ -67,7 +67,7 @@ services:
   #The counterparty service provides counterparty data, it is also the single version of truth for these data
   profile-service:
     container_name: profile-service  
-    image: diges/profile-service:latest
+    image: edin0/profile-service:latest
     hostname: profile-service
     environment:
       THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_PROFILE_CONNECTION_DASH_URL: "jdbc:postgresql://profile-database:5432/profile"
@@ -96,14 +96,14 @@ services:
     environment:
       POSTGRES_USER: gro
       POSTGRES_PASSWORD: gro
-      POSTGRES_DB: ing
+      POSTGRES_DB: gro
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "gro", "-d", "gro"]
       interval: 30s
       timeout: 30s
       retries: 3
     volumes:
-      - pgdata-ing:/var/lib/postgresql/data
+      - pgdata-gro:/var/lib/postgresql/data
       - ./test-data/group.sql:/docker-entrypoint-initdb.d/init.sql
     restart: on-failure
     stdin_open: true
@@ -112,7 +112,7 @@ services:
   #The counterparty service provides counterparty data, it is also the single version of truth for these data
   group-service:
     container_name: group-service  
-    image: diges/group-service:latest
+    image: edin0/group-service:latest
     hostname: group-service
     environment:
       THORNTAIL_DATASOURCES_DATA_DASH_SOURCES_GROUP_CONNECTION_DASH_URL: "jdbc:postgresql://group-database:5432/group"
@@ -127,5 +127,15 @@ services:
       - "12084:28080"
     depends_on:
        - kafka
+       
+       
+volumes:
+  pgdata-pro:
+  pgdata-gro:
 
+
+
+networks:
+  backend-network:
+    driver: bridge
 
