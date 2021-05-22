@@ -38,114 +38,36 @@ public class Profile implements Serializable {
 	@NotNull
 	private int age;
 	
+	@Column(name = "genre1")	
+	private String genre1;
+	
+	@Column(name = "genre2")
+	private String genre2;
+	
+	@Column(name = "genre3")
+	private String genre3;
 	
 	
-	@Column(name = "comedy")
-	@NotNull
-	private int comedy;
-	
-	@Column(name = "Horror")
-	@NotNull
-	private int Horror;
-	
-	@Column(name = "romance")
-	@NotNull
-	private int romance;
-
-	@Column(name = "action")
-	@NotNull
-	private int action;
-	
-	@Column(name = "thriller")
-	@NotNull
-	private int thriller;
-	
-	@Column(name = "drama")
-	@NotNull
-	private int drama;
-	
-	@Column(name = "mystery")
-	@NotNull
-	private int mystery;
-	
-	@Column(name = "crime")
-	@NotNull
-	private int crime;	
-	
-	
-	@Column(name = "animation")
-	@NotNull
-	private int animation;	
-	
-	@Column(name = "adventure")
-	@NotNull
-	private int adventure;	
-	
-	@Column(name = "fantasy")
-	@NotNull
-	private int fantasy;	
-	
-	@Column(name = "comdedy_Romance")
-	@NotNull
-	private int comdedy_Romance;	
-	
-	@Column(name = "action_comedy")
-	@NotNull
-	private int action_comedy;	
-	
-	@Column(name = "superhero")
-	@NotNull
-	private int superhero;	
-	
-	
-	
-	@Column(name = "voir")
-	@NotNull
-	private String voir;
+	@Column(name = "host")
+	private int host;
 	
 	@Column(name = "Group1")
 	private int Group1;
 	
-	@Column(name = "Group2")
-	private int Group2;
-
-	@Column(name = "Group3")
-	private int Group3;
-
-	@Column(name = "Group4")
-	private int Group4;
 	
-	@Column(name = "Group5")
-	private int Group5;
 	
 	public Profile() {}
 	
 	
-	public Profile(String name,int age, int comedy, int sci,int Horror,int romance,int action,int thriller,int drama,int mystery,int crime,int animation,int adventure,int fantasy,int comdedy_Romance,int action_comedy,int superhero,String voir,int Group1,
-				int Group2,int Group3,int Group4,int Group5) {
+	public Profile(String name,int age,String genre1,String genre2,String genre3,int host,int Group1){
 		this.name = name;
 		this.age = age;
-		this.comedy = comedy;
-		this.Horror = Horror;
-		this.romance = romance;
-		this.action = action;
-		this.thriller = thriller;
-		this.drama = drama;
-		this.mystery = mystery;
-		this.crime = crime;
-		this.animation = animation;
-		this.adventure = adventure;
-		this.fantasy = fantasy;
-		this.comdedy_Romance = comdedy_Romance;
-		this.action_comedy = action_comedy;
-		this.superhero = superhero;
-		
-		this.voir = voir;
+		this.genre1 = genre1;
+		this.genre2 = genre2;
+		this.genre3 = genre3;
+		this.host = host;
 		this.Group1 = Group1;
-		this.Group2 = Group2;
-		this.Group3 = Group3;
-		this.Group4 = Group4;
-		this.Group5 = Group5;
+		
 		
 		
 		
