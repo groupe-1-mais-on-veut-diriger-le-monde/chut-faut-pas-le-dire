@@ -40,4 +40,10 @@ import io.restassured.http.ContentType;
 		with().contentType(ContentType.JSON).when().request("DELETE", "/delete/3").then().statusCode(200);
 	}
 	
+	@Test
+	public void testCreate() {
+		Group Group = new Group("nom4", "d4", 1, 2, 3, 4,5,"result");
+		with().contentType(ContentType.JSON).body(Group).when().request("POST", "/").then().statusCode(200);
+	}
+	
 }
