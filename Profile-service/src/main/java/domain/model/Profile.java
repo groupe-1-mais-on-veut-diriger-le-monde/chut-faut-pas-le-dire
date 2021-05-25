@@ -54,12 +54,18 @@ public class Profile implements Serializable {
 	@Column(name = "Group1")
 	private int Group1;
 	
+	@Column(name = "vote")
+	private String vote;
+	
+	
+	
+	
 	
 	
 	public Profile() {}
 	
 	
-	public Profile(String name,int age,String genre1,String genre2,String genre3,int host,int Group1){
+	public Profile(String name,int age,String genre1,String genre2,String genre3,int host,int Group1,String vote){
 		this.name = name;
 		this.age = age;
 		this.genre1 = genre1;
@@ -67,6 +73,7 @@ public class Profile implements Serializable {
 		this.genre3 = genre3;
 		this.host = host;
 		this.Group1 = Group1;
+		this.vote = vote;
 		
 		
 		

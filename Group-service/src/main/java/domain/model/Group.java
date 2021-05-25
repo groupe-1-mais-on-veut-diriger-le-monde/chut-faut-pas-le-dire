@@ -54,6 +54,8 @@ public class Group implements Serializable {
 	@Column(name = "member5")
 	private int member5;
 	
+	@Column(name = "result")
+	private String result;
 	
 	
 	
@@ -62,7 +64,7 @@ public class Group implements Serializable {
 	public Group() {}
 	
 	
-	public Group(String name, String Host,int member1,int member2,int member3,int member4,int member5) {
+	public Group(String name, String Host,int member1,int member2,int member3,int member4,int member5,String result) {
 		this.name = name;
 		this.Host = Host;
 		this.member1 = member1;
@@ -70,6 +72,7 @@ public class Group implements Serializable {
 		this.member3 = member3;
 		this.member4 = member4;
 		this.member5 = member5;
+		this.result = result;
  		
 		
 		
