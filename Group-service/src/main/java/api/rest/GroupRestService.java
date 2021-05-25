@@ -62,6 +62,7 @@ public class GroupRestService {
 	
 	@POST
 	@Consumes("application/json")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response create(Group Group) {
 		try {
 			GroupService.create(Group);
