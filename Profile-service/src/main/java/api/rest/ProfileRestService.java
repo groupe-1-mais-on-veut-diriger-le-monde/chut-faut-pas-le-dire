@@ -62,17 +62,10 @@ public class ProfileRestService {
 	
 	@POST
 	@Consumes("application/json")
-	public Response create(Profile Profile) {
-		try {
-			ProfileService.create(Profile);
-		} catch(IllegalArgumentException i) {
-			return Response.status(Status.BAD_REQUEST).build();
-		} catch(Exception e) {
-			return Response.status(Status.BAD_GATEWAY).build();
-		}
+	public int create(Profile Profile) {
 		
+			return ProfileService.create(Profile);
 		
-		return Response.ok().build();
 	}
 	
 	@PUT
