@@ -5,11 +5,14 @@ getJson("user", testID)
 deleteAll('group');
 deleteAll('user');
 
-
 var body = {
-    name: 'Joao Quinta',
+    name: 'Joao',
     age: 23
 }
+creatJson('user', body)
+    .then((userId) => choseMainScreen(userId));
+
+
 /*
 creatJson('user', body).then((userId) => console.log('user ID ' + userId));
 
@@ -25,11 +28,5 @@ var body = {
     age: 23
 }*/
 
-var userId = async()=>{
-    var response = await creatJson('user', body);
-    return response ;
-}
-
-console.log(userId);
 
 //creatPatchJson('PATCH', 'user', body).then((userId) => console.log('user ID ' + userId));

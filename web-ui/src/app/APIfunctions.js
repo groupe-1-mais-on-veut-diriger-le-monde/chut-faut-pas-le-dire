@@ -4,6 +4,7 @@ var url_profile = "http://129.194.10.126:30002/Profile";
 */
 
 async function creatJson(type, body){
+    delete body.id;
     //gets correct url
     var url = getURL(type);
 
@@ -27,18 +28,15 @@ async function getJson(type, id){
     return jsonData;
 }
 
-async function patchJson(type, id, body){
+async function patchJson(type, body){
     //gets correct url
-    var url = getURL(type) + '/id/' + id.toString();
+    var url = getURL(type);
 
-    var response = await fetch(url,{
-        method: 'PATCH',
+    await fetch(url,{
+        method: 'PUT',
         headers: {'content-type': 'application/json'},
         body: JSON.stringify(body)
     });
-    var returnedId = await response.json();
-
-    return returnedId;
 }
 
 //deletes all entries of a DB -> might delete this function

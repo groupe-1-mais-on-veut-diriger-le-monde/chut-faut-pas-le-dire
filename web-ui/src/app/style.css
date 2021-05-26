@@ -53,6 +53,7 @@ body {
     /* classe affichage du pseudo et des titres */
     position: absolute;
     left: 10px;
+    height: 20%;
     font-size: 2vw;
     font-weight: bold;
 }
@@ -103,7 +104,7 @@ body {
 .profilMain {
     /* classe des details du profil */
     position: absolute;
-    top: 15%;
+    top: 10%;
     left: 30px;
     font-size: 25px;
 }
@@ -136,6 +137,29 @@ body {
     height: 40px;
     border-radius: 10px;
     background: #2E2E2E;
+}
+
+.textDivClass{
+    position: absolute;
+    top: 3%;
+    height: 12%;
+    width: 100%;
+    font-size: 2vmin;
+    text-align: center;  
+}
+
+.dropDownDivStyle{
+    position: absolute;
+    top: 15%;
+    height: 70%;
+    width: 100%;
+}
+
+.acceptChangesDivStyle{
+    position: absolute;
+    bottom: 3%;
+    height: 12%;
+    width: 100%;
 }
 
 

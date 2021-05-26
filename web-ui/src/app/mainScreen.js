@@ -14,22 +14,21 @@ const userDetailsDescribe = ["ID :   ", "Âge :   "];
 const buttonNames = ["Créer un groupe", "Rejoindre un groupe"];
 
 // this function calls the first log in screen in case it is 1st log in
-function choseMainScreen(user) {
-    if (user.age == "") {
-        makeFirstLogInScreen(user);
-    } else {
-        makeMainScreen(user);
-    }
+function choseMainScreen(userId) {
+    getJson('user', userId)
+        .then((user) => makeMainScreen(user));
 }
 
 //splits body into 3 divs, and calls functions that fill divs
 function makeMainScreen(userDetails) {
+    
     d3.select("body")
         .selectAll("*")
         .remove();
 
     //console.log(userDetails);
     user = userDetails;
+    console.log(user);
 
     //header creator
     d3.select("body").append("div").attr("id", "header").attr("class", "header");
@@ -145,10 +144,20 @@ function showUserDetails() {
 }
 
 function makeChoiceGenreDiv() {
-    // to do lole
-    d3.select("#genreFilmesDiv").selectAll("*").remove();
+    var data = ["Comédie", "Horreur", "Romance", "Action", "Suspense", "Drame", "Mystère", "Crime", "Animation", "Aventure", "Fantastique", "Comédie romantique", "Comédie d'action", "Super-héros"];
 
-    d3.select("#genreFilmesDiv").append("text").text("Genres de film qui vous plaisent : ").attr("class", "textInfo");
+    d3.select("#genreFilmesDiv").selectAll("*").remove();
+    d3.select("#genreFilmesDiv").append("div").attr("id","infoP").attr("class", "textDivClass");
+    d3.select("#genreFilmesDiv").append("div").attr("id","dropDownDiv").attr("class", "dropDownDivStyle");
+    d3.select("#genreFilmesDiv").append("div").attr("id","acceptChangesDiv").attr("class", "acceptChangesDivStyle");
+
+    d3.select("#infoP").append("text").text("Veuillez choisir 3 genres de film : ");
+
+    d3.select("#dropDownDiv")
+    .append("select")
+    .attr("id","genreSelector1");
+
+
 
 }
 
@@ -206,11 +215,12 @@ function updatesUserDetails() {
     }
 
     if (updatedAge != "" && !Number.isNaN(Number(updatedAge)) && Number(updatedAge) > 0) {
-        user.age = updatedAge;
+        user.age = parseInt(updatedAge);
     }
 
     makeUserDetailsDiv();
     showUserDetails();
+    patchJson('user', user);
 }
 
 //fonction qui fait les actions pour chaque button
@@ -218,14 +228,6 @@ function clickAction(buttonClicked) {
     //buttonNames = ["deja vu", "a voir", "preferences", "groupes"];
     //["Créer un groupe", "Rejoindre un groupe"];
     switch (buttonClicked.value) {
-        case "creer un groupe":
-            localStorage.setItem('user', user);
-            console.log("GROS TO DO");
-            document.location.href = "listGroupScreen.html";
-            break;
-        case "rejoindre un groupe":
-            console.log("GROS TO DO");
-            break;
         case "🖉":
             makeUserDetailsUpdateDiv();
             break;

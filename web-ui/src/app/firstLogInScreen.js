@@ -9,8 +9,8 @@ function makeFirstLogInScreen(userDetails) {
     const differentGenres = [
         ["comedy", "Horror", "romance", "action"],
         ["thriller", "drama", "mystery", "crime"],
-        ["animation", "adventure", "fantasy", "comdedy_Romance"],
-        ["action_comedy", "superhero"]
+        ["animation", "adventure", "fantasy", "comdedy Romance"],
+        ["action comedy", "superhero"]
     ];
     const differentGenresIds = [
         ["genreId1", "genreId2", "genreId3", "genreId4"],
