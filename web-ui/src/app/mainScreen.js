@@ -306,13 +306,13 @@ function clickAction(buttonClicked) {
             showUserDetails();
             break;
         case "Créer un groupe":
-            createGroup();
-            joinGroup(1);
-            getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
+            //createGroup();
+            //joinGroup(1);
+            //getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
             break;
         case "Rejoindre un groupe":
-            joinGroup(1);
-            getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
+            //joinGroup(1);
+            //getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
             break;
         case "Valider":
             const dropDown1 = document.getElementById("dropDown1").value;
