@@ -13,6 +13,10 @@ const userDetailsName = ["pId", "pAge"];
 const userDetailsDescribe = ["ID :   ", "Âge :   "];
 const buttonNames = ["Créer un groupe", "Rejoindre un groupe"];
 
+const dataFr = ["Comédie", "Horreur", "Romance", "Action", "Suspense", "Drame", "Mystère", "Crime", "Animation", "Aventure", "Fantastique", "Comédie romantique", "Comédie d'action", "Super-héros"];
+
+const dataEn = ["comedy", "horror", "romance", "action","thriller", "drama", "mystery", "crime","animation", "adventure", "fantasy", "comdedy Romance", "action comedy", "superhero"]
+
 // this function calls the first log in screen in case it is 1st log in
 function choseMainScreen(userId) {
     getJson('user', userId)
@@ -144,7 +148,7 @@ function showUserDetails() {
 }
 
 function makeChoiceGenreDiv() {
-    var data = ["Comédie", "Horreur", "Romance", "Action", "Suspense", "Drame", "Mystère", "Crime", "Animation", "Aventure", "Fantastique", "Comédie romantique", "Comédie d'action", "Super-héros"];
+    
 
     d3.select("#genreFilmesDiv").selectAll("*").remove();
     d3.select("#genreFilmesDiv").append("div").attr("id","infoP").attr("class", "textDivClass");
@@ -153,12 +157,65 @@ function makeChoiceGenreDiv() {
 
     d3.select("#infoP").append("text").text("Veuillez choisir 3 genres de film : ");
 
-    d3.select("#dropDownDiv")
-    .append("select")
-    .attr("id","genreSelector1");
+    d3.select("#dropDownDiv").append("p").attr("id", "paragraphDropDown1");
+    d3.select("#paragraphDropDown1").append("text").text("Choix genre 1 : ");
 
+    d3.select("#dropDownDiv").append("p").attr("id", "paragraphDropDown2");
+    d3.select("#paragraphDropDown2").append("text").text("Choix genre 2 : ");
 
+    d3.select("#dropDownDiv").append("p").attr("id", "paragraphDropDown3");
+    d3.select("#paragraphDropDown3").append("text").text("Choix genre 3 : ");   
+    
+    
 
+    
+
+    if (user.genre1 != null){
+        makeDropDownMenu("paragraphDropDown1", "dropDown1", dataFr[dataEn.indexOf(user.genre1)], dataFr);
+    }else{
+        makeDropDownMenu("paragraphDropDown1", "dropDown1", "Comédie", dataFr);
+    }
+
+    if (user.genre2 != null){
+        makeDropDownMenu("paragraphDropDown2", "dropDown2", dataFr[dataEn.indexOf(user.genre2)], dataFr);
+    }else{
+        makeDropDownMenu("paragraphDropDown2", "dropDown2", "Horreur", dataFr);
+    }
+
+    if (user.genre3 != null){
+        makeDropDownMenu("paragraphDropDown3", "dropDown3", dataFr[dataEn.indexOf(user.genre3)], dataFr);
+    }else{
+        makeDropDownMenu("paragraphDropDown3", "dropDown3", "Romance", dataFr);
+    }
+
+    d3.select("#acceptChangesDiv")
+        .append("input")
+        .attr("type", "button")
+        .attr("value","Valider")
+        .on("click", function() {
+            clickAction(this);
+        });
+    d3.select("#acceptChangesDiv").append("text").attr("id", "texteSuiteValider");
+
+}
+
+function makeDropDownMenu(pId, dropDownId, defaultVal, dataFr){
+    var dropdown = d3.select("#" + pId)
+        .append("select")
+        .attr("id",dropDownId);
+
+    var options = dropdown.selectAll("option")
+        .data(dataFr)
+        .enter()
+        .append("option")
+        .attr("value", function(d) {
+            return d;
+        })
+        .text(function(d) {
+            return d;
+        });
+
+    options.property("selected", function(d){return d === defaultVal});
 }
 
 //met les buttons dans le button div
@@ -227,6 +284,7 @@ function updatesUserDetails() {
 function clickAction(buttonClicked) {
     //buttonNames = ["deja vu", "a voir", "preferences", "groupes"];
     //["Créer un groupe", "Rejoindre un groupe"];
+    console.log(buttonClicked);
     switch (buttonClicked.value) {
         case "🖉":
             makeUserDetailsUpdateDiv();
@@ -256,6 +314,22 @@ function clickAction(buttonClicked) {
             joinGroup(1);
             getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
             break;
+        case "Valider":
+            const dropDown1 = document.getElementById("dropDown1").value;
+            const dropDown2 = document.getElementById("dropDown2").value;
+            const dropDown3 = document.getElementById("dropDown3").value;
+            if(dropDown1 != dropDown2 && dropDown1 != dropDown3 && dropDown2 != dropDown3){
+                user.genre1 = dataEn[dataFr.indexOf(dropDown1)];
+                user.genre2 = dataEn[dataFr.indexOf(dropDown2)];
+                user.genre3 = dataEn[dataFr.indexOf(dropDown3)];
+                d3.select("#texteSuiteValider").text("Changements validés").style('color', '#036429').attr('class', 'validationGenreText');
+                patchJson('user', user);
+            }else{
+                d3.select("#texteSuiteValider").text("Changements non validés").style('color', '#bb151a').attr('class', 'validationGenreText');
+            }
+            break;
+            
+            
         default:
             console.log("error in clickAction");
     }
