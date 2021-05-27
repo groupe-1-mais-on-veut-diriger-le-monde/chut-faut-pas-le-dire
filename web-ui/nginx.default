@@ -11,7 +11,7 @@ server {
     }
 	location /mainpage {
         root   /usr/share/nginx/html;
-        mainScreen  mainScreen.html mainScreen.htm;
+        index  mainScreen.html index.htm;
     }
 
 	location /api/ {
