@@ -70,6 +70,7 @@ jobs:
     #- ssh -i ./deploy_key sulejma7@129.194.10.126 sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm
 
     # déploiement pour web-ui, groupe-service and profile service
+    # https://blog.logrocket.com/continuous-integration-and-deployment-with-travis-ci/
     # https://unix.stackexchange.com/questions/86941/how-to-ssh-into-a-specific-directory
     - ssh -i ./deploy_key sulejma7@129.194.10.126 'pwd && ls && cd test_ui_deployment && pwd && ls && sudo -S microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm:latest < password.txt && sudo -S microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm && sudo -S microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm && sudo -S microk8s.kubectl apply -f ui-app.yaml && sudo -S microk8s.kubectl delete deployment groupe-deployment && sudo -S microk8s.kubectl delete svc groupe-service && sudo -S microk8s.kubectl apply -f group-service.yaml && sudo -S microk8s.kubectl delete deployment profile-deployment && sudo -S microk8s.kubectl delete svc profile-service && sudo -S microk8s.kubectl apply -f profile-service.yaml && sudo -S microk8s.kubectl apply -f ui-ingress.yaml < password.txt'
 
