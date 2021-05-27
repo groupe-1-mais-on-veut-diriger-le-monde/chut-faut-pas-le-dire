@@ -32,7 +32,6 @@ body {
     margin: 0px;
     transition: all 0.5s;
     cursor: pointer;
-    width: 50%;
 }
 
 .champs {
@@ -109,8 +108,24 @@ body {
     /* classe des details du profil */
     position: absolute;
     top: 10%;
+    height: 40%;
+    width: 50%;
+    top: 20%;
     left: 30px;
     font-size: 25px;
+}
+
+.remakeProfilMain{
+    position: absolute;
+    bottom: 0px;
+    height: 40%;
+    width: 100%;
+}
+
+.insideUserDetails{
+    position: absolute;
+    height: 50%;
+    width: 100%;
 }
 
 .genreFilmesStyle {

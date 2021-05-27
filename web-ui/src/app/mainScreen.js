@@ -12,9 +12,7 @@ var user;
 const userDetailsName = ["pId", "pAge"];
 const userDetailsDescribe = ["ID :   ", "Âge :   "];
 const buttonNames = ["Créer un groupe", "Rejoindre un groupe"];
-
 const dataFr = ["Comédie", "Horreur", "Romance", "Action", "Suspense", "Drame", "Mystère", "Crime", "Animation", "Aventure", "Fantastique", "Comédie romantique", "Comédie d'action", "Super-héros"];
-
 const dataEn = ["comedy", "horror", "romance", "action","thriller", "drama", "mystery", "crime","animation", "adventure", "fantasy", "comdedy Romance", "action comedy", "superhero"]
 
 // this function calls the first log in screen in case it is 1st log in
@@ -49,9 +47,10 @@ function makeMainScreen(userDetails) {
     d3.select("#leftSideDiv").append("div").attr("id", "buttons").attr("class", "boutonsMain");
     d3.select("#leftSideDiv").append("div").attr("id", "searchBar").attr("class", "searchMain").attr("class", "searchMain");
 
-    // mets les 2 sous divs dans le div de user
+    // mets les 3 sous divs dans le div de user
     d3.select("#userDetailsWithStyle").append("div").attr("id", "pName").attr("class", "titresMain");
     d3.select("#userDetailsWithStyle").append("div").attr("id", "userDetails").attr("class", "profilMain");
+    d3.select("#userDetailsWithStyle").append("div").attr("id", "remakeUserDetails").attr("class", "remakeProfilMain");
 
     makeUserDetailsDiv();
     makeChoiceGenreDiv();
@@ -59,8 +58,8 @@ function makeMainScreen(userDetails) {
     makeSearchBarDiv();
     showUserDetails();
 
-    if(user.groupe != null){
-        getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
+    if(user.groupe1 != null){
+        getJson('group', user.groupe1).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
     }
     //console.log(d3.select("#userDetails"));
 }
@@ -72,24 +71,46 @@ function makeUserDetailsDiv() {
     d3.select("#userDetails")
         .selectAll("*")
         .remove();
-
-    //for each value in array, creats a <p></p> with id array[i]
+    
+    d3.select("#remakeUserDetails")
+        .selectAll("*")
+        .remove();
+    
     d3.select("#userDetails")
-        .selectAll("p")
-        .data(userDetailsName).enter()
-        .append("p")
-        .attr("id", function(d) {
-            return d;
-        })
-        .append("text")
-        .text(function(d, i) {
-            return userDetailsDescribe[i];
-        }).attr("class", "textC");
-
+        .append("div")
+        .attr("class", "insideUserDetails")
+        .attr("id", "pId");
+    
     d3.select("#userDetails")
+        .append("div")
+        .attr("class", "insideUserDetails")
+        .style("top", "50%")
+        .attr("id", "pAge");
+
+    d3.select("#pId").append("text").text("ID : ").attr("class", "textC");
+    d3.select("#pAge").append("text").text("Âge : ").attr("class", "textC");
+
+    d3.select("#remakeUserDetails")
+        .append("div")
+        .style("position", "absolute")
+        .style("width", "25%")
+        .style("height", "100%")
+        .attr("id", "remakeUserDetailsL");
+    
+    d3.select("#remakeUserDetails")
+        .append("div")
+        .style("position", "absolute")
+        .style("right", "0")
+        .style("width", "75%")
+        .style("height", "100%")
+        .attr("id", "remakeUserDetailsR");
+
+    d3.select("#remakeUserDetailsL")
         .append("input")
         .attr("type", "button")
-        .attr("value", "🖉").attr("class", "button")
+        .attr("value", "🖉")
+        .attr("class", "button")
+        .style("width", "80%")
         .on("click", function() {
             clickAction(this);
         });
@@ -104,31 +125,42 @@ function makeUserDetailsUpdateDiv() {
     d3.select("#buttonAccept").remove()
     d3.select("#buttonRefuse").remove()
 
-    d3.select("#userDetails")
+    //remakeUserDetailsR
+    d3.select("#remakeUserDetailsR")
         .append("input")
         .attr("type", "text")
         .attr("id", "renameInput")
-        .attr("placeholder", "nouveau username").attr("class", "textInfo");
-
-    d3.select("#userDetails")
+        .attr("placeholder", "nouveau username")
+        .style("width", "90%")
+        .attr("class", "textInfo");
+    
+    d3.select("#remakeUserDetailsR")
         .append("input")
         .attr("type", "text")
         .attr("id", "newAgeInput")
-        .attr("placeholder", "nouvel age").attr("class", "textInfo");
+        .attr("placeholder", "nouvel age")
+        .style("width", "50%")
+        .attr("class", "textInfo");
 
-    d3.select("#userDetails")
+    d3.select("#remakeUserDetailsR")
         .append("input")
         .attr("id", "buttonAccept")
         .attr("type", "button")
+        .attr("class", "button")
+        .style("width", "20%")
         .attr("value", "\u2705")
         .on("click", function() {
             clickAction(this);
         });
 
-    d3.select("#userDetails")
+    
+
+    d3.select("#remakeUserDetailsR")
         .append("input")
         .attr("id", "buttonRefuse")
         .attr("type", "button")
+        .attr("class", "button")
+        .style("width", "20%")
         .attr("value", "\u274c")
         .on("click", function() {
             clickAction(this);
@@ -232,6 +264,7 @@ function makeButtonsDiv() {
         .append("input")
         .attr("type", "button")
         .attr("class", "button")
+        .style("width", "50%")
         .attr("value", function(d) {
             return d;
         }).on("click", function() {
@@ -255,7 +288,9 @@ function makeSearchBarDiv() {
     d3.select("#searchBar")
         .append("input")
         .attr("type", "button")
-        .attr("value", "🔍").attr("class", "button")
+        .attr("value", "🔍")
+        .attr("class", "button")
+        .style("width", "30%")
         .on("click", function() {
             clickAction(this);
         });
