@@ -368,7 +368,7 @@ function clickAction(buttonClicked) {
             if(user.genre1 != null && user.genre2 != null && user.genre3 != null){
                 var body = {
                     name:"",
-                    host: user.id.toString()             
+                    host: user.id           
                 }
                 creatJson('group', body).then((idGroup) =>{
                     user.group1 = idGroup;
