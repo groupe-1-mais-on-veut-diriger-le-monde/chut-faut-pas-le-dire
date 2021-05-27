@@ -74,9 +74,46 @@ function populateUserListDiv(grpInfo, id){
     d3.select("#" + id)
         .selectAll("*")
         .remove();
+    
+    var parentWidth = Math.floor(d3.select("#" + id).style('width').slice(0, -2));
+    var parentHeight = Math.floor(d3.select("#" + id).style('height').slice(0, -2));
+    var eachMemberHeight = Math.floor(parentHeight/6);
+    console.log(parentWidth);
+    console.log(parentHeight);
+    console.log(eachMemberHeight);
+
+    
 
     data = [grpInfo.Host, grpInfo.member1, grpInfo.member2, grpInfo.member3, grpInfo.member4, grpInfo.member5];
-    top = ["0", "10%", "20%","30%", "40%"]
+    for(var i = 0; i < 6; i++){
+        d3.select("#" + id)
+            .append("div")
+            .attr("id", "groupUserInfo"+i.toString())
+            .style("width", parentWidth.toString() + "px")
+            .style("height", eachMemberHeight.toString() + "px");
+        
+        d3.select("#" + "groupUserInfo" + i.toString())
+            .append("div")
+            .attr("id", "groupUserInfo" + i.toString() + "Top")
+            .style("width", Math.floor((parentWidth/100)*90).toString() + "px")
+            .style("height", Math.floor(eachMemberHeight/2).toString() + "px")
+            .style("left", Math.floor((parentWidth/100)*5).toString() + "px")
+            .style("top", "0px");
+
+        d3.select("#" + "groupUserInfo" + i.toString())
+            .append("div")
+            .attr("id", "groupUserInfo" + i.toString() + "Bottom")
+            .style("width", Math.floor((parentWidth/100)*90).toString() + "px")
+            .style("height", Math.floor(eachMemberHeight/2).toString() + "px")
+            .style("left", Math.floor((parentWidth/100)*5).toString() + "px")
+            .style("top", Math.floor(eachMemberHeight/2).toString() + "px");
+        
+        d3.select("#" + "groupUserInfo" + i.toString() + "Top")
+            .append("text").text("test");
+        
+        d3.select("#" + "groupUserInfo" + i.toString() + "Bottom")
+            .append("text").text("test2");
+    }
     
 /*
     d3.select("#" + id)
