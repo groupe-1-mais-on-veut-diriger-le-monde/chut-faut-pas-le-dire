@@ -7,12 +7,9 @@ server {
 
 	location / {
         root   /usr/share/nginx/html;
-        index  index.html index.htm;
+        index  mainScreen.html index.htm;
     }
-	location /mainpage {
-        root   /usr/share/nginx/html;
-        index  /src/app/mainScreen.html index.htm;
-    }
+	
 
 	location /api/ {
 	    proxy_set_header X-Forwarded-Host $host;
