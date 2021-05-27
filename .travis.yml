@@ -72,7 +72,7 @@ jobs:
 
 
 
-    #- ssh -i ./deploy_key sulejma7@129.194.10.126 pwd && ls && cd test_ui_deployment && pwd && ls && sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm:latest && sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm && sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm && sudo microk8s.kubectl apply -f ui-app.yaml && sudo microk8s.kubectl apply -f group-service.yaml && sudo microk8s.kubectl apply -f profile-service.yaml && sudo microk8s.kubectl apply -f ui-ingress.yaml && exit
+    - ssh -i ./deploy_key sulejma7@129.194.10.126 'pwd && ls && cd test_ui_deployment && pwd && ls && sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm:latest && sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm && sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm && sudo microk8s.kubectl apply -f ui-app.yaml && sudo microk8s.kubectl apply -f group-service.yaml && sudo microk8s.kubectl apply -f profile-service.yaml && sudo microk8s.kubectl apply -f ui-ingress.yaml'
     #- cd test_ui_deployment
     #- sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm:latest
     #- sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm
