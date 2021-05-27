@@ -37,7 +37,7 @@ public class Group implements Serializable {
 	
 	@Column(name = "Host")
 	@NotNull
-	private String Host;	
+	private int Host;	
 	
 	@Column(name = "member1")
 	private int member1;
@@ -64,7 +64,7 @@ public class Group implements Serializable {
 	public Group() {}
 	
 	
-	public Group(String name, String Host,int member1,int member2,int member3,int member4,int member5,String result) {
+	public Group(String name, int Host,int member1,int member2,int member3,int member4,int member5,String result) {
 		this.name = name;
 		this.Host = Host;
 		this.member1 = member1;

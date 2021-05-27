@@ -42,7 +42,7 @@ import io.restassured.http.ContentType;
 	
 	@Test
 	public void testCreate() {
-		Group Group = new Group("nom4", "d4", 1, 2, 3, 4,5,"result");
+		Group Group = new Group("nom4", 50, 1, 2, 3, 4,5,"result");
 		with().contentType(ContentType.JSON).body(Group).when().request("POST", "/").then().statusCode(200);
 	}
 	
