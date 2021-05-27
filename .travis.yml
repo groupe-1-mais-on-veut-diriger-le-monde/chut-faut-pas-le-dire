@@ -22,12 +22,12 @@ script:
 - "./mvnw clean install"
 jobs:
   include:
-  - stage: Sonarcloud + Clean install groups and profile
-    script:
-    - mvn -B org.jacoco:jacoco-maven-plugin:prepare-agent verify org.jacoco:jacoco-maven-plugin:report
-      org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire
-      -Dsonar.organization=groupe-1-mais-on-veut-diriger-le-monde -Dsonar.host.url=https://sonarcloud.io/
-      -Dsonar.login=8109a8d9e77f615669a530a79e525e73c5db4220
+  #- stage: Sonarcloud + Clean install groups and profile
+   # script:
+    #- mvn -B org.jacoco:jacoco-maven-plugin:prepare-agent verify org.jacoco:jacoco-maven-plugin:report
+    #  org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=groupe-1-mais-on-veut-diriger-le-monde_chut-faut-pas-le-dire
+    #  -Dsonar.organization=groupe-1-mais-on-veut-diriger-le-monde -Dsonar.host.url=https://sonarcloud.io/
+    #  -Dsonar.login=8109a8d9e77f615669a530a79e525e73c5db4220
   - stage: Prepare -> install node.js
     script:
     - nvm install $NODE_VERSION
@@ -64,7 +64,7 @@ jobs:
 
     #run the pwd command on the deployment server using the deploy_key as our "identity" file (RSA Key)
     #- ssh -i ./deploy_key sulejma7@129.194.10.126
-    - ssh -i ./deploy_key sulejma7@129.194.10.126 cd test_ui_deployment && sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm:latest && sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm && sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm && sudo microk8s.kubectl apply -f ui-app.yaml && sudo microk8s.kubectl apply -f group-service.yaml && sudo microk8s.kubectl apply -f profile-service.yaml && sudo microk8s.kubectl apply -f ui-ingress.yaml && exit
+    - ssh -i ./deploy_key sulejma7@129.194.10.126 pwd && ls && cd test_ui_deployment && sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm:latest && sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm && sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm && sudo microk8s.kubectl apply -f ui-app.yaml && sudo microk8s.kubectl apply -f group-service.yaml && sudo microk8s.kubectl apply -f profile-service.yaml && sudo microk8s.kubectl apply -f ui-ingress.yaml && exit
     #- cd test_ui_deployment
     #- sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm:latest
     #- sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm
