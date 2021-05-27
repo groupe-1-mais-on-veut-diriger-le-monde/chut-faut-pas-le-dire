@@ -65,6 +65,19 @@ async function deleteAll(type){
     }
 }
 
+//loads users all users in grp, and returns them in list
+async function loadAllMembers(group){
+    var membersId = [group.host, group.member1, group.member2, group.member3, group.member4, group.member5];
+    var usersInGrp = [];
+    for (var i = 0; i < membersId.length; i++){
+        if(membersId[i] != 0){
+            var user = await getJson('user', membersId[i]);
+            usersInGrp.push(user);
+        }
+    }
+    return usersInGrp;
+}
+
 // simple switch for user or grp url
 function getURL(type){
     switch(type) {

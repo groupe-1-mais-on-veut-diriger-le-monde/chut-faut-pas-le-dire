@@ -20,16 +20,12 @@ function makeShowGrpDiv(grpInfo, userInfo) {
     d3.select("#insideRightSideStyle_rightSide").append("div").attr("id", "selectionDiv").attr("class", "showVote");
 
 
-    populateGroupIdDiv(grpInfo, userInfo.host, "grpIdDiv");    
-    populateUserListDiv(grpInfo, "userListDiv");
+    populateGroupIdDiv(grpInfo, userInfo.host, "grpIdDiv"); 
 
-    console.log(grpInfo);
-
-
-    //d3.select("#insideRightSideDiv").append("div").attr("id", buttonsDivName);
-    // buttons dont work
-    //makeButtonsDivShowFilmScreen(buttonsDivName, buttonNames);
-
+    loadAllMembers(grpInfo)
+        .then((allUsersInfo) => {
+            populateUserListDiv(allUsersInfo, "userListDiv");
+        });
 }
 
 function populateGroupIdDiv(grpInfo, hostInfo, id){
@@ -70,7 +66,8 @@ function populateGroupIdDiv(grpInfo, hostInfo, id){
     }
 }
 
-function populateUserListDiv(grpInfo, id){
+function populateUserListDiv(usersInGrpInfo, id){
+    
     d3.select("#" + id)
         .selectAll("*")
         .remove();
@@ -78,14 +75,8 @@ function populateUserListDiv(grpInfo, id){
     var parentWidth = Math.floor(d3.select("#" + id).style('width').slice(0, -2));
     var parentHeight = Math.floor(d3.select("#" + id).style('height').slice(0, -2));
     var eachMemberHeight = Math.floor(parentHeight/6);
-    console.log(parentWidth);
-    console.log(parentHeight);
-    console.log(eachMemberHeight);
-
     
-
-    data = [grpInfo.Host, grpInfo.member1, grpInfo.member2, grpInfo.member3, grpInfo.member4, grpInfo.member5];
-    for(var i = 0; i < 6; i++){
+    for(var i = 0; i < usersInGrpInfo.length; i++){
         d3.select("#" + id)
             .append("div")
             .attr("id", "groupUserInfo"+i.toString())
@@ -109,54 +100,11 @@ function populateUserListDiv(grpInfo, id){
             .style("top", Math.floor(eachMemberHeight/2).toString() + "px");
         
         d3.select("#" + "groupUserInfo" + i.toString() + "Top")
-            .append("text").text("test");
+            .append("text")
+            .text("ID : " + usersInGrpInfo[i].id + " name : " + usersInGrpInfo[i].name);
         
         d3.select("#" + "groupUserInfo" + i.toString() + "Bottom")
-            .append("text").text("test2");
+            .append("text")
+            .text("Goûts : " + dataFr[dataEn.indexOf(usersInGrpInfo[i].genre1)] +" " + dataFr[dataEn.indexOf(usersInGrpInfo[i].genre2)]+" "+ dataFr[dataEn.indexOf(usersInGrpInfo[i].genre3)]);
     }
-    
-/*
-    d3.select("#" + id)
-    .selectAll("div")
-    .data(data)
-    .enter()
-    .append("div")
-    .attr("class", "userBlock_List")
-    .attr("value", function(d) {
-        return d;
-    });
-
-    
-
-    
-    d3.select("#"+ id)
-        .append("div")
-        .attr("id", "membreHost")
-        .attr("class","userBlock_List");
-
-    d3.select("#"+ id)
-        .append("div")
-        .attr("id", "membre1")
-        .attr("class","userBlock_List");
-
-    d3.select("#"+ id)
-        .append("div")
-        .attr("id", "membre2")
-        .attr("class","userBlock_List");
-
-    d3.select("#"+ id)
-        .append("div")
-        .attr("id", "membre3")
-        .attr("class","userBlock_List");
-    
-    d3.select("#"+ id)
-        .append("div")
-        .attr("id", "membre4")
-        .attr("class","userBlock_List");
-    
-    d3.select("#"+ id)
-        .append("div")
-        .attr("id", "membre5")
-        .attr("class","userBlock_List");
-        */
 }
