@@ -39,6 +39,14 @@ async function patchJson(type, body){
     });
 }
 
+// deletes 1 entry by id
+async function deleteJson(type, id){
+    var url = getURL(type) + '/delete/' + id.toString();
+    await fetch(url,{
+        method: 'DELETE'
+    });
+}
+
 //deletes all entries of a DB -> might delete this function
 async function deleteAll(type){
     //gets correct url

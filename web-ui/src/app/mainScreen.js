@@ -280,11 +280,60 @@ function updatesUserDetails() {
     patchJson('user', user);
 }
 
+//resets user group info
+function resetGroupInfo(){
+    if (user.host != 0){
+        user.host = 0;
+        deleteJson('group', user.group1);
+    }else{
+        deleteMeFromGroup();
+    }
+    user.group1 = 0;
+    user.vote = null;
+    patchJson('user', user);
+}
+
+function deleteMeFromGroup(){
+    getJson('group', user.group1).then((grpInfo) => {
+        switch(user.host){
+            case 1:
+                grpInfo.member1 = null;
+                break;
+            case 2:
+                grpInfo.member2 = null;
+                break;
+            case 3:
+                grpInfo.member3 = null;
+                break;
+            case 4:
+                grpInfo.member4 = null;
+                break;
+            case 5:
+                grpInfo.member5 = null;
+                break;
+        }
+    });
+    patchJson('group', grpInfo);
+}
+
+function displayMessageGenreFilme(msg, color){
+    d3.select("#texteSuiteValider")
+        .text(msg)
+        .style('color', color)
+        .attr('class', 'validationGenreText');
+    
+    setTimeout(function(){
+        d3.select("#texteSuiteValider")
+        .text('');
+    }, 2000);
+    
+
+}
+
 //fonction qui fait les actions pour chaque button
 function clickAction(buttonClicked) {
     //buttonNames = ["deja vu", "a voir", "preferences", "groupes"];
     //["Créer un groupe", "Rejoindre un groupe"];
-    console.log(buttonClicked);
     switch (buttonClicked.value) {
         case "🖉":
             makeUserDetailsUpdateDiv();
@@ -309,6 +358,29 @@ function clickAction(buttonClicked) {
             //createGroup();
             //joinGroup(1);
             //getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
+            //TO DO ! -> CHANGE EN INT
+
+            // deletes previous user group info
+            if (user.group1 != 0){
+                resetGroupInfo();              
+            }
+
+            if(user.genre1 != null && user.genre2 != null && user.genre3 != null){
+                var body = {
+                    name:"",
+                    host: user.id.toString()             
+                }
+                creatJson('group', body).then((idGroup) =>{
+                    user.group1 = idGroup;
+                    user.host = -1;
+                    patchJson('user', user);
+                    getJson('group', idGroup).then((group) => {
+                        makeShowGrpDiv(group, user);
+                    });              
+                });
+            }else{
+                displayMessageGenreFilme("Veuillez effectuer vos choix", '#bb151a');
+            }
             break;
         case "Rejoindre un groupe":
             //joinGroup(1);
@@ -322,10 +394,10 @@ function clickAction(buttonClicked) {
                 user.genre1 = dataEn[dataFr.indexOf(dropDown1)];
                 user.genre2 = dataEn[dataFr.indexOf(dropDown2)];
                 user.genre3 = dataEn[dataFr.indexOf(dropDown3)];
-                d3.select("#texteSuiteValider").text("Changements validés").style('color', '#036429').attr('class', 'validationGenreText');
+                displayMessageGenreFilme("Changements validés", '#036429');
                 patchJson('user', user);
             }else{
-                d3.select("#texteSuiteValider").text("Changements non validés").style('color', '#bb151a').attr('class', 'validationGenreText');
+                displayMessageGenreFilme("Changements non validés", '#bb151a');
             }
             break;
             
