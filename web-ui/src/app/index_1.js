@@ -6,7 +6,7 @@ deleteAll('group');
 deleteAll('user');
 
 var body = {
-    name: 'Joao',
+    name: 'Joao Quinta',
     age: 23
 }
 creatJson('user', body)
