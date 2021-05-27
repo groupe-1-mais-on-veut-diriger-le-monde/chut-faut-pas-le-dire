@@ -1,5 +1,9 @@
 server {
 	listen 80;
+        server_name 129.194.10.126;
+        add_header X-Frame-Options "SAMEORIGIN";
+
+        return 301 $scheme://www.ui-mmm.com$request_uri;
 
 	location / {
         root   /usr/share/nginx/html;
