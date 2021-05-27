@@ -1,4 +1,7 @@
 function makeShowGrpDiv(grpInfo, userInfo) {
+    console.log(grpInfo);
+    console.log(userInfo);
+
     //resets body
     d3.select("#rightSideDiv")
         .selectAll("*")
@@ -49,9 +52,9 @@ function populateGroupIdDiv(grpInfo, hostInfo, id){
 
     d3.select("#showGroupIdP")
         .append("text")
-        .text("ID du groupe : " + grpInfo.name);
+        .text("ID du groupe : " + grpInfo.id);
     
-    if(hostInfo == "1"){
+    if(hostInfo == -1){
         d3.select("#lauchSearchP")
             .append("input")
             .attr("type", "button")
@@ -74,6 +77,7 @@ function populateUserListDiv(grpInfo, id){
 
     data = [grpInfo.Host, grpInfo.member1, grpInfo.member2, grpInfo.member3, grpInfo.member4, grpInfo.member5];
     top = ["0", "10%", "20%","30%", "40%"]
+    
 /*
     d3.select("#" + id)
     .selectAll("div")

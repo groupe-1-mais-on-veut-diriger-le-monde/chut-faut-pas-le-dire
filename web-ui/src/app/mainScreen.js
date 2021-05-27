@@ -13,23 +13,26 @@ const userDetailsName = ["pId", "pAge"];
 const userDetailsDescribe = ["ID :   ", "Âge :   "];
 const buttonNames = ["Créer un groupe", "Rejoindre un groupe"];
 
+const dataFr = ["Comédie", "Horreur", "Romance", "Action", "Suspense", "Drame", "Mystère", "Crime", "Animation", "Aventure", "Fantastique", "Comédie romantique", "Comédie d'action", "Super-héros"];
+
+const dataEn = ["comedy", "horror", "romance", "action","thriller", "drama", "mystery", "crime","animation", "adventure", "fantasy", "comdedy Romance", "action comedy", "superhero"]
+
 // this function calls the first log in screen in case it is 1st log in
-function choseMainScreen(user) {
-    if (user.age == "") {
-        makeFirstLogInScreen(user);
-    } else {
-        makeMainScreen(user);
-    }
+function choseMainScreen(userId) {
+    getJson('user', userId)
+        .then((user) => makeMainScreen(user));
 }
 
 //splits body into 3 divs, and calls functions that fill divs
 function makeMainScreen(userDetails) {
+    
     d3.select("body")
         .selectAll("*")
         .remove();
 
     //console.log(userDetails);
     user = userDetails;
+    console.log(user);
 
     //header creator
     d3.select("body").append("div").attr("id", "header").attr("class", "header");
@@ -145,11 +148,74 @@ function showUserDetails() {
 }
 
 function makeChoiceGenreDiv() {
-    // to do lole
+    
+
     d3.select("#genreFilmesDiv").selectAll("*").remove();
+    d3.select("#genreFilmesDiv").append("div").attr("id","infoP").attr("class", "textDivClass");
+    d3.select("#genreFilmesDiv").append("div").attr("id","dropDownDiv").attr("class", "dropDownDivStyle");
+    d3.select("#genreFilmesDiv").append("div").attr("id","acceptChangesDiv").attr("class", "acceptChangesDivStyle");
 
-    d3.select("#genreFilmesDiv").append("text").text("Genres de film qui vous plaisent : ").attr("class", "textInfo");
+    d3.select("#infoP").append("text").text("Veuillez choisir 3 genres de film : ");
 
+    d3.select("#dropDownDiv").append("p").attr("id", "paragraphDropDown1");
+    d3.select("#paragraphDropDown1").append("text").text("Choix genre 1 : ");
+
+    d3.select("#dropDownDiv").append("p").attr("id", "paragraphDropDown2");
+    d3.select("#paragraphDropDown2").append("text").text("Choix genre 2 : ");
+
+    d3.select("#dropDownDiv").append("p").attr("id", "paragraphDropDown3");
+    d3.select("#paragraphDropDown3").append("text").text("Choix genre 3 : ");   
+    
+    
+
+    
+
+    if (user.genre1 != null){
+        makeDropDownMenu("paragraphDropDown1", "dropDown1", dataFr[dataEn.indexOf(user.genre1)], dataFr);
+    }else{
+        makeDropDownMenu("paragraphDropDown1", "dropDown1", "Comédie", dataFr);
+    }
+
+    if (user.genre2 != null){
+        makeDropDownMenu("paragraphDropDown2", "dropDown2", dataFr[dataEn.indexOf(user.genre2)], dataFr);
+    }else{
+        makeDropDownMenu("paragraphDropDown2", "dropDown2", "Horreur", dataFr);
+    }
+
+    if (user.genre3 != null){
+        makeDropDownMenu("paragraphDropDown3", "dropDown3", dataFr[dataEn.indexOf(user.genre3)], dataFr);
+    }else{
+        makeDropDownMenu("paragraphDropDown3", "dropDown3", "Romance", dataFr);
+    }
+
+    d3.select("#acceptChangesDiv")
+        .append("input")
+        .attr("type", "button")
+        .attr("value","Valider")
+        .on("click", function() {
+            clickAction(this);
+        });
+    d3.select("#acceptChangesDiv").append("text").attr("id", "texteSuiteValider");
+
+}
+
+function makeDropDownMenu(pId, dropDownId, defaultVal, dataFr){
+    var dropdown = d3.select("#" + pId)
+        .append("select")
+        .attr("id",dropDownId);
+
+    var options = dropdown.selectAll("option")
+        .data(dataFr)
+        .enter()
+        .append("option")
+        .attr("value", function(d) {
+            return d;
+        })
+        .text(function(d) {
+            return d;
+        });
+
+    options.property("selected", function(d){return d === defaultVal});
 }
 
 //met les buttons dans le button div
@@ -206,11 +272,62 @@ function updatesUserDetails() {
     }
 
     if (updatedAge != "" && !Number.isNaN(Number(updatedAge)) && Number(updatedAge) > 0) {
-        user.age = updatedAge;
+        user.age = parseInt(updatedAge);
     }
 
     makeUserDetailsDiv();
     showUserDetails();
+    patchJson('user', user);
+}
+
+//resets user group info
+function resetGroupInfo(){
+    if (user.host != 0){
+        user.host = 0;
+        deleteJson('group', user.group1);
+    }else{
+        deleteMeFromGroup();
+    }
+    user.group1 = 0;
+    user.vote = null;
+    patchJson('user', user);
+}
+
+function deleteMeFromGroup(){
+    getJson('group', user.group1).then((grpInfo) => {
+        switch(user.host){
+            case 1:
+                grpInfo.member1 = null;
+                break;
+            case 2:
+                grpInfo.member2 = null;
+                break;
+            case 3:
+                grpInfo.member3 = null;
+                break;
+            case 4:
+                grpInfo.member4 = null;
+                break;
+            case 5:
+                grpInfo.member5 = null;
+                break;
+        }
+    });
+    patchJson('group', grpInfo);
+}
+
+function displayMessageGenreFilme(msg, color){
+    d3.select("#texteSuiteValider")
+        .text(msg)
+        .style('color', color)
+        .attr('class', 'validationGenreText');
+    
+    setTimeout(function(){
+        d3.select("#texteSuiteValider")
+        .text('');
+    }, 2000);
+    
+
 }
 
 //fonction qui fait les actions pour chaque button
@@ -218,14 +335,6 @@ function clickAction(buttonClicked) {
     //buttonNames = ["deja vu", "a voir", "preferences", "groupes"];
     //["Créer un groupe", "Rejoindre un groupe"];
     switch (buttonClicked.value) {
-        case "creer un groupe":
-            localStorage.setItem('user', user);
-            console.log("GROS TO DO");
-            document.location.href = "listGroupScreen.html";
-            break;
-        case "rejoindre un groupe":
-            console.log("GROS TO DO");
-            break;
         case "🖉":
             makeUserDetailsUpdateDiv();
             break;
@@ -246,14 +355,53 @@ function clickAction(buttonClicked) {
             showUserDetails();
             break;
         case "Créer un groupe":
-            createGroup();
-            joinGroup(1);
-            getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
+            //createGroup();
+            //joinGroup(1);
+            //getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
+            //TO DO ! -> CHANGE EN INT
+
+            // deletes previous user group info
+            if (user.group1 != 0){
+                resetGroupInfo();              
+            }
+
+            if(user.genre1 != null && user.genre2 != null && user.genre3 != null){
+                var body = {
+                    name:"",
+                    host: user.id.toString()             
+                }
+                creatJson('group', body).then((idGroup) =>{
+                    user.group1 = idGroup;
+                    user.host = -1;
+                    patchJson('user', user);
+                    getJson('group', idGroup).then((group) => {
+                        makeShowGrpDiv(group, user);
+                    });              
+                });
+            }else{
+                displayMessageGenreFilme("Veuillez effectuer vos choix", '#bb151a');
+            }
             break;
         case "Rejoindre un groupe":
-            joinGroup(1);
-            getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
+            //joinGroup(1);
+            //getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
             break;
+        case "Valider":
+            const dropDown1 = document.getElementById("dropDown1").value;
+            const dropDown2 = document.getElementById("dropDown2").value;
+            const dropDown3 = document.getElementById("dropDown3").value;
+            if(dropDown1 != dropDown2 && dropDown1 != dropDown3 && dropDown2 != dropDown3){
+                user.genre1 = dataEn[dataFr.indexOf(dropDown1)];
+                user.genre2 = dataEn[dataFr.indexOf(dropDown2)];
+                user.genre3 = dataEn[dataFr.indexOf(dropDown3)];
+                displayMessageGenreFilme("Changements validés", '#036429');
+                patchJson('user', user);
+            }else{
+                displayMessageGenreFilme("Changements non validés", '#bb151a');
+            }
+            break;
+            
+            
         default:
             console.log("error in clickAction");
     }
