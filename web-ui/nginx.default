@@ -5,7 +5,7 @@ server {
 
         #return 301 $scheme://www.ui-mmm.com$request_uri;
 
-	location / {
+	location /mainpage {
         root   /usr/share/nginx/html;
         index  mainScreen.html index.htm;
     }
