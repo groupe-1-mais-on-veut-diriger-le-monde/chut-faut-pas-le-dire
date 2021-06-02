@@ -197,10 +197,6 @@ function makeChoiceGenreDiv() {
 
     d3.select("#dropDownDiv").append("p").attr("id", "paragraphDropDown3");
     d3.select("#paragraphDropDown3").append("text").text("Choix genre 3 : ");   
-    
-    
-
-    
 
     if (user.genre1 != null){
         makeDropDownMenu("paragraphDropDown1", "dropDown1", dataFr[dataEn.indexOf(user.genre1)], dataFr);
