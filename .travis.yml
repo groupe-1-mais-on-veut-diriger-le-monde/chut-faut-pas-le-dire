@@ -76,6 +76,7 @@ jobs:
     - ssh -i ./deploy_key sulejma7@129.194.10.126 'sudo -S microk8s.helm del --purge releasemmm < ~/test_ui_deployment/password.txt && sudo -S microk8s.helm install --name releasemmm ./releasemmm/ < ~/test_ui_deployment/password.txt && sudo -S microk8s.helm upgrade releasemmm ./releasemmm/ < ~/test_ui_deployment/password.txt'
     #- ssh -i ./deploy_key sulejma7@129.194.10.126 'pwd && sudo -S microk8s.helm upgrade releasemmm ./releasemmm/ < ~/test_ui_deployment/password.txt'
 
+
     #- cd test_ui_deployment
     #- sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm:latest
     #- sudo microk8s.kubectl set image deployment/ui-mmm ui-mmm=edin0/ui-mmm
