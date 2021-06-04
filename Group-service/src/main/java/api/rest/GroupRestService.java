@@ -79,5 +79,12 @@ public class GroupRestService {
 		
 		return Response.ok().build();
 	}
+	
+	@PUT
+	@Path("/join/{idgroup}/{idprofile}")	
+	public int join(@PathParam("idgroup") int idgroup, @PathParam("idprofile") int idprofile) {
+		
+		return GroupService.join(idgroup , idprofile);
+	}
 
 }

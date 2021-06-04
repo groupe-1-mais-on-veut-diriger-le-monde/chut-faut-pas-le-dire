@@ -36,13 +36,7 @@ public class GroupServiceImpl implements GroupService {
 	public Group getById(int id) {
 		return em.find(Group.class, id);
 	}
-	
-	//verssion simplifier a voir ce qui est mieux
-		//@Override
-		//public Group getByName(String name)   {
-			//log.info("Get an Group by name");
-		//	return em.find(Group.class, name);
-		//}
+
 	
 	@Override
 	public Group getByName(String name) {
@@ -61,6 +55,39 @@ public class GroupServiceImpl implements GroupService {
 			throw new IllegalArgumentException("AUser does not exist : " + Group.getid());
 		}
 		em.merge(Group);
+	}
+	
+	@Override
+	public int join(int idgroup,int idprofil) {
+		Group i = em.find(Group.class, idgroup);
+		int a = 0;
+		if ( i.getmember1() == 0) {
+			i.setmember1(idprofil);
+			em.merge(i);
+			a = 1;
+		}
+		else if (i.getmember2() == 0) {
+			i.setmember2(idprofil);
+			em.merge(i);
+			a = 2;
+		}
+		
+		else if (i.getmember3() == 0) {
+			i.setmember3(idprofil);
+			em.merge(i);
+			a = 3;
+		}
+		else if (i.getmember4() == 0) {
+			i.setmember4(idprofil);
+			em.merge(i);
+			a = 4;
+		}
+		else if (i.getmember5() == 0) {
+			i.setmember5(idprofil);
+			em.merge(i);
+			a = 5;
+		}
+		return a;
 	}
 	
 	@Override

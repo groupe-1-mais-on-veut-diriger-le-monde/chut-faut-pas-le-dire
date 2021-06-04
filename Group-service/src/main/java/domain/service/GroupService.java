@@ -22,4 +22,6 @@ public interface GroupService {
 
 	void update(Group Group);
 	
+	public int join(int idgroup,int idprofil);
+	
 }

@@ -86,12 +86,51 @@ public class Group implements Serializable {
 		return this.name;
 	}
 	
-
+	public int getmember1() {
+		return this.member1;
+	}
+	
+	public int getmember2() {
+		return this.member2;
+	}
+	
+	public int getmember3() {
+		return this.member3;
+	}
+	
+	public int getmember4() {
+		return this.member4;
+	}
+	
+	public int getmember5() {
+		return this.member5;
+	}
+	
+	
 	
 	
 	public void setname(String name) {
 		 this.name = name;
 	}
 	
+	public void setmember1(int member1) {
+		 this.member1 = member1;
+	}
+	
+	public void setmember2(int member2) {
+		 this.member2 = member2;
+	}
+	
+	public void setmember3(int member3) {
+		 this.member3 = member3;
+	}
+	
+	public void setmember4(int member4) {
+		 this.member4 = member4;
+	}
+	
+	public void setmember5(int member5) {
+		 this.member5 = member5;
+	}
 	
 }

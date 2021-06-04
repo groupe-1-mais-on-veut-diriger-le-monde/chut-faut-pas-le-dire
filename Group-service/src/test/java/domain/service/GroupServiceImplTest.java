@@ -100,6 +100,20 @@ import eu.drus.jpa.unit.api.JpaUnit;
 	  Group = GroupServiceImpl.getById(id);
 	  assertEquals("jan", Group.getname());
 	 }
+	
+	@Test
+	 void testjoin() {
+		 	Group i = new Group("edin",0,0,0,0,0,0,"result");
+			GroupServiceImpl.create(i);
+			Group Group = GroupServiceImpl.getByName("edin") ;
+		
+		  assertNotNull(Group);
+		  int id = Group.getid();
+		  GroupServiceImpl.join(id,1);
+		  
+		  Group = GroupServiceImpl.getById(id);
+		  assertEquals(1, Group.getmember1());
+		 }
 
 	@Test
 	 void testDelete() {
