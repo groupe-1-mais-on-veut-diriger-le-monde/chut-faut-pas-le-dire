@@ -2,33 +2,53 @@ function makeShowGrpDiv(grpInfo, userInfo) {
     console.log(grpInfo);
     console.log(userInfo);
 
-    //resets body
-    d3.select("#rightSideDiv")
-        .selectAll("*")
-        .remove();
+    if(grpInfo != null){
+            //resets body
+        d3.select("#rightSideDiv")
+            .selectAll("*")
+            .remove();
 
-    d3.select("#rightSideDiv")
-        .append("div")
-        .attr("id", "insideRightSideDiv")
-        .attr("class", "insideRightSideStyle");
+        d3.select("#rightSideDiv")
+            .append("div")
+            .attr("id", "insideRightSideDiv")
+            .attr("class", "insideRightSideStyle");
 
-    d3.select("#insideRightSideDiv").append("div").attr("id", "insideRightSideStyle_leftSide").attr("class", "leftSideShowGroupDiv");
-    d3.select("#insideRightSideDiv").append("div").attr("id", "insideRightSideStyle_rightSide").attr("class", "rightSideShowGroupDiv");
+        d3.select("#insideRightSideDiv").append("div").attr("id", "insideRightSideStyle_leftSide").attr("class", "leftSideShowGroupDiv");
+        d3.select("#insideRightSideDiv").append("div").attr("id", "insideRightSideStyle_rightSide").attr("class", "rightSideShowGroupDiv");
 
-    d3.select("#insideRightSideStyle_leftSide").append("div").attr("id", "grpIdDiv").attr("class", "groupId");
-    d3.select("#insideRightSideStyle_leftSide").append("div").attr("id", "userListDiv").attr("class", "userInGrpList");
-    d3.select("#insideRightSideStyle_rightSide").append("div").attr("id", "selectionDiv").attr("class", "showVote");
+        d3.select("#insideRightSideStyle_leftSide").append("div").attr("id", "grpIdDiv").attr("class", "groupId");
+        d3.select("#insideRightSideStyle_leftSide").append("div").attr("id", "userListDiv").attr("class", "userInGrpList");
+        d3.select("#insideRightSideStyle_rightSide").append("div").attr("id", "selectionDiv").attr("class", "showVote");
 
 
-    populateGroupIdDiv(grpInfo, userInfo.host, "grpIdDiv"); 
+        populateGroupIdDiv(grpInfo, userInfo, "grpIdDiv"); 
 
-    loadAllMembers(grpInfo)
-        .then((allUsersInfo) => {
-            populateUserListDiv(allUsersInfo, "userListDiv");
-        });
+        loadAllMembers(grpInfo)
+            .then((allUsersInfo) => {
+                populateUserListDiv(allUsersInfo, "userListDiv");
+            });
+        
+        if(grpInfo.name == "1"){
+            looking(grpInfo, userInfo, "insideRightSideStyle_rightSide", "voting"); 
+        }
+        else if(grpInfo.name == "2"){
+            looking(grpInfo, userInfo, "insideRightSideStyle_rightSide", "results");
+        }
+        else{
+            looking(grpInfo, userInfo, "insideRightSideStyle_rightSide", "waiting"); 
+        }
+
+    }else{
+        d3.select("#rightSideDiv")
+            .selectAll("*")
+            .remove();
+    }
+
+
 }
 
-function populateGroupIdDiv(grpInfo, hostInfo, id){
+function populateGroupIdDiv(grpInfo, userInfo, id){
+    var hostInfo = userInfo.host;
     d3.select("#" + id)
         .selectAll("*")
         .remove();
@@ -42,8 +62,21 @@ function populateGroupIdDiv(grpInfo, hostInfo, id){
         .attr("type", "button")
         .attr("value", "Clicker pour reload")
         .attr("class", "button")
+        .style("width", "50%")
         .on("click", function() {
-            getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
+            getJson("group", user.group1).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
+        });
+    
+    d3.select("#reloadGrpDivP")
+        .append("input")
+        .attr("type", "button")
+        .attr("value", "Quitter")
+        .attr("class", "button")
+        .style("width", "50%")
+        .on("click", function() {
+            resetGroupInfo();
+            
+            makeShowGrpDiv(null, userInfo);
         });
 
     d3.select("#showGroupIdP")
@@ -107,4 +140,26 @@ function populateUserListDiv(usersInGrpInfo, id){
             .append("text")
             .text("Goûts : " + dataFr[dataEn.indexOf(usersInGrpInfo[i].genre1)] +" " + dataFr[dataEn.indexOf(usersInGrpInfo[i].genre2)]+" "+ dataFr[dataEn.indexOf(usersInGrpInfo[i].genre3)]);
     }
+}
+
+function looking(grpInfo, userInfo, id, status){
+    d3.select("#" + id)
+        .selectAll("*")
+        .remove();
+
+    if(status == 'waiting'){
+        d3.select("#" + id)
+            .append('text')
+            .text("waiting to launch");
+    }
+    else {
+        d3.select("#" + id).append("div").attr("id", "votingInfo").attr("class", "votingInfo");
+        d3.select("#" + id).append("div").attr("id", "filmDisplay").attr("class", "filmDisplay");
+        d3.select("#" + id).append("div").attr("id", "vote").attr("class", "vote");
+        
+        
+
+        
+    }
+
 }

@@ -55,7 +55,7 @@ function makeMainScreen(userDetails) {
     makeUserDetailsDiv();
     makeChoiceGenreDiv();
     makeButtonsDiv();
-    makeSearchBarDiv();
+    //makeSearchBarDiv();
     showUserDetails();
 
     if(user.groupe1 != null){
@@ -279,12 +279,12 @@ function makeSearchBarDiv() {
         .attr("type", "text")
         .attr("id", "searchInput")
         .attr("class", "searchBarStyle")
-        .attr("placeholder", "ecrivez le titre d'un film");
+        .attr("placeholder", "ID du groupe");
 
     d3.select("#searchBar")
         .append("input")
         .attr("type", "button")
-        .attr("value", "🔍")
+        .attr("value", "\u2192")
         .attr("class", "button")
         .style("width", "30%")
         .on("click", function() {
@@ -313,7 +313,7 @@ function updatesUserDetails() {
 
 //resets user group info
 function resetGroupInfo(){
-    if (user.host != 0){
+    if (user.host == -1){
         user.host = 0;
         deleteJson('group', user.group1);
     }else{
@@ -324,6 +324,8 @@ function resetGroupInfo(){
     patchJson('user', user);
 }
 
+
+// a refaire
 function deleteMeFromGroup(){
     getJson('group', user.group1).then((grpInfo) => {
         switch(user.host){
@@ -357,7 +359,25 @@ function displayMessageGenreFilme(msg, color){
         d3.select("#texteSuiteValider")
         .text('');
     }, 2000);
+
+}
+
+function displayMessageInfoFilm(msg, color){
+    d3.select("#searchBar")
+        .selectAll("*")
+        .remove();
+
+    d3.select("#searchBar")
+        .append('text')
+        .text(msg)
+        .style('color', color)
+        .attr('class', 'validationGenreText');
     
+    setTimeout(function(){
+        d3.select("#searchBar")
+            .selectAll("*")
+            .remove();
+    }, 2000);
 
 }
 
@@ -369,11 +389,34 @@ function clickAction(buttonClicked) {
         case "🖉":
             makeUserDetailsUpdateDiv();
             break;
-        case "🔍":
+        
+        case "\u2192":// look for group to join
             //lit la valuer dans la boite de texte, et appelle le nouveau ecran avec user et le texte -> qui si texte est different de ""
             const searchBarText = document.getElementById("searchInput").value;
             if (searchBarText != "") {
-                getJson("film", searchBarText).then((movie) => makeShowFilmScreen(movie));
+                if (user.group1 != 0){
+                    resetGroupInfo();              
+                }
+                d3.select("#searchBar")
+                    .selectAll("*")
+                    .remove();
+
+                joinGroup(searchBarText, user.id).then((place) => {
+                    if(place != 0){
+                        user.host = place;
+                        user.group1 = searchBarText;
+                        patchJson('user', user);
+                        displayMessageInfoFilm("Groupe Rejoint", '#036429');
+                        getJson('group', searchBarText).then((group) => {
+                            makeShowGrpDiv(group, user);
+                        }); 
+                        
+                    }else{
+                        displayMessageInfoFilm("Impossible de rejoindre le groupe", '#bb151a');
+                    }              
+                });
+                
+                
             }
             break;
         case "\u2705":
@@ -386,11 +429,6 @@ function clickAction(buttonClicked) {
             showUserDetails();
             break;
         case "Créer un groupe":
-            //createGroup();
-            //joinGroup(1);
-            //getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
-            //TO DO ! -> CHANGE EN INT
-
             // deletes previous user group info
             if (user.group1 != 0){
                 resetGroupInfo();              
@@ -416,6 +454,7 @@ function clickAction(buttonClicked) {
         case "Rejoindre un groupe":
             //joinGroup(1);
             //getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
+            makeSearchBarDiv();
             break;
         case "Valider":
             const dropDown1 = document.getElementById("dropDown1").value;

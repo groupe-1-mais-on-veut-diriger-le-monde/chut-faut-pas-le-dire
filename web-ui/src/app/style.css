@@ -318,3 +318,24 @@ body {
     height: 50%;
     top: 0px;
 }
+
+/* ---------------------- Show Group Div Voting ---------------------- */
+.votingInfo{
+    position: absolute;
+    width: 90%;
+    left: 5%;
+    height: 10%;
+}
+
+.filmDisplay{
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    top: 25%;
+}
+
+.vote{
+    position: absolute;
+    width: 100%;
+    height: 10%;
+}

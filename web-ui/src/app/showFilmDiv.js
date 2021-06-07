@@ -1,10 +1,10 @@
-function makeShowFilmScreen(movie) {
+function makeShowFilmScreen(movie, mainId) {
     //resets body
-    d3.select("#rightSideDiv")
+    d3.select("#" + mainId)
         .selectAll("*")
         .remove();
 
-    d3.select("#rightSideDiv")
+    d3.select("#" + mainId)
         .append("div")
         .attr("id", "insideRightSideDiv")
         .attr("class", "insideRightSideStyle");

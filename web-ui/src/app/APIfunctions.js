@@ -78,6 +78,20 @@ async function loadAllMembers(group){
     return usersInGrp;
 }
 
+//join grp
+async function joinGroup(idGroup, idProfil){
+    var url = getURL('group');
+    url = url + "/join/" + idGroup.toString() + "/" + idProfil.toString();
+
+    var response = await fetch(url,{
+        method: 'PUT',
+        headers: {'content-type': 'application/json'}
+    });
+    var jsonData = await response.json();
+
+    return jsonData;
+}
+
 // simple switch for user or grp url
 function getURL(type){
     switch(type) {
