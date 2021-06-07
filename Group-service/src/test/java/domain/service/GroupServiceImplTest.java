@@ -114,6 +114,35 @@ import eu.drus.jpa.unit.api.JpaUnit;
 		  Group = GroupServiceImpl.getById(id);
 		  assertEquals(1, Group.getmember1());
 		 }
+	
+	@Test
+	 void testexit() {
+		 	Group i = new Group("lea",1,1,1,1,1,1,"result");
+			GroupServiceImpl.create(i);
+			Group Group = GroupServiceImpl.getByName("lea") ;
+		
+		  assertNotNull(Group);
+		  int id = Group.getid();
+		  GroupServiceImpl.exit(id,1);
+		  
+		  Group = GroupServiceImpl.getById(id);
+		  assertEquals(0, Group.getmember1());
+		 }
+	
+
+	@Test
+	 void teststatus() {
+		 	Group i = new Group("antoine",1,1,1,1,1,1,"result");
+			GroupServiceImpl.create(i);
+			Group Group = GroupServiceImpl.getByName("antoine") ;
+		
+		  assertNotNull(Group);
+		  int id = Group.getid();
+		  GroupServiceImpl.status(id,"charlemagne");
+		  
+		  Group = GroupServiceImpl.getById(id);
+		  assertEquals("charlemagne", Group.getname());
+		 }
 
 	@Test
 	 void testDelete() {

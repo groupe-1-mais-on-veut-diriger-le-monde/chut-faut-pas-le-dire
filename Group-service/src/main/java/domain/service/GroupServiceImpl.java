@@ -91,6 +91,51 @@ public class GroupServiceImpl implements GroupService {
 	}
 	
 	@Override
+	public int exit(int idgroup,int member) {
+		Group i = em.find(Group.class, idgroup);
+		
+		if ( member == 1) {
+			i.setmember1(0);
+			em.merge(i);
+		
+		}
+		else if (member== 2) {
+			i.setmember2(0);
+			em.merge(i);
+		
+		}
+		
+		else if (i.getmember3() == 3) {
+			i.setmember3(0);
+			em.merge(i);
+		
+		}
+		else if (i.getmember4() == 4) {
+			i.setmember4(0);
+			em.merge(i);
+	
+		}
+		else if (i.getmember5() == 5) {
+			i.setmember5(0);
+			em.merge(i);
+		
+		}
+		return 1;
+	}
+	
+	@Override
+	public int status(int idgroup,String state) {
+		Group i = em.find(Group.class, idgroup);
+		
+		
+			i.setname(state);
+			em.merge(i);
+		
+	
+		return 1;
+	}
+	
+	@Override
 	public int create(Group Group) {
 	
 		if(em.contains(Group)) {

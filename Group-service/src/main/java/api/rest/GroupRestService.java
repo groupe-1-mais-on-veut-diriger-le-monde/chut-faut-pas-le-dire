@@ -86,5 +86,18 @@ public class GroupRestService {
 		
 		return GroupService.join(idgroup , idprofile);
 	}
-
+	
+	@PUT
+	@Path("/exit/{idgroup}/{member}")	
+	public int exit(@PathParam("idgroup") int idgroup, @PathParam("member") int member) {
+		
+		return GroupService.exit(idgroup , member);
+	}
+	
+	@PUT
+	@Path("/status/{idgroup}/{status}")	
+	public int status(@PathParam("idgroup") int idgroup, @PathParam("status") String status) {
+		
+		return GroupService.status(idgroup , status);
+	}
 }

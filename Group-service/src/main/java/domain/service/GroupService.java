@@ -24,4 +24,8 @@ public interface GroupService {
 	
 	public int join(int idgroup,int idprofil);
 	
+	public int exit(int idgroup,int member);
+	
+	public int status(int idgroup,String state);
+	
 }
