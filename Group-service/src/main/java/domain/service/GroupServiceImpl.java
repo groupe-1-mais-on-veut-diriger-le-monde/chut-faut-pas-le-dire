@@ -105,17 +105,17 @@ public class GroupServiceImpl implements GroupService {
 		
 		}
 		
-		else if (i.getmember3() == 3) {
+		else if (member == 3) {
 			i.setmember3(0);
 			em.merge(i);
 		
 		}
-		else if (i.getmember4() == 4) {
+		else if (member == 4) {
 			i.setmember4(0);
 			em.merge(i);
 	
 		}
-		else if (i.getmember5() == 5) {
+		else if (member == 5) {
 			i.setmember5(0);
 			em.merge(i);
 		

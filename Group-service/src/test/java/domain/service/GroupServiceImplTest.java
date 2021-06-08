@@ -113,6 +113,26 @@ import eu.drus.jpa.unit.api.JpaUnit;
 		  
 		  Group = GroupServiceImpl.getById(id);
 		  assertEquals(1, Group.getmember1());
+		  
+		  GroupServiceImpl.join(id,1);
+		  
+		  Group = GroupServiceImpl.getById(id);
+		  assertEquals(1, Group.getmember2());
+		  
+		  GroupServiceImpl.join(id,1);
+		  
+		  Group = GroupServiceImpl.getById(id);
+		  assertEquals(1, Group.getmember3());
+		  
+		  GroupServiceImpl.join(id,1);
+		  
+		  Group = GroupServiceImpl.getById(id);
+		  assertEquals(1, Group.getmember4());
+		  
+		  GroupServiceImpl.join(id,1);
+		  
+		  Group = GroupServiceImpl.getById(id);
+		  assertEquals(1, Group.getmember5());
 		 }
 	
 	@Test
@@ -127,6 +147,26 @@ import eu.drus.jpa.unit.api.JpaUnit;
 		  
 		  Group = GroupServiceImpl.getById(id);
 		  assertEquals(0, Group.getmember1());
+		  
+		  GroupServiceImpl.exit(id,2);
+		  
+		  Group = GroupServiceImpl.getById(id);
+		  assertEquals(0, Group.getmember2());
+		  
+		  GroupServiceImpl.exit(id,3);
+		  
+		  Group = GroupServiceImpl.getById(id);
+		  assertEquals(0, Group.getmember3());
+		  
+		  GroupServiceImpl.exit(id,4);
+		  
+		  Group = GroupServiceImpl.getById(id);
+		  assertEquals(0, Group.getmember4());
+		  
+		  GroupServiceImpl.exit(id,5);
+		  
+		  Group = GroupServiceImpl.getById(id);
+		  assertEquals(0, Group.getmember5());
 		 }
 	
 
