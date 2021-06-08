@@ -298,7 +298,7 @@ function makeSearchBarDiv(user) {
 }
 
 //gets text from update fields, and reloads page with new values
-function updatesUserDetails() {
+function updatesUserDetails(user) {
     // need to actually update the user in the API
     const updatedUsername = document.getElementById("renameInput").value;
     const updatedAge = document.getElementById("newAgeInput").value;
@@ -311,8 +311,8 @@ function updatesUserDetails() {
         user.age = parseInt(updatedAge);
     }
 
-    makeUserDetailsDiv();
-    showUserDetails();
+    makeUserDetailsDiv(user);
+    showUserDetails(user);
     patchJson('user', user);
 }
 
@@ -365,7 +365,7 @@ function displayMessageInfoFilm(msg, color){
 }
 
 //fonction qui fait les actions pour chaque button
-function clickAction(buttonClicked) {
+function clickAction(buttonClicked, user) {
     //buttonNames = ["deja vu", "a voir", "preferences", "groupes"];
     //["Créer un groupe", "Rejoindre un groupe"];
     switch (buttonClicked.value) {
@@ -407,8 +407,8 @@ function clickAction(buttonClicked) {
             break;
         case "\u274c":
             //reset changes click
-            makeUserDetailsDiv();
-            showUserDetails();
+            makeUserDetailsDiv(user);
+            showUserDetails(user);
             break;
         case "Créer un groupe":
             // deletes previous user group info
