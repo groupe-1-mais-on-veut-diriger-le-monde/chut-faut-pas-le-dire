@@ -370,7 +370,7 @@ function clickAction(buttonClicked, user) {
     //["Créer un groupe", "Rejoindre un groupe"];
     switch (buttonClicked.value) {
         case "🖉":
-            makeUserDetailsUpdateDiv();
+            makeUserDetailsUpdateDiv(user);
             break;
         
         case "\u2192":// look for group to join
@@ -403,7 +403,7 @@ function clickAction(buttonClicked, user) {
             break;
         case "\u2705":
             //accept changes click
-            updatesUserDetails();
+            updatesUserDetails(user);
             break;
         case "\u274c":
             //reset changes click
