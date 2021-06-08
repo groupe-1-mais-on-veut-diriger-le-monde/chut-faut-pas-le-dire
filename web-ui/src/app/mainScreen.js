@@ -5,7 +5,6 @@ modifier la facon dont les langues parles sont affiches -> showUserDetails()
 add beauty -> how do i do that ?
 
 <header><img src="img/logoMMM.png" height="100px" width="100px"> Movie Match Maker</header>
-
 */
 
 var user;
@@ -408,15 +407,23 @@ function clickAction(buttonClicked) {
             break;
         case "Créer un groupe":
             // deletes previous user group info
+            /*
+            test().then((films) => {
+                creatGrp(films);
+            });
+            */
+            /* WHAT WAS HERE BEFORE*/
+
             if (user.group1 != 0){
                 resetGroupInfo();              
             }
-
+            
             if(user.genre1 != null && user.genre2 != null && user.genre3 != null){
                 var body = {
                     name:"",
-                    host: user.id           
+                    host: user.id
                 }
+                
                 creatJson('group', body).then((idGroup) =>{
                     user.group1 = idGroup;
                     user.host = -1;
@@ -428,6 +435,9 @@ function clickAction(buttonClicked) {
             }else{
                 displayMessageGenreFilme("Veuillez effectuer vos choix", '#bb151a');
             }
+            
+
+            
             break;
         case "Rejoindre un groupe":
             //joinGroup(1);
@@ -457,5 +467,32 @@ function clickAction(buttonClicked) {
             
         default:
             console.log("error in clickAction");
+    }
+}
+
+function creatGrp(film){
+    console.log(film)
+    if (user.group1 != 0){
+        resetGroupInfo();              
+    }
+    
+    if(user.genre1 != null && user.genre2 != null && user.genre3 != null){
+        var body = {
+            name:"",
+            host: user.id
+        }
+        
+        creatJson('group', body).then((idGroup) =>{
+            user.group1 = idGroup;
+            user.host = -1;
+            patchJson('user', user);
+            getJson('group', idGroup).then((group) => {
+                group.result = film;
+                patchJson('group', group);
+                makeShowGrpDiv(group, user);
+            });              
+        });
+    }else{
+        displayMessageGenreFilme("Veuillez effectuer vos choix", '#bb151a');
     }
 }

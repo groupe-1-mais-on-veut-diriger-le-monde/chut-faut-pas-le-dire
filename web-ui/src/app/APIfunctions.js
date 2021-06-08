@@ -122,3 +122,20 @@ function getURL(type){
     }
     return url;
 }
+
+async function test(){
+    var response1 = await fetch("/jsonFiles/another.json");
+    var jsonData1 = await response1.json();
+    console.log(jsonData1);
+
+    //var list1 = actualInfo(jsonData1);
+    
+    //var response2 = await fetch("/jsonFiles/bionicle.json");
+    //var jsonData2 = await response2.json();
+    return JSON.stringify([jsonData1]);
+}
+
+function actualInfo(jsonData){
+    return [jsonData]
+}
+

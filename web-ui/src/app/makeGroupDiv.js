@@ -47,6 +47,7 @@ function makeShowGrpDiv(grpInfo, userInfo) {
 
 function populateGroupIdDiv(grpInfo, userInfo, id){
     var hostInfo = userInfo.host;
+    
     d3.select("#" + id)
         .selectAll("*")
         .remove();
@@ -139,24 +140,99 @@ function populateUserListDiv(usersInGrpInfo, id){
     }
 }
 
+
+
 function looking(grpInfo, userInfo, id, status){
+    /*
+    STATUS OPTIONS :
+        "voting"
+        "results"
+        "waiting"
+    */
+
     d3.select("#" + id)
         .selectAll("*")
         .remove();
 
+    d3.select("#" + id).append("div").attr("id", "votingInfo").attr("class", "votingInfo");
+
     if(status == 'waiting'){
-        d3.select("#" + id)
+        d3.select("#votingInfo")
             .append('text')
-            .text("waiting to launch");
+            .text("En attente de lancement !");
     }
     else {
-        d3.select("#" + id).append("div").attr("id", "votingInfo").attr("class", "votingInfo");
+        userInfo.vote = "";
         d3.select("#" + id).append("div").attr("id", "filmDisplay").attr("class", "filmDisplay");
         d3.select("#" + id).append("div").attr("id", "vote").attr("class", "vote");
-        
-        
-
-        
+        showMovie(grpInfo, userInfo, status, 0);     
     }
+}
 
+function showMovie(grpInfo, userInfo, type, i){
+    d3.select("#votingInfo")
+        .selectAll("*")
+        .remove();
+
+    d3.select("#filmDisplay")
+        .selectAll("*")
+        .remove();
+
+    d3.select("#vote")
+        .selectAll("*")
+        .remove();
+
+    if(type == 'voting'){
+        if(i < grpInfo.result.length){
+            var t = i + 1;
+            var top = "Vote : " + t.toString() + "/" + grpInfo.result.length.toString();
+
+            d3.select("#votingInfo")
+                .append('text')
+                .text(top);
+
+            makeShowFilmScreen(grpInfo.result[i], "filmDisplay");
+            
+            d3.select("#vote")
+                .selectAll("input")
+                .append("input")
+                .attr("type", "button")
+                .attr("value", "yes")
+                .on("click", function() {
+                    voteAction(this, grpInfo, userInfo, type, i + 1);
+                });
+
+            d3.select("#vote")
+                .selectAll("input")
+                .append("input")
+                .attr("type", "button")
+                .attr("value", "no")
+                .on("click", function() {
+                    voteAction(this, grpInfo, userInfo, type, i + 1);
+                });
+        }else{
+            patchJson('user', userInfo);
+        }
+    }else if(type == 'results'){
+            
+        d3.select("#votingInfo")
+            .append('text')
+            .text("Votation terminé !");
+
+        makeShowFilmScreen(grpInfo.result, "filmDisplay");
+
+        d3.select("#vote")
+            .append('text')
+            .text('Bon visionnage !');
+    }
+}
+
+function voteAction(buttonClicked, grpInfo, userInfo, type, i){
+    if(buttonClicked.value == 'yes'){
+        userInfo.vote = userInfo.vote + "1";
+        showMovie(grpInfo, userInfo, type, i);
+    }else if(buttonClicked.value == 'no'){
+        userInfo.vote = userInfo.vote + "0";
+        showMovie(grpInfo, userInfo, type, i);
+    }
 }
