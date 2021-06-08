@@ -367,7 +367,7 @@ function displayMessageInfoFilm(msg, color){
 //fonction qui fait les actions pour chaque button
 function clickAction(buttonClicked, user) {
     //buttonNames = ["deja vu", "a voir", "preferences", "groupes"];
-    //["Créer un groupe", "Rejoindre un groupe"];
+    //["Créer un groupe", "Rejoindre un groupe"];\u2192
     switch (buttonClicked.value) {
         case "🖉":
             makeUserDetailsUpdateDiv(user);
@@ -378,7 +378,7 @@ function clickAction(buttonClicked, user) {
             const searchBarText = document.getElementById("searchInput").value;
             if (searchBarText != "") {
                 if (user.group1 != 0){
-                    resetGroupInfo();              
+                    resetGroupInfo(user);              
                 }
                 d3.select("#searchBar")
                     .selectAll("*")
@@ -418,10 +418,9 @@ function clickAction(buttonClicked, user) {
             });
             */
             /* WHAT WAS HERE BEFORE*/
-            console.log(user)
 
             if (user.group1 != 0){
-                resetGroupInfo();              
+                resetGroupInfo(user);              
             }
             
             if(user.genre1 != null && user.genre2 != null && user.genre3 != null){
@@ -478,7 +477,7 @@ function clickAction(buttonClicked, user) {
 function creatGrp(film){
     console.log(film)
     if (user.group1 != 0){
-        resetGroupInfo();              
+        resetGroupInfo(user);              
     }
     
     if(user.genre1 != null && user.genre2 != null && user.genre3 != null){
