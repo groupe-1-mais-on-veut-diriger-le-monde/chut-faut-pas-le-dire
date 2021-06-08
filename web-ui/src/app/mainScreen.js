@@ -435,9 +435,7 @@ function clickAction(buttonClicked) {
             }else{
                 displayMessageGenreFilme("Veuillez effectuer vos choix", '#bb151a');
             }
-            
-
-            
+              
             break;
         case "Rejoindre un groupe":
             //joinGroup(1);
