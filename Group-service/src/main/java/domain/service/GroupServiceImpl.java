@@ -40,7 +40,7 @@ public class GroupServiceImpl implements GroupService {
 	
 	@Override
 	public Group getByName(String name) {
-		//log.info("Get unit by Group name");
+		
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Group> criteria = builder.createQuery(Group.class);
 		Root<Group> i = criteria.from(Group.class);
