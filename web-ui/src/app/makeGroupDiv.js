@@ -1,6 +1,4 @@
 function makeShowGrpDiv(grpInfo, userInfo) {
-    console.log(grpInfo);
-    console.log(userInfo);
 
     if(grpInfo != null){
             //resets body
@@ -75,7 +73,6 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
         .style("width", "50%")
         .on("click", function() {
             resetGroupInfo();
-            
             makeShowGrpDiv(null, userInfo);
         });
 

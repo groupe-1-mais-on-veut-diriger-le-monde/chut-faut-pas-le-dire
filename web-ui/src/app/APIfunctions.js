@@ -23,9 +23,12 @@ async function getJson(type, id){
     var url = getURL(type) + '/id/' + id.toString();
 
     var response = await fetch(url);
-    var jsonData = await response.json();
-
-    return jsonData;
+    if(response.statusText == "OK"){
+        var jsonData = await response.json();
+        return jsonData;
+    }else{
+        return null;
+    }
 }
 
 async function patchJson(type, body){
@@ -90,6 +93,18 @@ async function joinGroup(idGroup, idProfil){
     var jsonData = await response.json();
 
     return jsonData;
+}
+
+//quit grp
+async function quitGroup(idGroup, place){
+    var url = getURL('group');
+    url = url + "/exit/" + idGroup.toString() + "/" + place.toString();
+
+    var response = await fetch(url,{
+        method: 'PUT',
+        headers: {'content-type': 'application/json'}
+    });
+    console.log(response);
 }
 
 // simple switch for user or grp url

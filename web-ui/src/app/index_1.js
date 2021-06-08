@@ -13,7 +13,6 @@ var body = {
 creatJson('user', body)
     .then((userId) => choseMainScreen(userId));
 
-
 /*
 creatJson('user', body).then((userId) => console.log('user ID ' + userId));
 

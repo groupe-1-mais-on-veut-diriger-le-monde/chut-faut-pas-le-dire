@@ -18,7 +18,11 @@ const dataEn = ["comedy", "horror", "romance", "action","thriller", "drama", "my
 // this function calls the first log in screen in case it is 1st log in
 function choseMainScreen(userId) {
     getJson('user', userId)
-        .then((user) => makeMainScreen(user));
+        .then((user) => {
+            if(user != null){
+                makeMainScreen(user);
+            }
+        });
 }
 
 //splits body into 3 divs, and calls functions that fill divs
@@ -55,13 +59,11 @@ function makeMainScreen(userDetails) {
     makeUserDetailsDiv();
     makeChoiceGenreDiv();
     makeButtonsDiv();
-    //makeSearchBarDiv();
     showUserDetails();
 
     if(user.groupe1 != null){
         getJson('group', user.groupe1).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
     }
-    //console.log(d3.select("#userDetails"));
 }
 
 //creats paragraphs for userDetails div
@@ -314,39 +316,16 @@ function updatesUserDetails() {
 //resets user group info
 function resetGroupInfo(){
     if (user.host == -1){
-        user.host = 0;
         deleteJson('group', user.group1);
     }else{
-        deleteMeFromGroup();
+        console.log(user.group1);
+        console.log(user.host);
+        quitGroup(user.group1, user.host)
     }
     user.group1 = 0;
+    user.host = 0;
     user.vote = null;
     patchJson('user', user);
-}
-
-
-// a refaire
-function deleteMeFromGroup(){
-    getJson('group', user.group1).then((grpInfo) => {
-        switch(user.host){
-            case 1:
-                grpInfo.member1 = null;
-                break;
-            case 2:
-                grpInfo.member2 = null;
-                break;
-            case 3:
-                grpInfo.member3 = null;
-                break;
-            case 4:
-                grpInfo.member4 = null;
-                break;
-            case 5:
-                grpInfo.member5 = null;
-                break;
-        }
-    });
-    patchJson('group', grpInfo);
 }
 
 function displayMessageGenreFilme(msg, color){
@@ -358,7 +337,7 @@ function displayMessageGenreFilme(msg, color){
     setTimeout(function(){
         d3.select("#texteSuiteValider")
         .text('');
-    }, 2000);
+    }, 3000);
 
 }
 
@@ -377,7 +356,7 @@ function displayMessageInfoFilm(msg, color){
         d3.select("#searchBar")
             .selectAll("*")
             .remove();
-    }, 2000);
+    }, 3000);
 
 }
 
@@ -410,7 +389,6 @@ function clickAction(buttonClicked) {
                         getJson('group', searchBarText).then((group) => {
                             makeShowGrpDiv(group, user);
                         }); 
-                        
                     }else{
                         displayMessageInfoFilm("Impossible de rejoindre le groupe", '#bb151a');
                     }              
@@ -454,7 +432,12 @@ function clickAction(buttonClicked) {
         case "Rejoindre un groupe":
             //joinGroup(1);
             //getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
-            makeSearchBarDiv();
+            if(user.genre1 != null && user.genre2 != null && user.genre3 != null){
+                makeSearchBarDiv();
+            }else{
+                displayMessageGenreFilme("Veuillez effectuer vos choix", '#bb151a');
+            }
+            
             break;
         case "Valider":
             const dropDown1 = document.getElementById("dropDown1").value;
