@@ -446,7 +446,7 @@ function clickAction(buttonClicked, user) {
             //joinGroup(1);
             //getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
             if(user.genre1 != null && user.genre2 != null && user.genre3 != null){
-                makeSearchBarDiv();
+                makeSearchBarDiv(user);
             }else{
                 displayMessageGenreFilme("Veuillez effectuer vos choix", '#bb151a');
             }
