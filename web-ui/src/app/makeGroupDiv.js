@@ -47,7 +47,7 @@ function makeShowGrpDiv(grpInfo, userInfo) {
 
 function populateGroupIdDiv(grpInfo, userInfo, id){
     var hostInfo = userInfo.host;
-    
+
     d3.select("#" + id)
         .selectAll("*")
         .remove();
@@ -73,7 +73,7 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
         .attr("class", "button")
         .style("width", "50%")
         .on("click", function() {
-            resetGroupInfo();
+            resetGroupInfo(userInfo);
             makeShowGrpDiv(null, userInfo);
         });
 

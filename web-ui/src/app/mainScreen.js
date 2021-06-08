@@ -55,10 +55,10 @@ function makeMainScreen(userDetails) {
     d3.select("#userDetailsWithStyle").append("div").attr("id", "userDetails").attr("class", "profilMain");
     d3.select("#userDetailsWithStyle").append("div").attr("id", "remakeUserDetails").attr("class", "remakeProfilMain");
 
-    makeUserDetailsDiv();
-    makeChoiceGenreDiv();
-    makeButtonsDiv();
-    showUserDetails();
+    makeUserDetailsDiv(user);
+    makeChoiceGenreDiv(user, 0);
+    makeButtonsDiv(user);
+    showUserDetails(user);
 
     if(user.groupe1 != null){
         getJson('group', user.groupe1).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
@@ -66,7 +66,7 @@ function makeMainScreen(userDetails) {
 }
 
 //creats paragraphs for userDetails div
-function makeUserDetailsDiv() {
+function makeUserDetailsDiv(user) {
 
     //resets user details div
     d3.select("#userDetails")
@@ -113,12 +113,12 @@ function makeUserDetailsDiv() {
         .attr("class", "button")
         .style("width", "80%")
         .on("click", function() {
-            clickAction(this);
+            clickAction(this, user);
         });
 }
 
 // ca fait les boites de texte pour metre a jour user
-function makeUserDetailsUpdateDiv() {
+function makeUserDetailsUpdateDiv(user) {
     //assure que si on clic plusieures fois sur modifier, on supprime les suivants
 
     d3.select("#renameInput").remove()
@@ -151,7 +151,7 @@ function makeUserDetailsUpdateDiv() {
         .style("width", "20%")
         .attr("value", "\u2705")
         .on("click", function() {
-            clickAction(this);
+            clickAction(this, user);
         });
 
     
@@ -164,14 +164,14 @@ function makeUserDetailsUpdateDiv() {
         .style("width", "20%")
         .attr("value", "\u274c")
         .on("click", function() {
-            clickAction(this);
+            clickAction(this, user);
         });
 
 
 }
 
 //met les details de user dans les <p></p>
-function showUserDetails() {
+function showUserDetails(user) {
     // affiche les details sur le user -> on peut utiliser a chaque fois qu on met a jouer user
     d3.select("#pName").selectAll("*").remove();
 
@@ -180,7 +180,7 @@ function showUserDetails() {
     d3.select("#pAge").append("text").text(user.age).attr("class", "textInfo");
 }
 
-function makeChoiceGenreDiv() {
+function makeChoiceGenreDiv(user, info) {
     
 
     d3.select("#genreFilmesDiv").selectAll("*").remove();
@@ -222,9 +222,13 @@ function makeChoiceGenreDiv() {
         .attr("type", "button")
         .attr("value","Valider")
         .on("click", function() {
-            clickAction(this);
+            clickAction(this, user);
         });
     d3.select("#acceptChangesDiv").append("text").attr("id", "texteSuiteValider");
+
+    if(info == 1){
+        displayMessageGenreFilme("Changements validés", '#036429');
+    }
 
 }
 
@@ -248,7 +252,7 @@ function makeDropDownMenu(pId, dropDownId, defaultVal, dataFr){
 }
 
 //met les buttons dans le button div
-function makeButtonsDiv() {
+function makeButtonsDiv(user) {
     //resets buttons div
     d3.select("#buttons")
         .selectAll("*")
@@ -265,11 +269,11 @@ function makeButtonsDiv() {
         .attr("value", function(d) {
             return d;
         }).on("click", function() {
-            clickAction(this);
+            clickAction(this, user);
         });
 }
 
-function makeSearchBarDiv() {
+function makeSearchBarDiv(user) {
     //resets buttons div
     d3.select("#searchBar")
         .selectAll("*")
@@ -289,7 +293,7 @@ function makeSearchBarDiv() {
         .attr("class", "button")
         .style("width", "30%")
         .on("click", function() {
-            clickAction(this);
+            clickAction(this, user);
         });
 }
 
@@ -313,7 +317,7 @@ function updatesUserDetails() {
 }
 
 //resets user group info
-function resetGroupInfo(){
+function resetGroupInfo(user){
     if (user.host == -1){
         deleteJson('group', user.group1);
     }else{
@@ -324,6 +328,7 @@ function resetGroupInfo(){
     user.group1 = 0;
     user.host = 0;
     user.vote = null;
+    console.log(user)
     patchJson('user', user);
 }
 
@@ -413,6 +418,7 @@ function clickAction(buttonClicked) {
             });
             */
             /* WHAT WAS HERE BEFORE*/
+            console.log(user)
 
             if (user.group1 != 0){
                 resetGroupInfo();              
@@ -455,8 +461,9 @@ function clickAction(buttonClicked) {
                 user.genre1 = dataEn[dataFr.indexOf(dropDown1)];
                 user.genre2 = dataEn[dataFr.indexOf(dropDown2)];
                 user.genre3 = dataEn[dataFr.indexOf(dropDown3)];
-                displayMessageGenreFilme("Changements validés", '#036429');
+
                 patchJson('user', user);
+                makeChoiceGenreDiv(user, 1);
             }else{
                 displayMessageGenreFilme("Changements non validés", '#bb151a');
             }
