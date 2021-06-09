@@ -1,39 +1,24 @@
-function makeShowFilmScreen(movie, mainId) {
+function makeShowFilmScreen(movie, mainId, titleId) {
     //resets body
     d3.select("#" + mainId)
         .selectAll("*")
         .remove();
 
-    d3.select("#" + mainId)
-        .append("div")
-        .attr("id", "insideRightSideDiv")
-        .attr("class", "insideRightSideStyle");
-
-    const titleMovieDiv = "titleMovieDiv";
     const ratingDivName = "titleRatingDiv";
     const imageDivName = "imageDiv";
-    const buttonsDivName = "buttons";
     const lowInfoDivName = "lowInfoDiv";
-    const buttonNames = ["Ajouter à 'déjà vu'", "Ajouter à 'à voir'"];
 
-    d3.select("#insideRightSideDiv").append("div").attr("id", "titleMovieDiv").attr("class", "movieTitle");
-    d3.select("#insideRightSideDiv").append("div").attr("id", "generalInfoDiv").attr("class", "movieGeneralInfoStyle");
-    d3.select("#insideRightSideDiv").append("div").attr("id", "imageDiv").attr("class", "movieImageStyle");
+    d3.select("#" + mainId).append("div").attr("id", "generalInfoDiv").attr("class", "movieGeneralInfoStyle");
+    d3.select("#" + mainId).append("div").attr("id", "imageDiv").attr("class", "movieImageStyle");
 
-    d3.select("#titleDiv").append("div").attr("id", titleMovieDiv);
     d3.select("#generalInfoDiv").append("div").attr("id", ratingDivName);
     d3.select("#imageDiv").append("div").attr("id", imageDivName);
     d3.select("#generalInfoDiv").append("div").attr("id", lowInfoDivName);
     //d3.select("#insideRightSideDiv").append("div").attr("id", buttonsDivName);
 
-    console.log("new screen - Show Film - function called by user :");
-    console.log(user);
-    console.log("the user searched the following movie :");
-    console.log(movie);
-
     console.log(movie.title);
 
-    titleDiv(titleMovieDiv, movie);
+    titleDiv(titleId, movie);
     topDivInfoFill(ratingDivName, movie);
     imageFill(imageDivName, movie);
     lowerDivInfoFill(lowInfoDivName, movie);
@@ -48,9 +33,7 @@ function titleDiv(divName, movieInfo) {
         .remove();
 
     // titre
-    d3.select("#" + divName).append("p").attr("id", "paraName");
-    d3.select("#paraName").append("text").text(movieInfo.title).attr("class", "titresMain");
-
+    d3.select("#" + divName).append("text").text(movieInfo.title).attr("class", "titresMain");
 }
 
 function topDivInfoFill(divName, movieInfo) {

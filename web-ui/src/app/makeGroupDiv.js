@@ -5,7 +5,7 @@ function makeShowGrpDiv(grpInfo, userInfo) {
         d3.select("#rightSideDiv")
             .selectAll("*")
             .remove();
-
+            
         d3.select("#rightSideDiv")
             .append("div")
             .attr("id", "insideRightSideDiv")
@@ -16,8 +16,6 @@ function makeShowGrpDiv(grpInfo, userInfo) {
 
         d3.select("#insideRightSideStyle_leftSide").append("div").attr("id", "grpIdDiv").attr("class", "groupId");
         d3.select("#insideRightSideStyle_leftSide").append("div").attr("id", "userListDiv").attr("class", "userInGrpList");
-        d3.select("#insideRightSideStyle_rightSide").append("div").attr("id", "selectionDiv").attr("class", "showVote");
-
 
         populateGroupIdDiv(grpInfo, userInfo, "grpIdDiv"); 
 
@@ -88,7 +86,9 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
             .attr("value", "Lancer la recherche")
             .attr("class", "button")
             .on("click", function() {
-                console.log("recherche lance lole");
+                changeState(grpInfo.id,1).then(() => {
+                    looking(grpInfo, userInfo, 'insideRightSideStyle_rightSide', 'voting');
+                });
             });
     }else{
         d3.select("#lauchSearchP")
@@ -165,7 +165,10 @@ function looking(grpInfo, userInfo, id, status){
         userInfo.vote = "";
         d3.select("#" + id).append("div").attr("id", "filmDisplay").attr("class", "filmDisplay");
         d3.select("#" + id).append("div").attr("id", "vote").attr("class", "vote");
-        showMovie(grpInfo, userInfo, status, 0);     
+        test().then((listFilm) =>{
+            grpInfo.result = listFilm;
+            showMovie(grpInfo, userInfo, status, 0);
+        })        
     }
 }
 
@@ -187,14 +190,13 @@ function showMovie(grpInfo, userInfo, type, i){
             var t = i + 1;
             var top = "Vote : " + t.toString() + "/" + grpInfo.result.length.toString();
 
-            d3.select("#votingInfo")
+            d3.select("#vote")
                 .append('text')
                 .text(top);
 
-            makeShowFilmScreen(grpInfo.result[i], "filmDisplay");
+            makeShowFilmScreen(grpInfo.result[i], "filmDisplay", "votingInfo");
             
             d3.select("#vote")
-                .selectAll("input")
                 .append("input")
                 .attr("type", "button")
                 .attr("value", "yes")
@@ -203,7 +205,6 @@ function showMovie(grpInfo, userInfo, type, i){
                 });
 
             d3.select("#vote")
-                .selectAll("input")
                 .append("input")
                 .attr("type", "button")
                 .attr("value", "no")
@@ -219,7 +220,7 @@ function showMovie(grpInfo, userInfo, type, i){
             .append('text')
             .text("Votation terminé !");
 
-        makeShowFilmScreen(grpInfo.result, "filmDisplay");
+        makeShowFilmScreen(grpInfo.result, "filmDisplay", "votingInfo");
 
         d3.select("#vote")
             .append('text')

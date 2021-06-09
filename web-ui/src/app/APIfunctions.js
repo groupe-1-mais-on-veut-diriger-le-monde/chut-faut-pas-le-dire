@@ -100,11 +100,21 @@ async function quitGroup(idGroup, place){
     var url = getURL('group');
     url = url + "/exit/" + idGroup.toString() + "/" + place.toString();
 
-    var response = await fetch(url,{
+    await fetch(url,{
         method: 'PUT',
         headers: {'content-type': 'application/json'}
     });
-    console.log(response);
+}
+
+//changes state of grp
+async function changeState(grpId, state){
+    var url = getURL('group');
+    url = url + "/status/" + grpId.toString() + "/" + state.toString();
+
+    await fetch(url,{
+        method: 'PUT',
+        headers: {'content-type': 'application/json'}
+    });
 }
 
 // simple switch for user or grp url
@@ -123,19 +133,12 @@ function getURL(type){
     return url;
 }
 
+
 async function test(){
     var response1 = await fetch("/jsonFiles/another.json");
     var jsonData1 = await response1.json();
-    console.log(jsonData1);
-
-    //var list1 = actualInfo(jsonData1);
-    
-    //var response2 = await fetch("/jsonFiles/bionicle.json");
-    //var jsonData2 = await response2.json();
-    return JSON.stringify([jsonData1]);
-}
-
-function actualInfo(jsonData){
-    return [jsonData]
+    var response2 = await fetch("/jsonFiles/bionicle.json");
+    var jsonData2 = await response2.json();
+    return [jsonData1, jsonData2];
 }
 
