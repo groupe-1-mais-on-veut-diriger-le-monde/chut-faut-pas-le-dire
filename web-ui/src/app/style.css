@@ -1,26 +1,10 @@
+/* ---------------------- style général ---------------------- */
+
 body {
+    /* style de base du body */
     background-color: #2E2E2E;
     color: #000000;
     font-family: Noto Sans, sans-serif;
-}
-
-
-/* ---------------------- style général ---------------------- */
-
-.header {
-    /* couleurs et style du header */
-    background-color: #000000;
-    color: #f79a40;
-    font-size: 40px;
-    height: 10%;
-    font-family: Noto Sans, sans-serif;
-}
-
-.buttonsHeader {
-    position: fixed;
-    width: 25%;
-    height: 100%;
-    right: 0;
 }
 
 .button {
@@ -73,18 +57,39 @@ body {
 }
 
 .textInfo {
-    /* style du texte */
+    /* style du texte de base */
     color: #000000;
     font-family: Noto Sans, sans-serif;
     font-size: 1.25vw;
 }
 
 .validationGenreText {
+    /* ######## MODIF ? ######## */
     font-weight: bold;
 }
 
 
-/* ---------------------- main Screen ---------------------- */
+/* ---------------------- HEADER ---------------------- */
+
+.header {
+    /* couleurs et style du header */
+    background-color: #000000;
+    color: #f79a40;
+    font-size: 40px;
+    height: 10%;
+    font-family: Noto Sans, sans-serif;
+}
+
+.buttonsHeader {
+    /* position de la div des boutons de login et logout */
+    position: fixed;
+    width: 25%;
+    height: 100%;
+    right: 0;
+}
+
+
+/* ---------------------- LEFT SIDE ---------------------- */
 
 .leftSideDivStyle {
     position: fixed;
@@ -93,15 +98,11 @@ body {
     left: 0;
 }
 
-.rightSideDivStyle {
-    position: fixed;
-    width: 75%;
-    height: 100%;
-    right: 0;
-}
+
+/* -------- Profil -------- */
 
 .userDetails {
-    /* classe qui gere le div userName + userDetails */
+    /* style de la div du user profile */
     position: absolute;
     top: 5%;
     left: 15%;
@@ -135,6 +136,9 @@ body {
     width: 100%;
 }
 
+
+/* -------- Genres -------- */
+
 .genreFilmesStyle {
     position: absolute;
     border-radius: 10px;
@@ -145,107 +149,21 @@ body {
     top: 35%;
 }
 
-.boutonsMain {
-    /* placement des boutons du mainScreen */
-    position: absolute;
-    top: 65%;
-    left: 15%;
-    width: 70%;
-    height: 40px;
-}
 
-.searchMain {
-    /* classe de la bare de recherche */
-    position: absolute;
-    bottom: 20%;
-    left: 15%;
-    width: 70%;
-    height: 40px;
-    border-radius: 10px;
-    background: #2E2E2E;
-}
+/* ---------------------- RIGHT SIDE ---------------------- */
 
-.textDivClass {
-    position: absolute;
-    top: 3%;
-    height: 12%;
-    width: 100%;
-    font-size: 2vmin;
-    text-align: center;
-}
-
-.dropDownDivStyle {
-    position: absolute;
-    top: 15%;
-    height: 70%;
-    width: 100%;
-}
-
-.acceptChangesDivStyle {
-    position: absolute;
-    bottom: 3%;
-    height: 12%;
-    width: 100%;
-}
-
-
-/* ---------------------- login Screen ---------------------- */
-
-.login {
-    position: relative;
-    margin: 0 auto;
-    /* centre la div */
-    font-size: 28px;
-    border-radius: 10px;
-    background: #7F7F7F;
-    /*left: 15%;*/
-    width: 750px;
-    height: 25%;
-    top: 50%;
-}
-
-.titreLogin {
-    position: absolute;
-    width: 65%;
+.rightSideDivStyle {
+    position: fixed;
+    width: 75%;
     height: 100%;
-    left: 1%;
+    right: 0;
 }
 
 
-/*.text1Log {
-    position: absolute;
-    top: 200px;
-    width: 55%;
-    height: 100%;
-    left: 5%;
-}
-
-.champsLog {
-    position: relative;
-    top: 200px;
-    width: 55%;
-    height: 100%;
-    left: 5%;
-}
-
-.genresLog {
-    position: absolute;
-    top: 10%;
-    width: 55%;
-    height: 100%;
-    left: 5%;
-}
-
-.bouttonValidLog {
-    position: absolute;
-    top: 500px;
-    width: 55%;
-    height: 100%;
-    left: 5%;
-}*/
+/* -------- Show Film Div -------- */
 
 
-/* ---------------------- Show Film Div ---------------------- */
+/* ######## MODIF ? (still used ?, rename ) ######## */
 
 .insideRightSideStyle {
     position: absolute;
@@ -281,7 +199,7 @@ body {
 }
 
 
-/* ---------------------- Show Group Div ---------------------- */
+/* -------- Show Group Div -------- */
 
 .leftSideShowGroupDiv {
     position: absolute;
@@ -328,7 +246,7 @@ body {
 }
 
 
-/* ---------------------- Show Group Div Voting ---------------------- */
+/* -------- Show Group Div Voting -------- */
 
 .votingInfo {
     position: absolute;
@@ -349,3 +267,82 @@ body {
     width: 100%;
     height: 10%;
 }
+
+
+/* UNKN */
+
+.boutonsMain {
+    /* placement des boutons du mainScreen */
+    position: absolute;
+    top: 65%;
+    left: 15%;
+    width: 70%;
+    height: 40px;
+}
+
+.searchMain {
+    /* classe de la bare de recherche */
+    position: absolute;
+    bottom: 20%;
+    left: 15%;
+    width: 70%;
+    height: 40px;
+    border-radius: 10px;
+    background: #2E2E2E;
+}
+
+.textDivClass {
+    position: absolute;
+    top: 3%;
+    height: 12%;
+    width: 100%;
+    font-size: 2vmin;
+    text-align: center;
+}
+
+.dropDownDivStyle {
+    position: absolute;
+    top: 15%;
+    height: 70%;
+    width: 100%;
+}
+
+.acceptChangesDivStyle {
+    position: absolute;
+    bottom: 3%;
+    height: 12%;
+    width: 100%;
+}
+
+
+/*.text1Log {
+    position: absolute;
+    top: 200px;
+    width: 55%;
+    height: 100%;
+    left: 5%;
+}
+
+.champsLog {
+    position: relative;
+    top: 200px;
+    width: 55%;
+    height: 100%;
+    left: 5%;
+}
+
+.genresLog {
+    position: absolute;
+    top: 10%;
+    width: 55%;
+    height: 100%;
+    left: 5%;
+}
+
+.bouttonValidLog {
+    position: absolute;
+    top: 500px;
+    width: 55%;
+    height: 100%;
+    left: 5%;
+}*/
