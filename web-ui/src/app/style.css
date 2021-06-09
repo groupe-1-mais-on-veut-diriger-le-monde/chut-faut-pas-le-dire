@@ -16,6 +16,13 @@ body {
     font-family: Noto Sans, sans-serif;
 }
 
+.buttonsHeader {
+    position: fixed;
+    width: 25%;
+    height: 100%;
+    right: 0;
+}
+
 .button {
     /* couleurs et style des boutons */
     background-color: #D3D8D8;
@@ -72,7 +79,7 @@ body {
     font-size: 1.25vw;
 }
 
-.validationGenreText{
+.validationGenreText {
     font-weight: bold;
 }
 
@@ -115,14 +122,14 @@ body {
     font-size: 25px;
 }
 
-.remakeProfilMain{
+.remakeProfilMain {
     position: absolute;
     bottom: 0px;
     height: 40%;
     width: 100%;
 }
 
-.insideUserDetails{
+.insideUserDetails {
     position: absolute;
     height: 50%;
     width: 100%;
@@ -158,23 +165,23 @@ body {
     background: #2E2E2E;
 }
 
-.textDivClass{
+.textDivClass {
     position: absolute;
     top: 3%;
     height: 12%;
     width: 100%;
     font-size: 2vmin;
-    text-align: center;  
+    text-align: center;
 }
 
-.dropDownDivStyle{
+.dropDownDivStyle {
     position: absolute;
     top: 15%;
     height: 70%;
     width: 100%;
 }
 
-.acceptChangesDivStyle{
+.acceptChangesDivStyle {
     position: absolute;
     bottom: 3%;
     height: 12%;
@@ -273,6 +280,7 @@ body {
     right: 1%;
 }
 
+
 /* ---------------------- Show Group Div ---------------------- */
 
 .leftSideShowGroupDiv {
@@ -289,7 +297,7 @@ body {
     right: 0px;
 }
 
-.groupId{
+.groupId {
     position: absolute;
     width: 90%;
     left: 5%;
@@ -297,7 +305,7 @@ body {
     top: 0px;
 }
 
-.userInGrpList{
+.userInGrpList {
     position: absolute;
     width: 90%;
     left: 5%;
@@ -305,13 +313,13 @@ body {
     top: 25%;
 }
 
-.userBlock_List{
+.userBlock_List {
     position: absolute;
     width: 100%;
     height: 16%;
 }
 
-.divForUserMainInfo{
+.divForUserMainInfo {
     position: absolute;
     width: 90%;
     left: 5%;
@@ -319,22 +327,24 @@ body {
     top: 0px;
 }
 
+
 /* ---------------------- Show Group Div Voting ---------------------- */
-.votingInfo{
+
+.votingInfo {
     position: absolute;
     width: 90%;
     left: 5%;
     height: 10%;
 }
 
-.filmDisplay{
+.filmDisplay {
     position: absolute;
     width: 100%;
     height: 80%;
     top: 25%;
 }
 
-.vote{
+.vote {
     position: absolute;
     width: 100%;
     height: 10%;

@@ -12,13 +12,13 @@ const userDetailsName = ["pId", "pAge"];
 const userDetailsDescribe = ["ID :   ", "Âge :   "];
 const buttonNames = ["Créer un groupe", "Rejoindre un groupe"];
 const dataFr = ["Comédie", "Horreur", "Romance", "Action", "Suspense", "Drame", "Mystère", "Crime", "Animation", "Aventure", "Fantastique", "Comédie romantique", "Comédie d'action", "Super-héros"];
-const dataEn = ["comedy", "horror", "romance", "action","thriller", "drama", "mystery", "crime","animation", "adventure", "fantasy", "comdedy Romance", "action comedy", "superhero"]
+const dataEn = ["comedy", "horror", "romance", "action", "thriller", "drama", "mystery", "crime", "animation", "adventure", "fantasy", "comdedy Romance", "action comedy", "superhero"]
 
 // this function calls the first log in screen in case it is 1st log in
 function choseMainScreen(userId) {
     getJson('user', userId)
         .then((user) => {
-            if(user != null){
+            if (user != null) {
                 makeMainScreen(user);
             }
         });
@@ -26,7 +26,7 @@ function choseMainScreen(userId) {
 
 //splits body into 3 divs, and calls functions that fill divs
 function makeMainScreen(userDetails) {
-    
+
     d3.select("body")
         .selectAll("*")
         .remove();
@@ -39,6 +39,7 @@ function makeMainScreen(userDetails) {
     d3.select("body").append("div").attr("id", "header").attr("class", "header");
     d3.select("#header").append("svg").attr("id", "svgImage").attr("width", 600).attr("height", 150);
     d3.select("#svgImage").append('image').attr("width", 600).attr("height", 150).attr('xlink:href', "img/header.png");
+    d3.select("#header").append("div").attr("id", "buttonsHeader").attr("class", "buttonsHeader");
 
     //splits rest of body in 2 sides -> 30% and 70% for now
     d3.select("body").append("div").attr("id", "leftSideDiv").attr("class", "leftSideDivStyle");
@@ -60,7 +61,7 @@ function makeMainScreen(userDetails) {
     makeButtonsDiv(user);
     showUserDetails(user);
 
-    if(user.groupe1 != null){
+    if (user.groupe1 != null) {
         getJson('group', user.groupe1).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
     }
 }
@@ -72,16 +73,16 @@ function makeUserDetailsDiv(user) {
     d3.select("#userDetails")
         .selectAll("*")
         .remove();
-    
+
     d3.select("#remakeUserDetails")
         .selectAll("*")
         .remove();
-    
+
     d3.select("#userDetails")
         .append("div")
         .attr("class", "insideUserDetails")
         .attr("id", "pId");
-    
+
     d3.select("#userDetails")
         .append("div")
         .attr("class", "insideUserDetails")
@@ -97,7 +98,7 @@ function makeUserDetailsDiv(user) {
         .style("width", "25%")
         .style("height", "100%")
         .attr("id", "remakeUserDetailsL");
-    
+
     d3.select("#remakeUserDetails")
         .append("div")
         .style("position", "absolute")
@@ -134,7 +135,7 @@ function makeUserDetailsUpdateDiv(user) {
         .attr("placeholder", "nouveau username")
         .style("width", "90%")
         .attr("class", "textInfo");
-    
+
     d3.select("#remakeUserDetailsR")
         .append("input")
         .attr("type", "text")
@@ -154,7 +155,7 @@ function makeUserDetailsUpdateDiv(user) {
             clickAction(this, user);
         });
 
-    
+
 
     d3.select("#remakeUserDetailsR")
         .append("input")
@@ -181,12 +182,12 @@ function showUserDetails(user) {
 }
 
 function makeChoiceGenreDiv(user, info) {
-    
+
 
     d3.select("#genreFilmesDiv").selectAll("*").remove();
-    d3.select("#genreFilmesDiv").append("div").attr("id","infoP").attr("class", "textDivClass");
-    d3.select("#genreFilmesDiv").append("div").attr("id","dropDownDiv").attr("class", "dropDownDivStyle");
-    d3.select("#genreFilmesDiv").append("div").attr("id","acceptChangesDiv").attr("class", "acceptChangesDivStyle");
+    d3.select("#genreFilmesDiv").append("div").attr("id", "infoP").attr("class", "textDivClass");
+    d3.select("#genreFilmesDiv").append("div").attr("id", "dropDownDiv").attr("class", "dropDownDivStyle");
+    d3.select("#genreFilmesDiv").append("div").attr("id", "acceptChangesDiv").attr("class", "acceptChangesDivStyle");
 
     d3.select("#infoP").append("text").text("Veuillez choisir 3 genres de film : ");
 
@@ -197,45 +198,45 @@ function makeChoiceGenreDiv(user, info) {
     d3.select("#paragraphDropDown2").append("text").text("Choix genre 2 : ");
 
     d3.select("#dropDownDiv").append("p").attr("id", "paragraphDropDown3");
-    d3.select("#paragraphDropDown3").append("text").text("Choix genre 3 : ");   
+    d3.select("#paragraphDropDown3").append("text").text("Choix genre 3 : ");
 
-    if (user.genre1 != null){
+    if (user.genre1 != null) {
         makeDropDownMenu("paragraphDropDown1", "dropDown1", dataFr[dataEn.indexOf(user.genre1)], dataFr);
-    }else{
+    } else {
         makeDropDownMenu("paragraphDropDown1", "dropDown1", "Comédie", dataFr);
     }
 
-    if (user.genre2 != null){
+    if (user.genre2 != null) {
         makeDropDownMenu("paragraphDropDown2", "dropDown2", dataFr[dataEn.indexOf(user.genre2)], dataFr);
-    }else{
+    } else {
         makeDropDownMenu("paragraphDropDown2", "dropDown2", "Horreur", dataFr);
     }
 
-    if (user.genre3 != null){
+    if (user.genre3 != null) {
         makeDropDownMenu("paragraphDropDown3", "dropDown3", dataFr[dataEn.indexOf(user.genre3)], dataFr);
-    }else{
+    } else {
         makeDropDownMenu("paragraphDropDown3", "dropDown3", "Romance", dataFr);
     }
 
     d3.select("#acceptChangesDiv")
         .append("input")
         .attr("type", "button")
-        .attr("value","Valider")
+        .attr("value", "Valider")
         .on("click", function() {
             clickAction(this, user);
         });
     d3.select("#acceptChangesDiv").append("text").attr("id", "texteSuiteValider");
 
-    if(info == 1){
+    if (info == 1) {
         displayMessageGenreFilme("Changements validés", '#036429');
     }
 
 }
 
-function makeDropDownMenu(pId, dropDownId, defaultVal, dataFr){
+function makeDropDownMenu(pId, dropDownId, defaultVal, dataFr) {
     var dropdown = d3.select("#" + pId)
         .append("select")
-        .attr("id",dropDownId);
+        .attr("id", dropDownId);
 
     var options = dropdown.selectAll("option")
         .data(dataFr)
@@ -248,7 +249,7 @@ function makeDropDownMenu(pId, dropDownId, defaultVal, dataFr){
             return d;
         });
 
-    options.property("selected", function(d){return d === defaultVal});
+    options.property("selected", function(d) { return d === defaultVal });
 }
 
 //met les buttons dans le button div
@@ -317,10 +318,10 @@ function updatesUserDetails(user) {
 }
 
 //resets user group info
-function resetGroupInfo(user){
-    if (user.host == -1){
+function resetGroupInfo(user) {
+    if (user.host == -1) {
         deleteJson('group', user.group1);
-    }else{
+    } else {
         console.log(user.group1);
         console.log(user.host);
         quitGroup(user.group1, user.host)
@@ -332,20 +333,20 @@ function resetGroupInfo(user){
     patchJson('user', user);
 }
 
-function displayMessageGenreFilme(msg, color){
+function displayMessageGenreFilme(msg, color) {
     d3.select("#texteSuiteValider")
         .text(msg)
         .style('color', color)
         .attr('class', 'validationGenreText');
-    
-    setTimeout(function(){
+
+    setTimeout(function() {
         d3.select("#texteSuiteValider")
-        .text('');
+            .text('');
     }, 3000);
 
 }
 
-function displayMessageInfoFilm(msg, color){
+function displayMessageInfoFilm(msg, color) {
     d3.select("#searchBar")
         .selectAll("*")
         .remove();
@@ -355,8 +356,8 @@ function displayMessageInfoFilm(msg, color){
         .text(msg)
         .style('color', color)
         .attr('class', 'validationGenreText');
-    
-    setTimeout(function(){
+
+    setTimeout(function() {
         d3.select("#searchBar")
             .selectAll("*")
             .remove();
@@ -372,33 +373,33 @@ function clickAction(buttonClicked, user) {
         case "🖉":
             makeUserDetailsUpdateDiv(user);
             break;
-        
-        case "\u2192":// look for group to join
+
+        case "\u2192": // look for group to join
             //lit la valuer dans la boite de texte, et appelle le nouveau ecran avec user et le texte -> qui si texte est different de ""
             const searchBarText = document.getElementById("searchInput").value;
             if (searchBarText != "") {
-                if (user.group1 != 0){
-                    resetGroupInfo(user);              
+                if (user.group1 != 0) {
+                    resetGroupInfo(user);
                 }
                 d3.select("#searchBar")
                     .selectAll("*")
                     .remove();
 
                 joinGroup(searchBarText, user.id).then((place) => {
-                    if(place != 0){
+                    if (place != 0) {
                         user.host = place;
                         user.group1 = searchBarText;
                         patchJson('user', user);
                         displayMessageInfoFilm("Groupe Rejoint", '#036429');
                         getJson('group', searchBarText).then((group) => {
                             makeShowGrpDiv(group, user);
-                        }); 
-                    }else{
+                        });
+                    } else {
                         displayMessageInfoFilm("Impossible de rejoindre le groupe", '#bb151a');
-                    }              
+                    }
                 });
-                
-                
+
+
             }
             break;
         case "\u2705":
@@ -419,74 +420,74 @@ function clickAction(buttonClicked, user) {
             */
             /* WHAT WAS HERE BEFORE*/
 
-            if (user.group1 != 0){
-                resetGroupInfo(user);              
+            if (user.group1 != 0) {
+                resetGroupInfo(user);
             }
-            
-            if(user.genre1 != null && user.genre2 != null && user.genre3 != null){
+
+            if (user.genre1 != null && user.genre2 != null && user.genre3 != null) {
                 var body = {
-                    name:"",
+                    name: "",
                     host: user.id
                 }
-                
-                creatJson('group', body).then((idGroup) =>{
+
+                creatJson('group', body).then((idGroup) => {
                     user.group1 = idGroup;
                     user.host = -1;
                     patchJson('user', user);
                     getJson('group', idGroup).then((group) => {
                         makeShowGrpDiv(group, user);
-                    });              
+                    });
                 });
-            }else{
+            } else {
                 displayMessageGenreFilme("Veuillez effectuer vos choix", '#bb151a');
             }
-              
+
             break;
         case "Rejoindre un groupe":
             //joinGroup(1);
             //getJson("group", user.groupe).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
-            if(user.genre1 != null && user.genre2 != null && user.genre3 != null){
+            if (user.genre1 != null && user.genre2 != null && user.genre3 != null) {
                 makeSearchBarDiv(user);
-            }else{
+            } else {
                 displayMessageGenreFilme("Veuillez effectuer vos choix", '#bb151a');
             }
-            
+
             break;
         case "Valider":
             const dropDown1 = document.getElementById("dropDown1").value;
             const dropDown2 = document.getElementById("dropDown2").value;
             const dropDown3 = document.getElementById("dropDown3").value;
-            if(dropDown1 != dropDown2 && dropDown1 != dropDown3 && dropDown2 != dropDown3){
+            if (dropDown1 != dropDown2 && dropDown1 != dropDown3 && dropDown2 != dropDown3) {
                 user.genre1 = dataEn[dataFr.indexOf(dropDown1)];
                 user.genre2 = dataEn[dataFr.indexOf(dropDown2)];
                 user.genre3 = dataEn[dataFr.indexOf(dropDown3)];
 
                 patchJson('user', user);
                 makeChoiceGenreDiv(user, 1);
-            }else{
+            } else {
                 displayMessageGenreFilme("Changements non validés", '#bb151a');
             }
             break;
-            
-            
+
+
         default:
             console.log("error in clickAction");
     }
 }
 
-function creatGrp(film){
+function creatGrp(film) {
     console.log(film)
-    if (user.group1 != 0){
-        resetGroupInfo(user);              
+    if (user.group1 != 0) {
+        resetGroupInfo(user);
     }
-    
-    if(user.genre1 != null && user.genre2 != null && user.genre3 != null){
+
+    if (user.genre1 != null && user.genre2 != null && user.genre3 != null) {
         var body = {
-            name:"",
+            name: "",
             host: user.id
         }
-        
-        creatJson('group', body).then((idGroup) =>{
+
+        creatJson('group', body).then((idGroup) => {
             user.group1 = idGroup;
             user.host = -1;
             patchJson('user', user);
@@ -494,9 +495,9 @@ function creatGrp(film){
                 group.result = film;
                 patchJson('group', group);
                 makeShowGrpDiv(group, user);
-            });              
+            });
         });
-    }else{
+    } else {
         displayMessageGenreFilme("Veuillez effectuer vos choix", '#bb151a');
     }
 }
