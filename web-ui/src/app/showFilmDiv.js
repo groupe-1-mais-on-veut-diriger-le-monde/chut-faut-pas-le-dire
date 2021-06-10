@@ -16,8 +16,8 @@ function makeShowFilmScreen(movie, mainId, titleId) {
     d3.select("#generalInfoDiv").append("div").attr("id", "generalInfoDiv_rat").attr("class", "movieGeneralInfoStyle_sub_10").style("top", "0%");
     d3.select("#generalInfoDiv").append("div").attr("id", "generalInfoDiv_gen").attr("class", "movieGeneralInfoStyle_sub_10").style("top", "10%");
     d3.select("#generalInfoDiv").append("div").attr("id", "generalInfoDiv_ann").attr("class", "movieGeneralInfoStyle_sub_10").style("top", "20%");
-    d3.select("#generalInfoDiv").append("div").attr("id", "generalInfoDiv_syn").attr("class", "movieGeneralInfoStyle_sub_30").style("top", "30%");
-    d3.select("#generalInfoDiv").append("div").attr("id", "generalInfoDiv_act").attr("class", "movieGeneralInfoStyle_sub_10").style("top", "70%");
+    d3.select("#generalInfoDiv").append("div").attr("id", "generalInfoDiv_syn").attr("class", "movieGeneralInfoStyle_sub_30").style("top", "27%");
+    d3.select("#generalInfoDiv").append("div").attr("id", "generalInfoDiv_act").attr("class", "movieGeneralInfoStyle_sub_10").style("top", "67%");
     d3.select("#generalInfoDiv").append("div").attr("id", "generalInfoDiv_age").attr("class", "movieGeneralInfoStyle_sub_10").style("top", "80%");
     d3.select("#generalInfoDiv").append("div").attr("id", "generalInfoDiv_dur").attr("class", "movieGeneralInfoStyle_sub_10").style("top", "90%");
     //d3.select("#generalInfoDiv").append("div").attr("id", lowInfoDivName);

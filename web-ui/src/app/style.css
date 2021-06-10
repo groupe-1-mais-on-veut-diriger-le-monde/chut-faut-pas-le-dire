@@ -52,7 +52,8 @@ body {
     /* classe affichage du pseudo et des titres */
     position: absolute;
     color: #f79a40;
-    margin: auto;
+    
+    vertical-align: middle;
     font-size: 2vw;
     font-weight: bold;
 }
@@ -200,7 +201,7 @@ body {
 .movieGeneralInfoStyle_sub_30{
     position: absolute;
     width: 100%;
-    height: 40%;
+    height: 35%;
     overflow-y: scroll;
 }
 
