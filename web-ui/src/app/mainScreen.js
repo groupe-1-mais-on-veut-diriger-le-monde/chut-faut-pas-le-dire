@@ -60,6 +60,7 @@ function makeMainScreen(userDetails) {
     makeUserDetailsDiv(user);
     makeChoiceGenreDiv(user, 0);
     makeButtonsDiv(user);
+    makeButtonsLogin();
     showUserDetails(user);
 
     if (user.groupe1 != null) {
@@ -273,6 +274,30 @@ function makeButtonsDiv(user) {
         }).on("click", function() {
             clickAction(this, user);
         });
+}
+
+function makeButtonsLogin() {
+
+    d3.select("#buttonsHeader")
+        .append("input")
+        .attr("value", "Log in")
+        .attr("type", "button")
+        .attr("class", "button")
+        .style("width", "50%")
+        /*.on("click", function() {
+            clickAction(this, user);
+        });*/
+
+    d3.select("#buttonsHeader")
+        .append("input")
+        .attr("value", "Log out")
+        .attr("type", "button")
+        .attr("class", "button")
+        .style("width", "50%")
+        /*.on("click", function() {
+            clickAction(this, user);
+        });*/
+
 }
 
 function makeSearchBarDiv(user) {
