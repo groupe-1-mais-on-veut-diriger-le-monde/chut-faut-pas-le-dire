@@ -11,8 +11,8 @@ deleteAll('user');
 
 
 var body = {
-    name: 'Joao Quinta',
-    age: 23
+    name: 'utilisateur',
+    age: 0
 }
 creatJson('user', body)
     .then((userId) => choseMainScreen(userId));

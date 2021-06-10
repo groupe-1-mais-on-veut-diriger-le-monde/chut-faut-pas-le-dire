@@ -193,13 +193,13 @@ function makeChoiceGenreDiv(user, info) {
 
     d3.select("#infoP").append("text").text("Veuillez choisir 3 genres de film : ");
 
-    d3.select("#dropDownDiv").append("p").attr("id", "paragraphDropDown1");
+    d3.select("#dropDownDiv").append("div").attr("id", "paragraphDropDown1").attr('class', 'dropDownDiv').style('top','10%');
     d3.select("#paragraphDropDown1").append("text").text("Choix genre 1 : ");
 
-    d3.select("#dropDownDiv").append("p").attr("id", "paragraphDropDown2");
+    d3.select("#dropDownDiv").append("div").attr("id", "paragraphDropDown2").attr('class', 'dropDownDiv').style('top','40%');
     d3.select("#paragraphDropDown2").append("text").text("Choix genre 2 : ");
 
-    d3.select("#dropDownDiv").append("p").attr("id", "paragraphDropDown3");
+    d3.select("#dropDownDiv").append("div").attr("id", "paragraphDropDown3").attr('class', 'dropDownDiv').style('top','70%');
     d3.select("#paragraphDropDown3").append("text").text("Choix genre 3 : ");
 
     if (user.genre1 != null) {
@@ -219,15 +219,17 @@ function makeChoiceGenreDiv(user, info) {
     } else {
         makeDropDownMenu("paragraphDropDown3", "dropDown3", "Romance", dataFr);
     }
+    d3.select("#acceptChangesDiv").append('div').attr('id', 'validerButton');
+    d3.select("#acceptChangesDiv").append('div').attr('id', 'messageText');
 
-    d3.select("#acceptChangesDiv")
+    d3.select("#validerButton")
         .append("input")
         .attr("type", "button")
         .attr("value", "Valider")
         .on("click", function() {
             clickAction(this, user);
         });
-    d3.select("#acceptChangesDiv").append("text").attr("id", "texteSuiteValider");
+    d3.select("#messageText").append("text").attr("id", "texteSuiteValider");
 
     if (info == 1) {
         displayMessageGenreFilme("Changements validés", '#036429');

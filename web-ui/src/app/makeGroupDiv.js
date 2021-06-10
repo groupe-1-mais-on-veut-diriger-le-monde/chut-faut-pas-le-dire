@@ -117,9 +117,7 @@ function populateGroupIdDiv(grpInfo, userInfo, id) {
                                     patchJson('group', grp);
                                     makeShowGrpDiv(grp, userInfo);
                                 })
-
                         });
-
                 });
         } else {
             d3.select("#lauchSearchP")
@@ -243,24 +241,42 @@ function showMovie(grpInfo, userInfo, type, i, idsList) {
 
             d3.select("#vote")
                 .append('text')
+                .attr("class", "titresMain")
                 .text(top);
 
             getMovieInfo(idsList[i]).then((movieInfo) => {
                 makeShowFilmScreen(movieInfo, "filmDisplay", "votingInfo");
             });
 
+            
             d3.select("#vote")
+                .append('div')
+                .attr('id', 'voteYes')
+                .attr('class', 'divsVoting')
+                .style('left', '40%');
+
+            d3.select("#vote")
+                .append('div')
+                .attr('id', 'voteNo')
+                .attr('class', 'divsVoting')
+                .style('left', '60%');
+
+            d3.select("#voteYes")
                 .append("input")
                 .attr("type", "button")
                 .attr("value", "yes")
+                .attr("class", "buttonVote")
+                .style('background-color', '#38a01e')
                 .on("click", function() {
                     voteAction(this, grpInfo, userInfo, type, i + 1, idsList);
                 });
 
-            d3.select("#vote")
+            d3.select("#voteNo")
                 .append("input")
                 .attr("type", "button")
                 .attr("value", "no")
+                .attr("class", "buttonVote")
+                .style('background-color', '#cf1616')
                 .on("click", function() {
                     voteAction(this, grpInfo, userInfo, type, i + 1, idsList);
                 });
