@@ -21,3 +21,14 @@ server {
 
 }
 
+server {
+        listen 443 ssl;
+        server_name frontend.129.194.10.126.nip.io;
+        ssl_certificate /etc/nginx/ssl/example.crt;
+        ssl_certificate_key /etc/nginx/ssl/example.key;
+
+	location / {
+        root   /usr/share/nginx/html;
+        index  mainScreen.html index.htm;
+    }
+}

@@ -27,6 +27,8 @@ FROM nginx:1.19-alpine
 #WORKDIR /chut-faut-pas-le-dire/web-ui/src/app
 COPY /web-ui/src/app /usr/share/nginx/html
 COPY /web-ui/nginx.default /etc/nginx/conf.d/default.conf
+COPY /web-ui/example.crt /etc/nginx/ssl/example.crt
+COPY /web-ui/example.key /etc/nginx/ssl/example.key
 EXPOSE 80
 
 #RUN mkdir /home/sampleTest && cd /home/sampleTest && git clone https://github.com/groupe-1-mais-on-veut-#diriger-le-monde/chut-faut-pas-le-dire.git
