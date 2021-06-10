@@ -1,7 +1,5 @@
 function makeShowGrpDiv(grpInfo, userInfo) {
-    console.log('AHAHH')
-    console.log(grpInfo)
-    console.log(userInfo)
+    
 
     if(grpInfo != null){
             //resets body
@@ -64,7 +62,7 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
         .attr("class", "button")
         .style("width", "50%")
         .on("click", function() {
-            getJson("group", user.group1).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
+            getJson("group", userInfo.group1).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
         });
     
     d3.select("#reloadGrpDivP")
@@ -94,7 +92,6 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
                         .then((allUsersInfo) => {
                             computeResultId(grpInfo, allUsersInfo);
                             grpInfo.name = '1';
-                            console.log('called from here')
                             makeShowGrpDiv(grpInfo, userInfo);
                         });
                         //looking(grpInfo, userInfo, 'insideRightSideStyle_rightSide', 'voting');
