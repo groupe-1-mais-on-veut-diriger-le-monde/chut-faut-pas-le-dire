@@ -92,15 +92,16 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
                         .then((allUsersInfo) => {
                             computeResultId(grpInfo, allUsersInfo)
                                 .then((result) =>{
+                                    makeShowGrpDiv(result, userInfo);
+                                    /*
                                     grpInfo.result = result;
                                     grpInfo.name = '1';
                                     patchJson('group', grpInfo).then(() => {
                                         makeShowGrpDiv(grpInfo, userInfo);
                                     });
-                                    
+                                    */   
                             });
                         });
-                        //looking(grpInfo, userInfo, 'insideRightSideStyle_rightSide', 'voting');
                 });
         }else{
             d3.select("#lauchSearchP")
@@ -119,11 +120,7 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
                         .then((allUsersInfo) => {
                             getJson('group', grpInfo.id)
                                 .then((grp) => {
-                                    var indexMax = countVotes(allUsersInfo);     
-                                    var result = grp.result.split(",");
-                                    console.log("salut joaoaoaoaoa")
-                                    console.log(result)
-                                    console.log(grp)
+                                    var indexMax = countVotes(allUsersInfo);
                                     grp.result = result[indexMax];
                                     grp.name = "2";
                                     patchJson('group', grp);

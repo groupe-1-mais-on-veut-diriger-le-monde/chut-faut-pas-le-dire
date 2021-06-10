@@ -109,6 +109,9 @@ async function quitGroup(idGroup, place){
 
 //changes state of grp
 async function changeState(grpId, state){
+    console.log('grpId')
+    console.log(grpId)
+    console.log(state)
     var url = getURL('group');
     url = url + "/status/" + grpId.toString() + "/" + state;
 
@@ -172,11 +175,20 @@ async function computeResultId(grp, allUserInfo){
         if (indexT > -1) {
             filmsI.splice(indexT, 1);
         }
-    }    
+    }
+    finalId = finalId.slice(0, -1);
 
-    grp.result = finalId.slice(0, -1);
-    changeState(grp.id, '1');
-    return finalId;
+
+    grp.result = finalId;
+    console.log('laaaaa')
+    console.log(grp)
+    patchJson('group', grp).then((_) => {
+        changeState(grp.id, '1');
+    });
+    grp.name = '1';
+    console.log('in cimput')
+    console.log(grp)
+    return grp;
 }
 
 function getMotCle(arrayEx1){
