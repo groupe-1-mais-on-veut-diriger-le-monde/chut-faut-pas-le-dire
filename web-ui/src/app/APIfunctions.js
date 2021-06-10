@@ -133,7 +133,12 @@ function getURL(type){
     }
     return url;
 }
-
+async function getMovieInfo(movieId){
+    var url = 'https://imdb-api.com/en/API/Title/' + getKeyIMDB() + '/' + movieId + '/FullActor,FullCast,Ratings,';
+    var response = await fetch(url);
+    var jsonData = await response.json();
+    return jsonData;
+}
 
 async function computeResultId(grp, allUserInfo){
     var motsCles = [];
@@ -146,7 +151,7 @@ async function computeResultId(grp, allUserInfo){
 
     //var url = 'https://imdb-api.com/en/API/Keyword/' + getKeyIMDB() + '/' + motCle;
     var url = 'https://imdb-api.com/en/API/Keyword/' + getKeyIMDB() + '/love';
-    //	"tt9620292,tt1375666,tt1386697,tt10272386,tt1677720,tt0091203,tt0407887,tt0409459,tt7286456,tt0993846,"
+    //	"tt9620292,tt1375666,tt1386697,tt10272386,tt1677720,tt0091203,tt0407887,tt0409459,tt7286456,tt0993846"
     
     var response = await fetch(url);
     var jsonData = await response.json();
@@ -169,7 +174,7 @@ async function computeResultId(grp, allUserInfo){
         }
     }    
 
-    grp.result = finalId;
+    grp.result = finalId.slice(0, -1);
     patchJson('group', grp);
     changeState(grp.id, '1');
 
@@ -203,6 +208,16 @@ function getMotCle(arrayEx1){
 }
 
 function getKeyIMDB(){
-    //return 'k_despdtm5';
+    return 'k_imieubxh'; // lea
+    /*
+    return 'k_despdtm5'; // antoine
+    return 'k_h1yacuhi'; // joao
+    return 'k_emixqj02'; // jan
+    return 'k_q9zkw2o3'; // edin
+    return 'k_imieubxh'; // lea
+    */
+}
+function getKeyIMDB1(){
+    return 'k_despdtm5'; // antoine
     return 'k_h1yacuhi';
 }

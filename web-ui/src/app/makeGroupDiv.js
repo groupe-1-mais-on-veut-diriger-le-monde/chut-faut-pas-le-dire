@@ -1,6 +1,7 @@
 function makeShowGrpDiv(grpInfo, userInfo) {
 
     if(grpInfo != null){
+        console.log(grpInfo)
             //resets body
         d3.select("#rightSideDiv")
             .selectAll("*")
@@ -111,8 +112,21 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
                 .on("click", function() {
                     loadAllMembers(grpInfo)
                         .then((allUsersInfo) => {
-                            /* TO DO */
+                            getJson('group', grpInfo.id)
+                                .then((grp) => {
+                                    var indexMax = countVotes(allUsersInfo);     
+                                    var result = grp.result.split(",");
+                                    console.log("salut joaoaoaoaoa")
+                                    console.log(result)
+                                    console.log(grp)
+                                    grp.result = result[indexMax];
+                                    grp.name = "2";
+                                    patchJson('group', grp);
+                                    makeShowGrpDiv(grp, userInfo);
+                            })
+                            
                         });
+
                 });
         }else{
             d3.select("#lauchSearchP")
@@ -189,15 +203,19 @@ function looking(grpInfo, userInfo, id, status){
             .text("En attente de lancement !");
     }
     else {
+        userInfo.vote = "";
         d3.select("#" + id).append("div").attr("id", "filmDisplay").attr("class", "filmDisplay");
         d3.select("#" + id).append("div").attr("id", "vote").attr("class", "vote");
-        console.log(grpInfo.result)
-                
+
+        // TEST MODE
+        //grpInfo.result = "tt9620292,tt1375666,tt1386697,tt10272386,tt1677720,tt0091203,tt0407887,tt0409459,tt7286456,tt0993846";
+        //console.log(grpInfo.result.split(","));
+        showMovie(grpInfo, userInfo, status, 0, grpInfo.result.split(","));
     }
 }
 
-function showMovie(grpInfo, userInfo, type, i){
-    console.log(grpInfo)
+function showMovie(grpInfo, userInfo, type, i, idsList){
+    
     d3.select("#votingInfo")
         .selectAll("*")
         .remove();
@@ -211,22 +229,24 @@ function showMovie(grpInfo, userInfo, type, i){
         .remove();
 
     if(type == 'voting'){
-        if(i < grpInfo.result.length){
+        if(i < idsList.length){
             var t = i + 1;
-            var top = "Vote : " + t.toString() + "/" + grpInfo.result.length.toString();
+            var top = "Vote : " + t.toString() + "/" + idsList.length.toString();
 
             d3.select("#vote")
                 .append('text')
                 .text(top);
-
-            makeShowFilmScreen(grpInfo.result[i], "filmDisplay", "votingInfo");
             
+            getMovieInfo(idsList[i]).then((movieInfo) => {
+                makeShowFilmScreen(movieInfo, "filmDisplay", "votingInfo");
+            });
+
             d3.select("#vote")
                 .append("input")
                 .attr("type", "button")
                 .attr("value", "yes")
                 .on("click", function() {
-                    voteAction(this, grpInfo, userInfo, type, i + 1);
+                    voteAction(this, grpInfo, userInfo, type, i + 1, idsList);
                 });
 
             d3.select("#vote")
@@ -234,18 +254,22 @@ function showMovie(grpInfo, userInfo, type, i){
                 .attr("type", "button")
                 .attr("value", "no")
                 .on("click", function() {
-                    voteAction(this, grpInfo, userInfo, type, i + 1);
+                    voteAction(this, grpInfo, userInfo, type, i + 1, idsList);
                 });
         }else{
             patchJson('user', userInfo);
         }
-    }else if(type == 'results'){
+    }
+    
+    else if(type == 'results'){
             
         d3.select("#votingInfo")
             .append('text')
             .text("Votation terminé !");
 
-        makeShowFilmScreen(grpInfo.result, "filmDisplay", "votingInfo");
+        getMovieInfo(idsList[i]).then((movieInfo) => {
+            makeShowFilmScreen(movieInfo, "filmDisplay", "votingInfo");
+        });
 
         d3.select("#vote")
             .append('text')
@@ -253,12 +277,46 @@ function showMovie(grpInfo, userInfo, type, i){
     }
 }
 
-function voteAction(buttonClicked, grpInfo, userInfo, type, i){
+function voteAction(buttonClicked, grpInfo, userInfo, type, i, idsList){
     if(buttonClicked.value == 'yes'){
         userInfo.vote = userInfo.vote + "1";
-        showMovie(grpInfo, userInfo, type, i);
+        showMovie(grpInfo, userInfo, type, i, idsList);
     }else if(buttonClicked.value == 'no'){
         userInfo.vote = userInfo.vote + "0";
-        showMovie(grpInfo, userInfo, type, i);
+        showMovie(grpInfo, userInfo, type, i, idsList);
     }
+}
+
+function countVotes(allUsersInfo){
+
+    var res = [0,0,0,0,0,0,0,0,0,0];
+    for(user in allUsersInfo){
+        voteU = allUsersInfo[user].vote;
+        for (var i = 0; i < voteU.length; i++){
+            if(voteU[i] == "1"){
+                res[i] = res[i] + 1;
+            }
+        }
+    }
+    console.log('TOTAL VOTES')
+    console.log(res)
+    var indexOfMax = findMax(res);
+    console.log('MAX INDEX')
+    console.log(indexOfMax)
+    return indexOfMax;
+}
+
+function findMax(arr) {
+    if (arr.length === 0) {
+        return -1;
+    }
+    var max = arr[0];
+    var maxIndex = 0;
+    for (var i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            maxIndex = i;
+            max = arr[i];
+        }
+    }
+    return maxIndex;
 }
