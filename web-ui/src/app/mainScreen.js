@@ -276,6 +276,7 @@ function makeButtonsDiv(user) {
         });
 }
 
+// cree les bouttons de login et logout
 function makeButtonsLogin() {
 
     d3.select("#buttonsHeader")
@@ -284,9 +285,9 @@ function makeButtonsLogin() {
         .attr("type", "button")
         .attr("class", "button")
         .style("width", "50%")
-        /*.on("click", function() {
-            clickAction(this, user);
-        });*/
+        .on("click", function() {
+            login();
+        });
 
     d3.select("#buttonsHeader")
         .append("input")
@@ -294,9 +295,9 @@ function makeButtonsLogin() {
         .attr("type", "button")
         .attr("class", "button")
         .style("width", "50%")
-        /*.on("click", function() {
-            clickAction(this, user);
-        });*/
+        .on("click", function() {
+            logout();
+        });
 
 }
 
@@ -526,4 +527,13 @@ function creatGrp(film) {
     } else {
         displayMessageGenreFilme("Veuillez effectuer vos choix", '#bb151a');
     }
+}
+
+function login() {
+    console.log("login")
+}
+
+function logout() {
+    console.log("logout")
+
 }
