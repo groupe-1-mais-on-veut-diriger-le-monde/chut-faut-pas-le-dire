@@ -6,6 +6,8 @@ getJson("user", testID)
 deleteAll('group');
 deleteAll('user');
 */
+
+
 var body = {
     name: 'Joao Quinta',
     age: 23

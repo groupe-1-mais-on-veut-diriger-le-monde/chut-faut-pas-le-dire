@@ -134,11 +134,37 @@ function getURL(type){
 }
 
 
-async function test(){
-    var response1 = await fetch("/jsonFiles/another.json");
-    var jsonData1 = await response1.json();
-    var response2 = await fetch("/jsonFiles/bionicle.json");
-    var jsonData2 = await response2.json();
-    return [jsonData1, jsonData2];
+async function computeResultId(grp, allUserInfo){
+    var motsCles = [];
+    for (user in allUserInfo){
+        motsCles.push(allUserInfo[user].genre1)
+        motsCles.push(allUserInfo[user].genre2)
+        motsCles.push(allUserInfo[user].genre3)
+    }
+    motsCles.sort();
+    console.log(motsCles);
+
+    console.log(motsCles)
+    var response = await fetch('https://imdb-api.com/en/API/Keyword/k_despdtm5/love');
+    var jsonData = await response.json();
+    var all = jsonData.items;
+    var filmsI = [];
+    var finalId = "";
+    for (val in all){
+        if (! all[val].year.includes("–")){
+            filmsI.push(all[val].id);
+        }        
+    }
+    for (var i = 0; i<10; i++){
+        var indexS = Math.floor(Math.random() * filmsI.length);
+        finalId = finalId + filmsI[indexS] + ","
+        const indexT = filmsI.indexOf(filmsI[indexS]);
+        if (indexT > -1) {
+            filmsI.splice(indexT, 1);
+        }
+    }
+
+    grp.result = finalId;
+    patchJson('group', grp);
 }
 

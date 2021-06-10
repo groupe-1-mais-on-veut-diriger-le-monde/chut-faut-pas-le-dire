@@ -86,9 +86,12 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
             .attr("value", "Lancer la recherche")
             .attr("class", "button")
             .on("click", function() {
-                changeState(grpInfo.id,1).then(() => {
-                    looking(grpInfo, userInfo, 'insideRightSideStyle_rightSide', 'voting');
-                });
+                loadAllMembers(grpInfo)
+                    .then((allUsersInfo) => {
+                        computeResultId(grpInfo, allUsersInfo)
+                    });
+                    //looking(grpInfo, userInfo, 'insideRightSideStyle_rightSide', 'voting');
+
             });
     }else{
         d3.select("#lauchSearchP")
@@ -165,14 +168,12 @@ function looking(grpInfo, userInfo, id, status){
         userInfo.vote = "";
         d3.select("#" + id).append("div").attr("id", "filmDisplay").attr("class", "filmDisplay");
         d3.select("#" + id).append("div").attr("id", "vote").attr("class", "vote");
-        test().then((listFilm) =>{
-            grpInfo.result = listFilm;
-            showMovie(grpInfo, userInfo, status, 0);
-        })        
+                
     }
 }
 
 function showMovie(grpInfo, userInfo, type, i){
+    console.log(grpInfo)
     d3.select("#votingInfo")
         .selectAll("*")
         .remove();
