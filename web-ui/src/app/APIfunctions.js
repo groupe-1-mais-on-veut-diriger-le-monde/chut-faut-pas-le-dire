@@ -145,7 +145,8 @@ async function computeResultId(grp, allUserInfo){
     var motCle = getMotCle(motsCles);
 
     //var url = 'https://imdb-api.com/en/API/Keyword/' + getKeyIMDB() + '/' + motCle;
-    var url = 'https://imdb-api.com/en/API/Keyword/k_despdtm5/love';
+    var url = 'https://imdb-api.com/en/API/Keyword/' + getKeyIMDB() + '/love';
+    //	"tt9620292,tt1375666,tt1386697,tt10272386,tt1677720,tt0091203,tt0407887,tt0409459,tt7286456,tt0993846,"
     
     var response = await fetch(url);
     var jsonData = await response.json();
@@ -166,7 +167,7 @@ async function computeResultId(grp, allUserInfo){
         if (indexT > -1) {
             filmsI.splice(indexT, 1);
         }
-    }
+    }    
 
     grp.result = finalId;
     patchJson('group', grp);

@@ -2,10 +2,10 @@
 getJson("user", testID)
     .then((user) => choseMainScreen(user));
 */
-/* 
+/* */
 deleteAll('group');
 deleteAll('user');
-*/
+
 
 
 var body = {

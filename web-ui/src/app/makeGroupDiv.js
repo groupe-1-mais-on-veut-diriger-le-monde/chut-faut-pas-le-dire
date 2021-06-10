@@ -1,5 +1,4 @@
 function makeShowGrpDiv(grpInfo, userInfo) {
-    
 
     if(grpInfo != null){
             //resets body
@@ -24,7 +23,7 @@ function makeShowGrpDiv(grpInfo, userInfo) {
             .then((allUsersInfo) => {
                 populateUserListDiv(allUsersInfo, "userListDiv");
             });
-        
+            
         if(grpInfo.name == "1"){
             looking(grpInfo, userInfo, "insideRightSideStyle_rightSide", "voting"); 
         }
@@ -90,9 +89,10 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
                 .on("click", function() {
                     loadAllMembers(grpInfo)
                         .then((allUsersInfo) => {
-                            computeResultId(grpInfo, allUsersInfo);
-                            grpInfo.name = '1';
-                            makeShowGrpDiv(grpInfo, userInfo);
+                            computeResultId(grpInfo, allUsersInfo).then(() =>{
+                                grpInfo.name = '1';
+                                makeShowGrpDiv(grpInfo, userInfo);
+                            });
                         });
                         //looking(grpInfo, userInfo, 'insideRightSideStyle_rightSide', 'voting');
                 });
@@ -189,9 +189,9 @@ function looking(grpInfo, userInfo, id, status){
             .text("En attente de lancement !");
     }
     else {
-        userInfo.vote = "";
         d3.select("#" + id).append("div").attr("id", "filmDisplay").attr("class", "filmDisplay");
         d3.select("#" + id).append("div").attr("id", "vote").attr("class", "vote");
+        console.log(grpInfo.result)
                 
     }
 }
