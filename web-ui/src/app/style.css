@@ -224,23 +224,6 @@ body {
 }
 
 
-/* ############################################### */
-
-.userBlock_List {
-    position: absolute;
-    width: 100%;
-    height: 16%;
-}
-
-.divForUserMainInfo {
-    position: absolute;
-    width: 90%;
-    left: 5%;
-    height: 50%;
-    top: 0px;
-}
-
-
 /* -------- Show Group Div Voting -------- */
 
 .insideRightSideStyle {
@@ -278,6 +261,15 @@ body {
 
 
 /* UNKN */
+
+.hidden {
+    display: none;
+}
+
+label {
+    margin-bottom: 10px;
+    display: block;
+}
 
 .boutonsMain {
     /* placement des boutons du mainScreen */
