@@ -1,12 +1,12 @@
 function makeShowGrpDiv(grpInfo, userInfo) {
 
-    if(grpInfo != null){
+    if (grpInfo != null) {
         console.log(grpInfo)
             //resets body
         d3.select("#rightSideDiv")
             .selectAll("*")
             .remove();
-            
+
         d3.select("#rightSideDiv")
             .append("div")
             .attr("id", "insideRightSideDiv")
@@ -18,24 +18,22 @@ function makeShowGrpDiv(grpInfo, userInfo) {
         d3.select("#insideRightSideStyle_leftSide").append("div").attr("id", "grpIdDiv").attr("class", "groupId");
         d3.select("#insideRightSideStyle_leftSide").append("div").attr("id", "userListDiv").attr("class", "userInGrpList");
 
-        populateGroupIdDiv(grpInfo, userInfo, "grpIdDiv"); 
+        populateGroupIdDiv(grpInfo, userInfo, "grpIdDiv");
 
         loadAllMembers(grpInfo)
             .then((allUsersInfo) => {
                 populateUserListDiv(allUsersInfo, "userListDiv");
             });
-            
-        if(grpInfo.name == "1"){
-            looking(grpInfo, userInfo, "insideRightSideStyle_rightSide", "voting"); 
-        }
-        else if(grpInfo.name == "2"){
+
+        if (grpInfo.name == "1") {
+            looking(grpInfo, userInfo, "insideRightSideStyle_rightSide", "voting");
+        } else if (grpInfo.name == "2") {
             looking(grpInfo, userInfo, "insideRightSideStyle_rightSide", "results");
-        }
-        else{
-            looking(grpInfo, userInfo, "insideRightSideStyle_rightSide", "waiting"); 
+        } else {
+            looking(grpInfo, userInfo, "insideRightSideStyle_rightSide", "waiting");
         }
 
-    }else{
+    } else {
         d3.select("#rightSideDiv")
             .selectAll("*")
             .remove();
@@ -44,7 +42,7 @@ function makeShowGrpDiv(grpInfo, userInfo) {
 
 }
 
-function populateGroupIdDiv(grpInfo, userInfo, id){
+function populateGroupIdDiv(grpInfo, userInfo, id) {
     var hostInfo = userInfo.host;
 
     d3.select("#" + id)
@@ -64,7 +62,7 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
         .on("click", function() {
             getJson("group", userInfo.group1).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
         });
-    
+
     d3.select("#reloadGrpDivP")
         .append("input")
         .attr("type", "button")
@@ -80,8 +78,8 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
         .append("text")
         .text("ID du groupe : " + grpInfo.id);
 
-    if(grpInfo.name == ""){
-        if(hostInfo == -1){
+    if (grpInfo.name == "") {
+        if (hostInfo == -1) {
             d3.select("#lauchSearchP")
                 .append("input")
                 .attr("type", "button")
@@ -91,18 +89,18 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
                     loadAllMembers(grpInfo)
                         .then((allUsersInfo) => {
                             computeResultId(grpInfo, allUsersInfo)
-                                .then((result) =>{
+                                .then((result) => {
                                     makeShowGrpDiv(result, userInfo);
-                            });
+                                });
                         });
                 });
-        }else{
+        } else {
             d3.select("#lauchSearchP")
                 .append("text")
                 .text("Seul le host peut lancer la recherche !");
         }
-    }else if(grpInfo.name == "1"){
-        if(hostInfo == -1){
+    } else if (grpInfo.name == "1") {
+        if (hostInfo == -1) {
             d3.select("#lauchSearchP")
                 .append("input")
                 .attr("type", "button")
@@ -118,12 +116,12 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
                                     grp.name = "2";
                                     patchJson('group', grp);
                                     makeShowGrpDiv(grp, userInfo);
-                            })
-                            
+                                })
+
                         });
 
                 });
-        }else{
+        } else {
             d3.select("#lauchSearchP")
                 .append("text")
                 .text("Seul le host peut finir la votation !");
@@ -133,53 +131,68 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
 
 }
 
-function populateUserListDiv(usersInGrpInfo, id){
-    
+function populateUserListDiv(usersInGrpInfo, id) {
+
     d3.select("#" + id)
         .selectAll("*")
         .remove();
-    
+
     var parentWidth = Math.floor(d3.select("#" + id).style('width').slice(0, -2));
     var parentHeight = Math.floor(d3.select("#" + id).style('height').slice(0, -2));
-    var eachMemberHeight = Math.floor(parentHeight/6);
-    
-    for(var i = 0; i < usersInGrpInfo.length; i++){
-        d3.select("#" + id)
-            .append("div")
-            .attr("id", "groupUserInfo"+i.toString())
-            .style("width", parentWidth.toString() + "px")
-            .style("height", eachMemberHeight.toString() + "px")
-            .attr("class", "smallUserDivClass");
-        
+    var eachMemberHeight = Math.floor(parentHeight / 6);
+
+    for (var i = 0; i < usersInGrpInfo.length; i++) {
+
+        if (i == 0) {
+            d3.select("#" + id)
+                .append("div")
+                .attr("id", "groupUserInfo" + i.toString())
+                .style("width", parentWidth.toString() + "px")
+                .style("height", eachMemberHeight.toString() + "px")
+                .attr("class", "hostUserDivClass");
+
+        } else {
+            d3.select("#" + id)
+                .append("div")
+                .attr("id", "groupUserInfo" + i.toString())
+                .style("width", parentWidth.toString() + "px")
+                .style("height", eachMemberHeight.toString() + "px")
+                .attr("class", "smallUserDivClass");
+
+        }
+
+
         d3.select("#" + "groupUserInfo" + i.toString())
             .append("div")
             .attr("id", "groupUserInfo" + i.toString() + "Top")
-            .style("width", Math.floor((parentWidth/100)*90).toString() + "px")
-            .style("height", Math.floor(eachMemberHeight/2).toString() + "px")
-            .style("left", Math.floor((parentWidth/100)*5).toString() + "px")
+            .style("width", Math.floor((parentWidth / 100) * 90).toString() + "px")
+            .style("height", Math.floor(eachMemberHeight / 2).toString() + "px")
+            .style("left", Math.floor((parentWidth / 100) * 5).toString() + "px")
             .style("top", "0px");
 
         d3.select("#" + "groupUserInfo" + i.toString())
             .append("div")
             .attr("id", "groupUserInfo" + i.toString() + "Bottom")
-            .style("width", Math.floor((parentWidth/100)*90).toString() + "px")
-            .style("height", Math.floor(eachMemberHeight/2).toString() + "px")
-            .style("left", Math.floor((parentWidth/100)*5).toString() + "px")
-            .style("top", Math.floor(eachMemberHeight/2).toString() + "px");
-        
+            .style("width", Math.floor((parentWidth / 100) * 90).toString() + "px")
+            .style("height", Math.floor(eachMemberHeight / 2).toString() + "px")
+            .style("left", Math.floor((parentWidth / 100) * 5).toString() + "px")
+            .style("top", Math.floor(eachMemberHeight / 2).toString() + "px");
+
         d3.select("#" + "groupUserInfo" + i.toString() + "Top")
             .append("text")
-            .text("ID : " + usersInGrpInfo[i].id + " name : " + usersInGrpInfo[i].name);
-        
+            .text("ID : " + usersInGrpInfo[i].id + " name : " + usersInGrpInfo[i].name)
+            .attr("class", "txtMembre");
+
         d3.select("#" + "groupUserInfo" + i.toString() + "Bottom")
             .append("text")
-            .text("Goûts : " + dataFr[dataEn.indexOf(usersInGrpInfo[i].genre1)] +" " + dataFr[dataEn.indexOf(usersInGrpInfo[i].genre2)]+" "+ dataFr[dataEn.indexOf(usersInGrpInfo[i].genre3)]);
+            .text("Goûts : " + dataFr[dataEn.indexOf(usersInGrpInfo[i].genre1)] + " " + dataFr[dataEn.indexOf(usersInGrpInfo[i].genre2)] + " " + dataFr[dataEn.indexOf(usersInGrpInfo[i].genre3)])
+            .attr("class", "txtMembre");
     }
 }
 
 
 
-function looking(grpInfo, userInfo, id, status){
+function looking(grpInfo, userInfo, id, status) {
     /*
     STATUS OPTIONS :
         "voting"
@@ -193,12 +206,11 @@ function looking(grpInfo, userInfo, id, status){
 
     d3.select("#" + id).append("div").attr("id", "votingInfo").attr("class", "votingInfo");
 
-    if(status == 'waiting'){
+    if (status == 'waiting') {
         d3.select("#votingInfo")
             .append('text')
             .text("En attente de lancement !");
-    }
-    else {
+    } else {
         userInfo.vote = "";
         d3.select("#" + id).append("div").attr("id", "filmDisplay").attr("class", "filmDisplay");
         d3.select("#" + id).append("div").attr("id", "vote").attr("class", "vote");
@@ -210,8 +222,8 @@ function looking(grpInfo, userInfo, id, status){
     }
 }
 
-function showMovie(grpInfo, userInfo, type, i, idsList){
-    
+function showMovie(grpInfo, userInfo, type, i, idsList) {
+
     d3.select("#votingInfo")
         .selectAll("*")
         .remove();
@@ -224,15 +236,15 @@ function showMovie(grpInfo, userInfo, type, i, idsList){
         .selectAll("*")
         .remove();
 
-    if(type == 'voting'){
-        if(i < idsList.length){
+    if (type == 'voting') {
+        if (i < idsList.length) {
             var t = i + 1;
             var top = "Vote : " + t.toString() + "/" + idsList.length.toString();
 
             d3.select("#vote")
                 .append('text')
                 .text(top);
-            
+
             getMovieInfo(idsList[i]).then((movieInfo) => {
                 makeShowFilmScreen(movieInfo, "filmDisplay", "votingInfo");
             });
@@ -252,13 +264,11 @@ function showMovie(grpInfo, userInfo, type, i, idsList){
                 .on("click", function() {
                     voteAction(this, grpInfo, userInfo, type, i + 1, idsList);
                 });
-        }else{
+        } else {
             patchJson('user', userInfo);
         }
-    }
-    
-    else if(type == 'results'){
-            
+    } else if (type == 'results') {
+
         d3.select("#votingInfo")
             .append('text')
             .text("Votation terminé !");
@@ -273,24 +283,24 @@ function showMovie(grpInfo, userInfo, type, i, idsList){
     }
 }
 
-function voteAction(buttonClicked, grpInfo, userInfo, type, i, idsList){
-    if(buttonClicked.value == 'yes'){
+function voteAction(buttonClicked, grpInfo, userInfo, type, i, idsList) {
+    if (buttonClicked.value == 'yes') {
         userInfo.vote = userInfo.vote + "1";
         showMovie(grpInfo, userInfo, type, i, idsList);
-    }else if(buttonClicked.value == 'no'){
+    } else if (buttonClicked.value == 'no') {
         userInfo.vote = userInfo.vote + "0";
         showMovie(grpInfo, userInfo, type, i, idsList);
     }
 }
 
-function countVotes(allUsersInfo){
+function countVotes(allUsersInfo) {
 
-    var res = [0,0,0,0,0,0,0,0,0,0];
-    for(user in allUsersInfo){
+    var res = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    for (user in allUsersInfo) {
         voteU = allUsersInfo[user].vote;
-        if (voteU != null){
-            for (var i = 0; i < voteU.length; i++){
-                if(voteU[i] == "1"){
+        if (voteU != null) {
+            for (var i = 0; i < voteU.length; i++) {
+                if (voteU[i] == "1") {
                     res[i] = res[i] + 1;
                 }
             }
