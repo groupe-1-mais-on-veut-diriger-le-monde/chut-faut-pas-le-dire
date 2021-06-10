@@ -14,7 +14,6 @@ async function creatJson(type, body){
         body: JSON.stringify(body)
     });
     var returnedId = await response.json();
-
     return returnedId;
 }
 

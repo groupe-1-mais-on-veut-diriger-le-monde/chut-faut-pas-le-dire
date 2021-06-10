@@ -48,6 +48,15 @@ body {
     font-weight: bold;
 }
 
+.titresMain_ {
+    /* classe affichage du pseudo et des titres */
+    position: absolute;
+    color: #f79a40;
+    margin: auto;
+    font-size: 2vw;
+    font-weight: bold;
+}
+
 .textC {
     /* style du nom des cathégories */
     color: #000000;
@@ -182,6 +191,19 @@ body {
     right: 0%;
 }
 
+.movieGeneralInfoStyle_sub_10{
+    position: absolute;
+    width: 100%;
+    height: 10%;
+}
+
+.movieGeneralInfoStyle_sub_30{
+    position: absolute;
+    width: 100%;
+    height: 40%;
+    overflow-y: scroll;
+}
+
 
 /* -------- Show Group Div -------- */
 
@@ -222,7 +244,11 @@ body {
     height: 100%;
     right: 0px;
 }
-
+.smallUserDivClass{
+    border-bottom-style: inset;
+    border-bottom-color: #F59937;
+    border-bottom-width: 7px;
+}
 
 /* -------- Show Group Div Voting -------- */
 

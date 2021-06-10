@@ -93,13 +93,6 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
                             computeResultId(grpInfo, allUsersInfo)
                                 .then((result) =>{
                                     makeShowGrpDiv(result, userInfo);
-                                    /*
-                                    grpInfo.result = result;
-                                    grpInfo.name = '1';
-                                    patchJson('group', grpInfo).then(() => {
-                                        makeShowGrpDiv(grpInfo, userInfo);
-                                    });
-                                    */   
                             });
                         });
                 });
@@ -121,7 +114,7 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
                             getJson('group', grpInfo.id)
                                 .then((grp) => {
                                     var indexMax = countVotes(allUsersInfo);
-                                    grp.result = result[indexMax];
+                                    grp.result = grp.result.split(",")[indexMax];
                                     grp.name = "2";
                                     patchJson('group', grp);
                                     makeShowGrpDiv(grp, userInfo);
@@ -155,7 +148,8 @@ function populateUserListDiv(usersInGrpInfo, id){
             .append("div")
             .attr("id", "groupUserInfo"+i.toString())
             .style("width", parentWidth.toString() + "px")
-            .style("height", eachMemberHeight.toString() + "px");
+            .style("height", eachMemberHeight.toString() + "px")
+            .attr("class", "smallUserDivClass");
         
         d3.select("#" + "groupUserInfo" + i.toString())
             .append("div")
@@ -294,9 +288,11 @@ function countVotes(allUsersInfo){
     var res = [0,0,0,0,0,0,0,0,0,0];
     for(user in allUsersInfo){
         voteU = allUsersInfo[user].vote;
-        for (var i = 0; i < voteU.length; i++){
-            if(voteU[i] == "1"){
-                res[i] = res[i] + 1;
+        if (voteU != null){
+            for (var i = 0; i < voteU.length; i++){
+                if(voteU[i] == "1"){
+                    res[i] = res[i] + 1;
+                }
             }
         }
     }
