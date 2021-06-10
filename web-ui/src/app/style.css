@@ -83,8 +83,9 @@ body {
 .buttonsHeader {
     /* position de la div des boutons de login et logout */
     position: fixed;
+    top: 4%;
     width: 25%;
-    height: 20%;
+    height: 10%;
     right: 0;
 }
 
