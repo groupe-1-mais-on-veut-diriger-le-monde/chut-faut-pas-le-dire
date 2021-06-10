@@ -70,7 +70,8 @@ async function deleteAll(type){
 
 //loads users all users in grp, and returns them in list
 async function loadAllMembers(group){
-    var membersId = [group.host, group.member1, group.member2, group.member3, group.member4, group.member5];
+    var newGrp = await getJson('group', group.id);
+    var membersId = [newGrp.host, newGrp.member1, newGrp.member2, newGrp.member3, newGrp.member4, newGrp.member5];
     var usersInGrp = [];
     for (var i = 0; i < membersId.length; i++){
         if(membersId[i] != 0){
@@ -109,7 +110,7 @@ async function quitGroup(idGroup, place){
 //changes state of grp
 async function changeState(grpId, state){
     var url = getURL('group');
-    url = url + "/status/" + grpId.toString() + "/" + state.toString();
+    url = url + "/status/" + grpId.toString() + "/" + state;
 
     await fetch(url,{
         method: 'PUT',
@@ -141,13 +142,16 @@ async function computeResultId(grp, allUserInfo){
         motsCles.push(allUserInfo[user].genre2)
         motsCles.push(allUserInfo[user].genre3)
     }
-    motsCles.sort();
-    console.log(motsCles);
+    var motCle = getMotCle(motsCles);
 
-    console.log(motsCles)
-    var response = await fetch('https://imdb-api.com/en/API/Keyword/k_despdtm5/love');
+    //var url = 'https://imdb-api.com/en/API/Keyword/' + getKeyIMDB() + '/' + motCle;
+    var url = 'https://imdb-api.com/en/API/Keyword/k_despdtm5/love';
+    
+    var response = await fetch(url);
     var jsonData = await response.json();
+
     var all = jsonData.items;
+    console.log(all);
     var filmsI = [];
     var finalId = "";
     for (val in all){
@@ -166,5 +170,38 @@ async function computeResultId(grp, allUserInfo){
 
     grp.result = finalId;
     patchJson('group', grp);
+    changeState(grp.id, '1');
+
 }
 
+function getMotCle(arrayEx1){
+    arrayEx1.sort();
+    var n = arrayEx1.length;
+    var countofmax = 1;
+    var temp = arrayEx1[0]; 
+    var count = 1; 
+
+    for (var i = 1; i < arrayEx1.length; i++){ 
+        if (arrayEx1[i] == arrayEx1[i - 1]){
+            count ++;
+        } else{
+            if (count > countofmax) {
+                countofmax = count;
+                temp = arrayEx1[i - 1];
+            }
+            count = 1;
+
+        }
+    }
+
+    if (count > countofmax){
+        countofmax = count;
+        temp = arrayEx1[n - 1]; 
+    }
+    return temp; 
+}
+
+function getKeyIMDB(){
+    //return 'k_despdtm5';
+    return 'k_h1yacuhi';
+}

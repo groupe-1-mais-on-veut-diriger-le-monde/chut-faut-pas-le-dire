@@ -1,4 +1,7 @@
 function makeShowGrpDiv(grpInfo, userInfo) {
+    console.log('AHAHH')
+    console.log(grpInfo)
+    console.log(userInfo)
 
     if(grpInfo != null){
             //resets body
@@ -78,26 +81,50 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
     d3.select("#showGroupIdP")
         .append("text")
         .text("ID du groupe : " + grpInfo.id);
-    
-    if(hostInfo == -1){
-        d3.select("#lauchSearchP")
-            .append("input")
-            .attr("type", "button")
-            .attr("value", "Lancer la recherche")
-            .attr("class", "button")
-            .on("click", function() {
-                loadAllMembers(grpInfo)
-                    .then((allUsersInfo) => {
-                        computeResultId(grpInfo, allUsersInfo)
-                    });
-                    //looking(grpInfo, userInfo, 'insideRightSideStyle_rightSide', 'voting');
 
-            });
-    }else{
-        d3.select("#lauchSearchP")
-            .append("text")
-            .text("Seul le host peut lancer la recherche");
+    if(grpInfo.name == ""){
+        if(hostInfo == -1){
+            d3.select("#lauchSearchP")
+                .append("input")
+                .attr("type", "button")
+                .attr("value", "Lancer la recherche")
+                .attr("class", "button")
+                .on("click", function() {
+                    loadAllMembers(grpInfo)
+                        .then((allUsersInfo) => {
+                            computeResultId(grpInfo, allUsersInfo);
+                            grpInfo.name = '1';
+                            console.log('called from here')
+                            makeShowGrpDiv(grpInfo, userInfo);
+                        });
+                        //looking(grpInfo, userInfo, 'insideRightSideStyle_rightSide', 'voting');
+                });
+        }else{
+            d3.select("#lauchSearchP")
+                .append("text")
+                .text("Seul le host peut lancer la recherche !");
+        }
+    }else if(grpInfo.name == "1"){
+        if(hostInfo == -1){
+            d3.select("#lauchSearchP")
+                .append("input")
+                .attr("type", "button")
+                .attr("value", "Compter les votes")
+                .attr("class", "button")
+                .on("click", function() {
+                    loadAllMembers(grpInfo)
+                        .then((allUsersInfo) => {
+                            /* TO DO */
+                        });
+                });
+        }else{
+            d3.select("#lauchSearchP")
+                .append("text")
+                .text("Seul le host peut finir la votation !");
+        }
+
     }
+
 }
 
 function populateUserListDiv(usersInGrpInfo, id){
