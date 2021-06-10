@@ -37,9 +37,10 @@ function makeMainScreen(userDetails) {
 
     //header creator
     d3.select("body").append("div").attr("id", "header").attr("class", "header");
+    d3.select("#header").append("div").attr("id", "buttonsHeader") /*.attr("width", 600).attr("height", 150)*/ .attr("class", "buttonsHeader");
     d3.select("#header").append("svg").attr("id", "svgImage").attr("width", 600).attr("height", 150);
     d3.select("#svgImage").append('image').attr("width", 600).attr("height", 150).attr('xlink:href', "img/header.png");
-    d3.select("#header").append("div").attr("id", "buttonsHeader").attr("class", "buttonsHeader");
+
 
     //splits rest of body in 2 sides -> 30% and 70% for now
     d3.select("body").append("div").attr("id", "leftSideDiv").attr("class", "leftSideDivStyle");

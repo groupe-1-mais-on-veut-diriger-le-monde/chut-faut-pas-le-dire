@@ -84,7 +84,7 @@ body {
     /* position de la div des boutons de login et logout */
     position: fixed;
     width: 25%;
-    height: 100%;
+    height: 20%;
     right: 0;
 }
 
@@ -225,6 +225,7 @@ body {
 
 
 /* -------- Show Group Div Voting -------- */
+
 .insideRightSideStyle {
     position: absolute;
     top: 5%;
