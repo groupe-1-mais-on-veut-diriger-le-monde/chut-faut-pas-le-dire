@@ -37,12 +37,7 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 	
 	
-	//verssion simplifier a voir ce qui est mieux
-	//@Override
-	//public Profile getByName(String name)  {
-		//log.info("Get an Profile by name");
-	//	return em.find(Profile.class, name);
-	//}
+	
 	
 	@Override
 	public Profile getByName(String name) {
