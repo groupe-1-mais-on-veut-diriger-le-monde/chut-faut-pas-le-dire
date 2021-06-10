@@ -83,6 +83,7 @@ jobs:
     #- sudo microk8s.kubectl apply -f ui-app.yaml && sudo microk8s.kubectl apply -f group-service.yaml && sudo microk8s.kubectl apply -f profile-service.yaml && sudo microk8s.kubectl apply -f ui-ingress.yaml
     #- exit
 
+
   - stage: Test groups and profile
     script:
     - mvn test
