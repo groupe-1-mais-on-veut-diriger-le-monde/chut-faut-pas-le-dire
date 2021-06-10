@@ -63,8 +63,8 @@ body {
     font-size: 1.25vw;
 }
 
-.validationGenreText {
-    /* ######## MODIF ? ######## */
+.boldText {
+    /* texte en gras (couleur qui varie suivant le message) */
     font-weight: bold;
 }
 
@@ -114,7 +114,7 @@ body {
 }
 
 .profilMain {
-    /* classe des details du profil */
+    /* div du profil */
     position: absolute;
     top: 10%;
     height: 40%;
@@ -125,6 +125,7 @@ body {
 }
 
 .remakeProfilMain {
+    /* class pour la modification des details d'utilisateur */
     position: absolute;
     bottom: 0px;
     height: 40%;
@@ -132,6 +133,7 @@ body {
 }
 
 .insideUserDetails {
+    /* class des details d'utilisateur */
     position: absolute;
     height: 50%;
     width: 100%;
@@ -141,6 +143,7 @@ body {
 /* -------- Genres -------- */
 
 .genreFilmesStyle {
+    /* div du choix de genres */
     position: absolute;
     border-radius: 10px;
     background: #7F7F7F;
@@ -164,12 +167,14 @@ body {
 /* -------- Show Film Div -------- */
 
 .movieGeneralInfoStyle {
+    /* div des informations sur le film */
     position: absolute;
     width: 65%;
     height: 100%;
 }
 
 .movieImageStyle {
+    /* div affiche du film */
     position: absolute;
     top: 10%;
     width: 30%;
@@ -180,6 +185,9 @@ body {
 
 /* -------- Show Group Div -------- */
 
+
+/* ---- Left side ---- */
+
 .leftSideShowGroupDiv {
     position: absolute;
     width: 30%;
@@ -187,14 +195,8 @@ body {
     left: 0px;
 }
 
-.rightSideShowGroupDiv {
-    position: absolute;
-    width: 70%;
-    height: 100%;
-    right: 0px;
-}
-
 .groupId {
+    /* div des infos dur le groupe */
     position: absolute;
     width: 90%;
     left: 5%;
@@ -203,12 +205,26 @@ body {
 }
 
 .userInGrpList {
+    /* div des memebres du groupe */
     position: absolute;
     width: 90%;
     left: 5%;
     height: 70%;
     top: 25%;
 }
+
+
+/* ---- Right side ---- */
+
+.rightSideShowGroupDiv {
+    position: absolute;
+    width: 70%;
+    height: 100%;
+    right: 0px;
+}
+
+
+/* ############################################### */
 
 .userBlock_List {
     position: absolute;

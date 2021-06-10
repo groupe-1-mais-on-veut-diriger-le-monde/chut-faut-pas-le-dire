@@ -364,7 +364,7 @@ function displayMessageGenreFilme(msg, color) {
     d3.select("#texteSuiteValider")
         .text(msg)
         .style('color', color)
-        .attr('class', 'validationGenreText');
+        .attr('class', 'boldText');
 
     setTimeout(function() {
         d3.select("#texteSuiteValider")
@@ -382,7 +382,7 @@ function displayMessageInfoFilm(msg, color) {
         .append('text')
         .text(msg)
         .style('color', color)
-        .attr('class', 'validationGenreText');
+        .attr('class', 'boldText');
 
     setTimeout(function() {
         d3.select("#searchBar")
