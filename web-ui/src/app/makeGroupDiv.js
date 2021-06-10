@@ -90,9 +90,14 @@ function populateGroupIdDiv(grpInfo, userInfo, id){
                 .on("click", function() {
                     loadAllMembers(grpInfo)
                         .then((allUsersInfo) => {
-                            computeResultId(grpInfo, allUsersInfo).then(() =>{
-                                grpInfo.name = '1';
-                                makeShowGrpDiv(grpInfo, userInfo);
+                            computeResultId(grpInfo, allUsersInfo)
+                                .then((result) =>{
+                                    grpInfo.result = result;
+                                    grpInfo.name = '1';
+                                    patchJson('group', grpInfo).then(() => {
+                                        makeShowGrpDiv(grpInfo, userInfo);
+                                    });
+                                    
                             });
                         });
                         //looking(grpInfo, userInfo, 'insideRightSideStyle_rightSide', 'voting');
@@ -298,11 +303,8 @@ function countVotes(allUsersInfo){
             }
         }
     }
-    console.log('TOTAL VOTES')
-    console.log(res)
+
     var indexOfMax = findMax(res);
-    console.log('MAX INDEX')
-    console.log(indexOfMax)
     return indexOfMax;
 }
 

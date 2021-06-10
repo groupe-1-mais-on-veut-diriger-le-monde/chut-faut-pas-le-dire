@@ -175,9 +175,8 @@ async function computeResultId(grp, allUserInfo){
     }    
 
     grp.result = finalId.slice(0, -1);
-    patchJson('group', grp);
     changeState(grp.id, '1');
-
+    return finalId;
 }
 
 function getMotCle(arrayEx1){
