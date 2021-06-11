@@ -207,7 +207,7 @@ function looking(grpInfo, userInfo, id, status) {
     if (status == 'waiting') {
         d3.select("#votingInfo")
             .append('text')
-            .text("En attente de lancement !").style("font-weight", "bold").style("text-align", "center");
+            .text("En attente de lancement !").style("font-weight", "bold");
     } else {
         userInfo.vote = "";
         d3.select("#" + id).append("div").attr("id", "filmDisplay").attr("class", "filmDisplay");

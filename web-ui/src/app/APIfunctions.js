@@ -3,54 +3,54 @@ var url_group = "http://129.194.10.126:30001/Groups";
 var url_profile = "http://129.194.10.126:30002/Profile";
 */
 
-async function creatJson(type, body){
+async function creatJson(type, body) {
     delete body.id;
     //gets correct url
     var url = getURL(type);
 
-    var response = await fetch(url,{
+    var response = await fetch(url, {
         method: 'POST',
-        headers: {'content-type': 'application/json'},
+        headers: { 'content-type': 'application/json' },
         body: JSON.stringify(body)
     });
     var returnedId = await response.json();
     return returnedId;
 }
 
-async function getJson(type, id){
+async function getJson(type, id) {
     //gets correct url
     var url = getURL(type) + '/id/' + id.toString();
 
     var response = await fetch(url);
-    if(response.statusText == "OK"){
+    if (response.statusText == "OK") {
         var jsonData = await response.json();
         return jsonData;
-    }else{
+    } else {
         return null;
     }
 }
 
-async function patchJson(type, body){
+async function patchJson(type, body) {
     //gets correct url
     var url = getURL(type);
 
-    await fetch(url,{
+    await fetch(url, {
         method: 'PUT',
-        headers: {'content-type': 'application/json'},
+        headers: { 'content-type': 'application/json' },
         body: JSON.stringify(body)
     });
 }
 
 // deletes 1 entry by id
-async function deleteJson(type, id){
+async function deleteJson(type, id) {
     var url = getURL(type) + '/delete/' + id.toString();
-    await fetch(url,{
+    await fetch(url, {
         method: 'DELETE'
     });
 }
 
 //deletes all entries of a DB -> might delete this function
-async function deleteAll(type){
+async function deleteAll(type) {
     //gets correct url
     var url = getURL(type);
     var currentUser = '';
@@ -58,22 +58,22 @@ async function deleteAll(type){
     var response = await fetch(url);
     var jsonData = await response.json();
 
-    for (var i=0; i<jsonData.length; i++){
+    for (var i = 0; i < jsonData.length; i++) {
         currentUser = jsonData[i].id.toString();
         var deleteUrl = url + '/delete/' + currentUser;
-        await fetch(deleteUrl,{
+        await fetch(deleteUrl, {
             method: 'DELETE'
         });
     }
 }
 
 //loads users all users in grp, and returns them in list
-async function loadAllMembers(group){
+async function loadAllMembers(group) {
     var newGrp = await getJson('group', group.id);
     var membersId = [newGrp.host, newGrp.member1, newGrp.member2, newGrp.member3, newGrp.member4, newGrp.member5];
     var usersInGrp = [];
-    for (var i = 0; i < membersId.length; i++){
-        if(membersId[i] != 0){
+    for (var i = 0; i < membersId.length; i++) {
+        if (membersId[i] != 0) {
             var user = await getJson('user', membersId[i]);
             usersInGrp.push(user);
         }
@@ -82,13 +82,13 @@ async function loadAllMembers(group){
 }
 
 //join grp
-async function joinGroup(idGroup, idProfil){
+async function joinGroup(idGroup, idProfil) {
     var url = getURL('group');
     url = url + "/join/" + idGroup.toString() + "/" + idProfil.toString();
 
-    var response = await fetch(url,{
+    var response = await fetch(url, {
         method: 'PUT',
-        headers: {'content-type': 'application/json'}
+        headers: { 'content-type': 'application/json' }
     });
     var jsonData = await response.json();
 
@@ -96,33 +96,33 @@ async function joinGroup(idGroup, idProfil){
 }
 
 //quit grp
-async function quitGroup(idGroup, place){
+async function quitGroup(idGroup, place) {
     var url = getURL('group');
     url = url + "/exit/" + idGroup.toString() + "/" + place.toString();
 
-    await fetch(url,{
+    await fetch(url, {
         method: 'PUT',
-        headers: {'content-type': 'application/json'}
+        headers: { 'content-type': 'application/json' }
     });
 }
 
 //changes state of grp
-async function changeState(grpId, state){
+async function changeState(grpId, state) {
     console.log('grpId')
     console.log(grpId)
     console.log(state)
     var url = getURL('group');
     url = url + "/status/" + grpId.toString() + "/" + state;
 
-    await fetch(url,{
+    await fetch(url, {
         method: 'PUT',
-        headers: {'content-type': 'application/json'}
+        headers: { 'content-type': 'application/json' }
     });
 }
 
 // simple switch for user or grp url
-function getURL(type){
-    switch(type) {
+function getURL(type) {
+    switch (type) {
         case 'user':
             var url = 'http://129.194.10.126:30002/Profile';
             break;
@@ -135,16 +135,16 @@ function getURL(type){
     }
     return url;
 }
-async function getMovieInfo(movieId){
+async function getMovieInfo(movieId) {
     var url = 'https://imdb-api.com/en/API/Title/' + getKeyIMDB() + '/' + movieId + '/FullActor,FullCast,Ratings,';
     var response = await fetch(url);
     var jsonData = await response.json();
     return jsonData;
 }
 
-async function computeResultId(grp, allUserInfo){
+async function computeResultId(grp, allUserInfo) {
     var motsCles = [];
-    for (user in allUserInfo){
+    for (user in allUserInfo) {
         motsCles.push(allUserInfo[user].genre1)
         motsCles.push(allUserInfo[user].genre2)
         motsCles.push(allUserInfo[user].genre3)
@@ -154,7 +154,7 @@ async function computeResultId(grp, allUserInfo){
     //var url = 'https://imdb-api.com/en/API/Keyword/' + getKeyIMDB() + '/' + motCle;
     var url = 'https://imdb-api.com/en/API/Keyword/' + getKeyIMDB() + '/love';
     //	"tt9620292,tt1375666,tt1386697,tt10272386,tt1677720,tt0091203,tt0407887,tt0409459,tt7286456,tt0993846"
-    
+
     var response = await fetch(url);
     var jsonData = await response.json();
 
@@ -162,12 +162,12 @@ async function computeResultId(grp, allUserInfo){
     console.log(all);
     var filmsI = [];
     var finalId = "";
-    for (val in all){
-        if (! all[val].year.includes("–")){
+    for (val in all) {
+        if (!all[val].year.includes("–")) {
             filmsI.push(all[val].id);
-        }        
+        }
     }
-    for (var i = 0; i<10; i++){
+    for (var i = 0; i < 10; i++) {
         var indexS = Math.floor(Math.random() * filmsI.length);
         finalId = finalId + filmsI[indexS] + ","
         const indexT = filmsI.indexOf(filmsI[indexS]);
@@ -190,17 +190,17 @@ async function computeResultId(grp, allUserInfo){
     return grp;
 }
 
-function getMotCle(arrayEx1){
+function getMotCle(arrayEx1) {
     arrayEx1.sort();
     var n = arrayEx1.length;
     var countofmax = 1;
-    var temp = arrayEx1[0]; 
-    var count = 1; 
+    var temp = arrayEx1[0];
+    var count = 1;
 
-    for (var i = 1; i < arrayEx1.length; i++){ 
-        if (arrayEx1[i] == arrayEx1[i - 1]){
-            count ++;
-        } else{
+    for (var i = 1; i < arrayEx1.length; i++) {
+        if (arrayEx1[i] == arrayEx1[i - 1]) {
+            count++;
+        } else {
             if (count > countofmax) {
                 countofmax = count;
                 temp = arrayEx1[i - 1];
@@ -210,15 +210,15 @@ function getMotCle(arrayEx1){
         }
     }
 
-    if (count > countofmax){
+    if (count > countofmax) {
         countofmax = count;
-        temp = arrayEx1[n - 1]; 
+        temp = arrayEx1[n - 1];
     }
-    return temp; 
+    return temp;
 }
 
-function getKeyIMDB(){
-    return 'k_imieubxh'; // lea
+function getKeyIMDB() {
+    return 'k_cvfs9yq9'; // new
     /*
     return 'k_despdtm5'; // antoine
     return 'k_h1yacuhi'; // joao
@@ -227,7 +227,8 @@ function getKeyIMDB(){
     return 'k_imieubxh'; // lea
     */
 }
-function getKeyIMDB1(){
+
+function getKeyIMDB1() {
     return 'k_despdtm5'; // antoine
     return 'k_h1yacuhi';
 }
