@@ -56,9 +56,8 @@ function populateGroupIdDiv(grpInfo, userInfo, id) {
     d3.select("#reloadGrpDivP")
         .append("input")
         .attr("type", "button")
-        .attr("value", "Clicker pour reload")
-        .attr("class", "button")
-        .style("width", "50%")
+        .attr("value", "⟳ Reload")
+        .attr("class", "buttonReload")
         .on("click", function() {
             getJson("group", userInfo.group1).then((grpInfo) => makeShowGrpDiv(grpInfo, user));
         });
@@ -68,7 +67,7 @@ function populateGroupIdDiv(grpInfo, userInfo, id) {
         .attr("type", "button")
         .attr("value", "Quitter")
         .attr("class", "button")
-        .style("width", "50%")
+        .style("width", "45%")
         .on("click", function() {
             resetGroupInfo(userInfo);
             makeShowGrpDiv(null, userInfo);
@@ -163,6 +162,7 @@ function populateUserListDiv(usersInGrpInfo, id) {
         d3.select("#" + "groupUserInfo" + i.toString())
             .append("div")
             .attr("id", "groupUserInfo" + i.toString() + "Top")
+            .attr("class", "txtMembre")
             .style("width", Math.floor((parentWidth / 100) * 90).toString() + "px")
             .style("height", Math.floor(eachMemberHeight / 2).toString() + "px")
             .style("left", Math.floor((parentWidth / 100) * 5).toString() + "px")
@@ -171,20 +171,20 @@ function populateUserListDiv(usersInGrpInfo, id) {
         d3.select("#" + "groupUserInfo" + i.toString())
             .append("div")
             .attr("id", "groupUserInfo" + i.toString() + "Bottom")
+            .attr("class", "txtMembre")
             .style("width", Math.floor((parentWidth / 100) * 90).toString() + "px")
             .style("height", Math.floor(eachMemberHeight / 2).toString() + "px")
             .style("left", Math.floor((parentWidth / 100) * 5).toString() + "px")
             .style("top", Math.floor(eachMemberHeight / 2).toString() + "px");
 
-        d3.select("#" + "groupUserInfo" + i.toString() + "Top")
-            .append("text")
-            .text("ID : " + usersInGrpInfo[i].id + " name : " + usersInGrpInfo[i].name)
-            .attr("class", "txtMembre");
+        d3.select("#" + "groupUserInfo" + i.toString() + "Top").append("text").text("ID : ").style("font-weight", "bold");
+        d3.select("#" + "groupUserInfo" + i.toString() + "Top").append("text").text(usersInGrpInfo[i].id); /*.attr("class", "txtMembre");*/
+        d3.select("#" + "groupUserInfo" + i.toString() + "Top").append("text").text(" name : ").style("font-weight", "bold");
+        d3.select("#" + "groupUserInfo" + i.toString() + "Top").append("text").text(usersInGrpInfo[i].name);
 
-        d3.select("#" + "groupUserInfo" + i.toString() + "Bottom")
-            .append("text")
-            .text("Goûts : " + dataFr[dataEn.indexOf(usersInGrpInfo[i].genre1)] + " " + dataFr[dataEn.indexOf(usersInGrpInfo[i].genre2)] + " " + dataFr[dataEn.indexOf(usersInGrpInfo[i].genre3)])
-            .attr("class", "txtMembre");
+
+        d3.select("#" + "groupUserInfo" + i.toString() + "Bottom").append("text").text("Goûts : ").style("font-weight", "bold");
+        d3.select("#" + "groupUserInfo" + i.toString() + "Bottom").append("text").text(dataFr[dataEn.indexOf(usersInGrpInfo[i].genre1)] + " " + dataFr[dataEn.indexOf(usersInGrpInfo[i].genre2)] + " " + dataFr[dataEn.indexOf(usersInGrpInfo[i].genre3)]);
     }
 }
 
@@ -207,7 +207,7 @@ function looking(grpInfo, userInfo, id, status) {
     if (status == 'waiting') {
         d3.select("#votingInfo")
             .append('text')
-            .text("En attente de lancement !");
+            .text("En attente de lancement !").style("font-weight", "bold").style("text-align", "center");
     } else {
         userInfo.vote = "";
         d3.select("#" + id).append("div").attr("id", "filmDisplay").attr("class", "filmDisplay");
@@ -248,7 +248,7 @@ function showMovie(grpInfo, userInfo, type, i, idsList) {
                 makeShowFilmScreen(movieInfo, "filmDisplay", "votingInfo");
             });
 
-            
+
             d3.select("#vote")
                 .append('div')
                 .attr('id', 'voteYes')
